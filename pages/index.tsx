@@ -1,27 +1,13 @@
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
-const Animator = dynamic(
-  import('react-scroll-motion').then((it) => it.Animator),
-  { ssr: false }
-)
-
-import {
-  ScrollContainer,
-  ScrollPage,
-  batch,
-  Fade,
-  FadeIn,
-  FadeOut,
-  Move,
-  MoveIn,
-  MoveOut,
-  Sticky,
-  StickyIn,
-  StickyOut,
-  Zoom,
-  ZoomIn,
-  ZoomOut,
-} from 'react-scroll-motion'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { LandingPage } from 'components'
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['home'])),
+    },
+  }
+}
 
 const Home = () => {
   return (
@@ -32,41 +18,7 @@ const Home = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>
-        <header className='w-full relative z-20 h-20 bg-black text-white'>
-          some
-        </header>
-        {/*
-        <div>
-          <ScrollContainer>
-            <ScrollPage>
-              <Animator animation={batch(StickyOut())}>
-                <header className='w-full relative z-20 h-20 bg-black text-white'>
-                  some
-                </header>
-                <div className='w-screen h-screen bg-some bg-no-repeat bg-cover'>
-                  <p className='z-10 top-[20] text-white right-[40]'>some</p>
-                </div>
-              </Animator>
-            </ScrollPage>
-            <ScrollPage>
-              <Animator animation={batch()}>
-                <div className='w-screen h-screen sticky bg-some bg-no-repeat bg-cover'>
-                  <p className='absolute z-20 top-[20] text-white right-[40]'>
-                    some
-                  </p>
-                </div>
-              </Animator>
-            </ScrollPage>
-          </ScrollContainer>
-        </div>
-*/}
-        <div className='w-full'>
-          <div className='sticky w-full h-screen bg-Interstellar bg-no-repeat bg-cover top-0'></div>
-          <div className='sticky w-full h-screen bg- bg-no-repeat bg-cover top-0'></div>
-          <div className='sticky w-full h-screen bg-some bg-no-repeat bg-cover '></div>
-        </div>
-      </main>
+      <LandingPage />
     </>
   )
 }
