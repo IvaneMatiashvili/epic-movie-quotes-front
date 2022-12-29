@@ -3,14 +3,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { LandingPage } from 'components'
 import { NextPage } from 'next'
 
-export const getStaticProps = async ({ locale }: { locale: string }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['home'])),
-    },
-  }
-}
-
 const Home: NextPage = () => {
   return (
     <>
@@ -23,5 +15,12 @@ const Home: NextPage = () => {
       <LandingPage />
     </>
   )
+}
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['home'])),
+    },
+  }
 }
 export default Home
