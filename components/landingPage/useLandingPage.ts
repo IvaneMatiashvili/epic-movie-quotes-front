@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { TFunction } from 'i18next'
 import { useTranslation } from 'next-i18next'
 
 export const useLandingPage = () => {
-  let t: TFunction<'translation', undefined>
-  ;({ t } = useTranslation())
+  const { t } = useTranslation()
   const { locale } = useRouter()
 
   const [hasScrollBar, setHasScrollBar] = useState(true)
