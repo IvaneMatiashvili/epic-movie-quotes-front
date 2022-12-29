@@ -3,7 +3,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 
 const Background: React.FC<PropsType> = (props) => {
-  const { locale }: { locale?: string | undefined } = useRouter()
+  const { locale } = useRouter()
 
   return (
     <div className='h-screen w-full'>

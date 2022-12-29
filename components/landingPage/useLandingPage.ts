@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next'
 export const useLandingPage = () => {
   let t: TFunction<'translation', undefined>
   ;({ t } = useTranslation())
-  const { locale }: { locale?: string | undefined } = useRouter()
+  const { locale } = useRouter()
 
   const [hasScrollBar, setHasScrollBar] = useState(true)
   const [isRegisterOn, setIsRegisterOn] = useState(false)

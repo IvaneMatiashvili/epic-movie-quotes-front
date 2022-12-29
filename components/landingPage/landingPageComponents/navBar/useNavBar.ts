@@ -7,7 +7,7 @@ import { setStateType } from 'types'
 export const useNavBar = () => {
   let t: TFunction<'translation', undefined>
   ;({ t } = useTranslation())
-  const { locale }: { locale?: string | undefined } = useRouter()
+  const { locale } = useRouter()
   let [isActiveDropdown, setIsActiveDropdown] = useState<boolean>(false)
 
   const dropdownSwitcher = () => {
