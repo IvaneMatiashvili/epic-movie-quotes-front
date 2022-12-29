@@ -2,6 +2,7 @@ import { TFunction } from 'i18next'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { setStateType } from 'types'
 
 export const useNavBar = () => {
   let t: TFunction<'translation', undefined>
@@ -22,8 +23,8 @@ export const useNavBar = () => {
     }
   }
   const removeScrollbarAndOpenRegisterForm = (
-    setHasScrollBar: (arg0: boolean) => void,
-    setIsRegisterOn: (arg0: boolean) => void
+    setHasScrollBar: setStateType<boolean>,
+    setIsRegisterOn: setStateType<boolean>
   ) => {
     setHasScrollBar(false)
     setIsRegisterOn(true)

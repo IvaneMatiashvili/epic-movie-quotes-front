@@ -1,7 +1,9 @@
+import { setStateType } from 'types'
+
 export const useRegisterForm = () => {
   const returnScrollbarAndCloseRegisterForm = (
-    setHasScrollBar: (arg0: boolean) => void,
-    setIsRegisterOn: (arg0: boolean) => void
+    setHasScrollBar: setStateType<boolean>,
+    setIsRegisterOn: setStateType<boolean>
   ) => {
     setHasScrollBar(true)
     setIsRegisterOn(false)

@@ -1,4 +1,6 @@
+import { setStateType } from 'types'
+
 export type PropsType = {
-  setHasScrollBar: Dispatch<SetStateAction<boolean>>
-  setIsRegisterOn: Dispatch<SetStateAction<boolean>>
+  setHasScrollBar: setStateType<boolean>
+  setIsRegisterOn: setStateType<boolean>
 }
