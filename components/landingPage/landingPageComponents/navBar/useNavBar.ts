@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next'
 export const useNavBar = () => {
   const { t } = useTranslation()
   const { locale } = useRouter()
-  let [isActiveDropdown, setIsActiveDropdown] = useState<boolean>(false)
+  let [isActiveDropdown, setIsActiveDropdown] = useState(false)
 
   const dropdownSwitcher = () => {
     if (!isActiveDropdown) {
