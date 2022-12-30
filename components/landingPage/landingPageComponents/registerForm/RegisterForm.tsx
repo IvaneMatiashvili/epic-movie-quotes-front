@@ -1,10 +1,10 @@
-import { PropsType } from './types'
+import { Props } from './types'
 import { useRegisterForm } from './useRegisterForm'
 import { InputTypeText, Error, GoogleSvg } from 'components'
 import { FormProvider } from 'react-hook-form'
 import React from 'react'
 
-const RegisterForm: React.FC<PropsType> = (props) => {
+const RegisterForm: React.FC<Props> = (props) => {
   const {
     returnScrollbarAndCloseRegisterForm,
     setIsTypePassword,

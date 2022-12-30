@@ -1,8 +1,8 @@
-import { PropsType } from './types'
+import { Props } from './types'
 import React from 'react'
 import { useRouter } from 'next/router'
 
-const Background: React.FC<PropsType> = (props) => {
+const Background: React.FC<Props> = (props) => {
   const { locale } = useRouter()
 
   return (

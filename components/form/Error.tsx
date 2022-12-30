@@ -1,9 +1,9 @@
 import { ErrorMessage } from '@hookform/error-message'
 import { useRouter } from 'next/router'
-import { ErrorPropsType } from './types'
+import { ErrorProps } from './types'
 import React from 'react'
 
-const Error: React.FC<ErrorPropsType> = (props) => {
+const Error: React.FC<ErrorProps> = (props) => {
   const { locale } = useRouter()
   return (
     <ErrorMessage

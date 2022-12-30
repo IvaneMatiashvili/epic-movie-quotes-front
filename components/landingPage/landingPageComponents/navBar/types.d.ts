@@ -1,6 +1,6 @@
-import { SetStateType } from 'types'
+import { SetState } from 'types'
 
-export type PropsType = {
-  setHasScrollBar: SetStateType<boolean>
-  setIsRegisterOn: SetStateType<boolean>
+export type Props = {
+  setHasScrollBar: SetState<boolean>
+  setIsRegisterOn: SetState<boolean>
 }

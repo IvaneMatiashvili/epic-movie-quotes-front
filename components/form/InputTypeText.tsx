@@ -1,9 +1,9 @@
 import { Approve, ErrorSvg, Hide, Show } from 'components'
 import { useForm } from './useForm'
-import { InputTypeTextPropsType } from './types'
+import { InputTypeTextProps } from './types'
 import React from 'react'
 
-const InputTypeText: React.FC<InputTypeTextPropsType> = (props) => {
+const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
   const {
     locale,
     setValue,

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { SetStateType } from 'types'
+import { SetState } from 'types'
 import { useTranslation } from 'next-i18next'
 
 export const useNavBar = () => {
@@ -21,8 +21,8 @@ export const useNavBar = () => {
     }
   }
   const removeScrollbarAndOpenRegisterForm = (
-    setHasScrollBar: SetStateType<boolean>,
-    setIsRegisterOn: SetStateType<boolean>
+    setHasScrollBar: SetState<boolean>,
+    setIsRegisterOn: SetState<boolean>
   ) => {
     setHasScrollBar(false)
     setIsRegisterOn(true)

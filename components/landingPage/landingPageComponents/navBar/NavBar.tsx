@@ -2,11 +2,11 @@ import { DownArrow } from 'components'
 import Link from 'next/link'
 import { useNavBar } from './useNavBar'
 import React from 'react'
-import { PropsType } from './types'
+import { Props } from './types'
 import Image from 'next/image'
 import movieQuotes from '/public/assets/movie-quotes.png'
 
-const NavBar: React.FC<PropsType> = (props) => {
+const NavBar: React.FC<Props> = (props) => {
   const {
     locale,
     t,

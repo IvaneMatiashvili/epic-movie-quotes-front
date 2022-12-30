@@ -1,4 +1,4 @@
-export type PropsType = {
+export type Props = {
   top: boolean
   bottom: boolean
   firstLine: string
