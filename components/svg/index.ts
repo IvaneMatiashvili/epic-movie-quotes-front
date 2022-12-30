@@ -1,1 +1,6 @@
 export { default as DownArrow } from './DownArrow'
+export { default as Hide } from './Hide'
+export { default as Show } from './Show'
+export { default as Approve } from './Approve'
+export { default as ErrorSvg } from './ErrorSvg'
+export { default as GoogleSvg } from './GoogleSvg'
