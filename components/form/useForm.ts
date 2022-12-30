@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
-import { setStateType } from 'types'
+import { SetStateType } from 'types'
 
 export const useForm = () => {
   const { register, setValue } = useFormContext()
@@ -11,7 +11,7 @@ export const useForm = () => {
 
   const changePasswordType = (
     isTypePassword: boolean,
-    setIsTypePassword: setStateType<boolean>
+    setIsTypePassword: SetStateType<boolean>
   ) => {
     isTypePassword ? setIsTypePassword(false) : setIsTypePassword(true)
     inputReference.current !== null && inputReference.current.focus()

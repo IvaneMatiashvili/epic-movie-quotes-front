@@ -1,4 +1,4 @@
-import { setStateType } from 'types'
+import { SetStateType } from 'types'
 import { FieldError } from 'react-hook-form'
 
 export type InputTypeTextPropsType = {
@@ -7,7 +7,7 @@ export type InputTypeTextPropsType = {
   id: string
   key: string
   isTypePassword: boolean | null
-  setIsTypePassword: setStateType<boolean> | null
+  setIsTypePassword: SetStateType<boolean> | null
   placeholder: string
   labelContent: string
   error: FieldError | undefined

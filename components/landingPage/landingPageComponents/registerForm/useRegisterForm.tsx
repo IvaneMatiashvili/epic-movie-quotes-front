@@ -1,4 +1,4 @@
-import { setStateType } from 'types'
+import { SetStateType } from 'types'
 import { useTranslation } from 'next-i18next'
 import { useForm, useWatch } from 'react-hook-form'
 import { useEffect, useState } from 'react'
@@ -8,8 +8,8 @@ export const useRegisterForm = () => {
   const { locale } = useRouter()
 
   const returnScrollbarAndCloseRegisterForm = (
-    setHasScrollBar: setStateType<boolean>,
-    setIsRegisterOn: setStateType<boolean>
+    setHasScrollBar: SetStateType<boolean>,
+    setIsRegisterOn: SetStateType<boolean>
   ) => {
     setHasScrollBar(true)
     setIsRegisterOn(false)
