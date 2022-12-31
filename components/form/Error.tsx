@@ -10,13 +10,17 @@ const Error: React.FC<ErrorProps> = (props) => {
       errors={props.errors}
       name={props.name}
       render={({ message }) => (
-        <p
-          className={`absolute mt-1 text-sm font-light text-redStar ${
-            locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-          }`}
-        >
-          {message}
-        </p>
+        <div className='flex justify-center'>
+          <div className='w-r22 sm:w-r24'>
+            <p
+              className={`absolute mt-1 text-sm font-light text-redStar ${
+                locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+              }`}
+            >
+              {message}
+            </p>
+          </div>
+        </div>
       )}
     />
   )
