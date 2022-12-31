@@ -76,14 +76,12 @@ const NavBar: React.FC<Props> = (props) => {
                 </div>
               </div>
 
-              <div
+              <Link
                 className='bg-signInRed h-10 w-32 sm:flex hidden justify-center items-center rounded-md cursor-pointer'
                 onClick={() =>
-                  removeScrollbarAndOpenRegisterForm(
-                    props.setHasScrollBar,
-                    props.setIsRegisterOn
-                  )
+                  removeScrollbarAndOpenRegisterForm(props.setHasScrollBar)
                 }
+                href='?stage=register'
               >
                 <p
                   className={`
@@ -93,9 +91,15 @@ const NavBar: React.FC<Props> = (props) => {
                 >
                   {t('home:signUp')}
                 </p>
-              </div>
+              </Link>
 
-              <div className='bg-softBlack h-10 w-32 flex justify-center items-center rounded-md border'>
+              <Link
+                className='bg-softBlack h-10 w-32 flex justify-center items-center rounded-md border cursor-pointer'
+                onClick={() =>
+                  removeScrollbarAndOpenRegisterForm(props.setHasScrollBar)
+                }
+                href='?stage=login'
+              >
                 <p
                   className={`
                   ${
@@ -104,7 +108,7 @@ const NavBar: React.FC<Props> = (props) => {
                 >
                   {t('home:logIn')}
                 </p>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -128,7 +132,13 @@ const NavBar: React.FC<Props> = (props) => {
           </p>
         </div>
 
-        <div className='bg-signInRed h-10 w-32 flex justify-center items-center rounded-md mt-10'>
+        <Link
+          className='bg-signInRed h-10 w-32 flex justify-center items-center rounded-md mt-10 cursor-pointer'
+          onClick={() =>
+            removeScrollbarAndOpenRegisterForm(props.setHasScrollBar)
+          }
+          href='?stage=register'
+        >
           <p
             className={`
                   ${
@@ -137,7 +147,7 @@ const NavBar: React.FC<Props> = (props) => {
           >
             {t('home:getStarted')}
           </p>
-        </div>
+        </Link>
       </div>
     </>
   )

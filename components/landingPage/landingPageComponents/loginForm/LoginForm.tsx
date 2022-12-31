@@ -1,44 +1,41 @@
 import { Props } from './types'
-import { useRegisterForm } from './useRegisterForm'
+import { useLoginForm } from './useLoginForm'
 import { InputTypeText, Error, GoogleSvg } from 'components'
 import { FormProvider } from 'react-hook-form'
 import React from 'react'
 import Link from 'next/link'
 
-const RegisterForm: React.FC<Props> = (props) => {
+const LoginForm: React.FC<Props> = (props) => {
   const {
-    returnScrollbarAndCloseRegisterForm,
+    returnScrollbarAndCloseLoginForm,
     setIsTypePassword,
     isTypePassword,
     t,
     form,
     handleSubmit,
     errors,
-    isTypeConfirmPassword,
-    setIsTypeConfirmPassword,
     locale,
-    watchPassword,
-  } = useRegisterForm()
+  } = useLoginForm()
 
   return (
     <>
       <div
         className={`fixed w-screen z-30 h-screen bg-blurBlack/30 backdrop-blur flex justify-center items-center overflow-hidden`}
       >
-        <div className='w-full sm:w-r37 h-screen sm:h-r55 absolute z-40 bg-softBlue sm:rounded-xl flex flex-col sm:justify-center items-center'>
+        <div className='w-full sm:w-r37 h-screen sm:h-r40 absolute z-40 bg-softBlue sm:rounded-xl flex flex-col sm:justify-center items-center'>
           <p
             className={`font-normal text-2xl sm:text-3xl text-white mt-24 sm:mt-0 ${
               locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
             }`}
           >
-            {t('home:createAnAccount')}
+            {t('home:logInToYourAccount')}
           </p>
           <p
-            className={`font-light sm:text-base mt-4 text-grayJourney ${
+            className={`font-light text-sm sm:text-r009 mt-4 text-grayJourney ${
               locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
             }`}
           >
-            {t('home:startYourJourney')}
+            {t('home:welcomeBack')}
           </p>
 
           <FormProvider {...form}>
@@ -48,36 +45,12 @@ const RegisterForm: React.FC<Props> = (props) => {
               })}
             >
               <InputTypeText
-                name='name'
-                errors={{
-                  required: t('errors:name'),
-                  minLength: {
-                    value: 3,
-                    message: t('errors:nameMin'),
-                  },
-                  maxLength: {
-                    value: 15,
-                    message: t('errors:nameMax'),
-                  },
-                }}
-                id='name'
-                key='name'
-                placeholder={t('home:namePlaceholder')}
-                labelContent={t('home:name')}
-                error={errors.name}
-                isTypePassword={null}
-                setIsTypePassword={null}
-              />
-
-              <Error errors={errors} name='name' />
-
-              <InputTypeText
                 name='email'
                 errors={{
                   required: t('errors:email'),
-                  pattern: {
-                    value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                    message: t('errors:emailValid'),
+                  minLength: {
+                    value: 3,
+                    message: t('errors:nameMin'),
                   },
                 }}
                 id='email'
@@ -95,57 +68,52 @@ const RegisterForm: React.FC<Props> = (props) => {
                 name='password'
                 errors={{
                   required: t('errors:password'),
-                  minLength: {
-                    value: 8,
-                    message: t('errors:passwordMin'),
-                  },
-                  maxLength: {
-                    value: 15,
-                    message: t('errors:passwordMax'),
-                  },
                 }}
                 id='password'
                 key='password'
                 isTypePassword={isTypePassword}
                 setIsTypePassword={setIsTypePassword}
-                placeholder={t('home:passwordPlaceholder')}
+                placeholder={t('home:password')}
                 labelContent={t('home:password')}
                 error={errors.password}
               />
 
               <Error errors={errors} name='password' />
-
-              <InputTypeText
-                name='confirm_password'
-                errors={{
-                  required: t('errors:confirmPasswordReq'),
-                  minLength: {
-                    value: 8,
-                    message: t('errors:passwordMin'),
-                  },
-                  maxLength: {
-                    value: 15,
-                    message: t('errors:passwordMax'),
-                  },
-                  validate: (val: string) => {
-                    if (watchPassword !== val && val.length >= 8) {
-                      return t('errors:passwordConfirmation')
-                    }
-                  },
-                }}
-                id='confirm_password'
-                key='confirm_password'
-                isTypePassword={isTypeConfirmPassword}
-                setIsTypePassword={setIsTypeConfirmPassword}
-                placeholder={t('home:confirmPassword')}
-                labelContent={t('home:confirmPasswordPlaceholder')}
-                error={errors.confirm_password}
-              />
-              <Error errors={errors} name='confirm_password' />
+              <div className='flex justify-center'>
+                <div
+                  className={`flex justify-between items-center w-r22 sm:w-r24 h-r027 mt-4`}
+                >
+                  <div className='flex justify-between items-center'>
+                    <input
+                      id='checkbox'
+                      type='checkbox'
+                      className='bg-white border-dark-20 rounded-sm outline-none w-5 h-5 cursor-pointer focus:ring-0 accent-pink-500 mr-2'
+                      name='remember_me'
+                    />
+                    <label
+                      htmlFor='checkbox'
+                      className={`font-light text-sm text-white cursor-pointer w- ${
+                        locale === 'en'
+                          ? 'font-helveticaEn'
+                          : 'font-helveticaKa'
+                      }`}
+                    >
+                      {t('home:rememberMe')}
+                    </label>
+                  </div>
+                  <p
+                    className={`font-light text-sm text-blueLogin underline cursor-pointer w- ${
+                      locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                    }`}
+                  >
+                    {t('home:forgotPassword')}
+                  </p>
+                </div>
+              </div>
 
               <button
                 type='submit'
-                className={`bg-signInRed h-r027 w-r22 sm:w-r24 flex justify-center items-center rounded-md mt-8 cursor-pointer`}
+                className={`bg-signInRed h-r027 w-r22 sm:w-r24 flex justify-center items-center rounded-md mt-4 cursor-pointer`}
               >
                 <p
                   className={`
@@ -153,7 +121,7 @@ const RegisterForm: React.FC<Props> = (props) => {
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-base text-white`}
                 >
-                  {t('home:getStarted')}
+                  {t('home:signIn')}
                 </p>
               </button>
             </form>
@@ -181,19 +149,19 @@ const RegisterForm: React.FC<Props> = (props) => {
               {t('home:alreadyHaveAnAccount')}
             </p>
             <Link
-              href='?stage=login'
+              href='?stage=register'
               className={`font-light text-sm mt-8 ml-2 text-blueLogin underline cursor-pointer ${
                 locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
               }`}
             >
-              {t('home:logIn')}
+              {t('home:signUp')}
             </Link>
           </div>
         </div>
         <div
           className='w-screen h-screen absolute z-30 bg-transparent'
           onClick={() =>
-            returnScrollbarAndCloseRegisterForm(props.setHasScrollBar)
+            returnScrollbarAndCloseLoginForm(props.setHasScrollBar)
           }
         ></div>
       </div>
@@ -201,4 +169,4 @@ const RegisterForm: React.FC<Props> = (props) => {
   )
 }
 
-export default RegisterForm
+export default LoginForm

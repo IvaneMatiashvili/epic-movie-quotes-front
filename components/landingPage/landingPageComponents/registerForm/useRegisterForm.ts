@@ -5,15 +5,13 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 export const useRegisterForm = () => {
-  const { locale } = useRouter()
+  const { locale, push } = useRouter()
 
-  const returnScrollbarAndCloseRegisterForm = (
-    setHasScrollBar: SetState<boolean>,
-    setIsRegisterOn: SetState<boolean>
+  const returnScrollbarAndCloseRegisterForm = async (
+    setHasScrollBar: SetState<boolean>
   ) => {
     setHasScrollBar(true)
-    setIsRegisterOn(false)
-    localStorage.setItem('registerOn', 'false')
+    await push('/')
   }
 
   const { t } = useTranslation()

@@ -21,12 +21,9 @@ export const useNavBar = () => {
     }
   }
   const removeScrollbarAndOpenRegisterForm = (
-    setHasScrollBar: SetState<boolean>,
-    setIsRegisterOn: SetState<boolean>
+    setHasScrollBar: SetState<boolean>
   ) => {
     setHasScrollBar(false)
-    setIsRegisterOn(true)
-    localStorage.setItem('registerOn', 'true')
   }
 
   return {

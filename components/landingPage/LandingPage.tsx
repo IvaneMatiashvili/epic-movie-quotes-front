@@ -1,30 +1,23 @@
-import { Background, NavBar, RegisterForm } from './landingPageComponents'
+import {
+  Background,
+  NavBar,
+  RegisterForm,
+  LoginForm,
+} from './landingPageComponents'
 import { useLandingPage } from './useLandingPage'
 
 const LandingPage = () => {
-  const {
-    setHasScrollBar,
-    hasScrollBar,
-    setIsRegisterOn,
-    isRegisterOn,
-    locale,
-    t,
-  } = useLandingPage()
+  const { setHasScrollBar, hasScrollBar, locale, t, stage } = useLandingPage()
 
   return (
     <>
-      {isRegisterOn && (
-        <RegisterForm
-          setHasScrollBar={setHasScrollBar}
-          setIsRegisterOn={setIsRegisterOn}
-        />
+      {stage === 'register' && (
+        <RegisterForm setHasScrollBar={setHasScrollBar} />
       )}
+      {stage === 'login' && <LoginForm setHasScrollBar={setHasScrollBar} />}
 
       <main className={`h-screen ${!hasScrollBar && 'overflow-hidden'}`}>
-        <NavBar
-          setHasScrollBar={setHasScrollBar}
-          setIsRegisterOn={setIsRegisterOn}
-        />
+        <NavBar setHasScrollBar={setHasScrollBar} />
 
         <Background
           bottom={false}

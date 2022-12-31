@@ -4,24 +4,22 @@ import { useTranslation } from 'next-i18next'
 
 export const useLandingPage = () => {
   const { t } = useTranslation()
-  const { locale } = useRouter()
+  const { locale, query } = useRouter()
+  const { stage } = query
 
   const [hasScrollBar, setHasScrollBar] = useState(true)
-  const [isRegisterOn, setIsRegisterOn] = useState(false)
 
   useEffect(() => {
-    if (localStorage.getItem('registerOn') === 'true') {
+    if (stage === 'register' || stage === 'login') {
       setHasScrollBar(false)
-      setIsRegisterOn(true)
     }
-  }, [])
+  }, [stage])
 
   return {
     hasScrollBar,
     setHasScrollBar,
-    isRegisterOn,
-    setIsRegisterOn,
     locale,
     t,
+    stage,
   }
 }

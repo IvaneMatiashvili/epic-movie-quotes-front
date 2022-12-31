@@ -15,25 +15,27 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
   } = useForm()
 
   return (
-    <>
-      <label
-        htmlFor={props.id}
-        className={`block font-normal text-base text-white mt-6
+    <div>
+      <div className='flex justify-center'>
+        <div className='w-r22 sm:w-r24'>
+          <label
+            htmlFor={props.id}
+            className={`block font-normal text-base text-white mt-6
         ${locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'}`}
-      >
-        {props.labelContent} <span className='text-redStar'>*</span>
-      </label>
-      <div className='flex flex-row items-center h-14'>
+          >
+            {props.labelContent} <span className='text-redStar'>*</span>
+          </label>
+        </div>
+      </div>
+      <div className='flex flex-row items-center justify-center h-14'>
         {(props.name === 'password' || props.name === 'confirm_password') &&
           props.isTypePassword && (
             <div
-              className='absolute flex justify-center items-center h-10 mt-2 right-r085 cursor-pointer'
+              className='absolute flex justify-center items-center h-10 mt-2 pl-r18 sm:pl-0 sm:right-r085 cursor-pointer'
               onClick={() =>
-                props.isTypePassword &&
-                props.setIsTypePassword &&
                 changePasswordType(
-                  props.isTypePassword,
-                  props.setIsTypePassword
+                  props.isTypePassword!,
+                  props.setIsTypePassword!
                 )
               }
             >
@@ -43,13 +45,11 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
         {(props.name === 'password' || props.name === 'confirm_password') &&
           !props.isTypePassword && (
             <div
-              className='absolute flex justify-center items-center h-10 mt-2 right-r085 cursor-pointer'
+              className='absolute flex justify-center items-center h-10 mt-2 pl-r18 sm:pl-0 sm:right-r085 cursor-pointer'
               onClick={() =>
-                props.isTypePassword &&
-                props.setIsTypePassword &&
                 changePasswordType(
-                  props.isTypePassword,
-                  props.setIsTypePassword
+                  props.isTypePassword!,
+                  props.setIsTypePassword!
                 )
               }
             >
@@ -58,13 +58,13 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
           )}
 
         {!props.error && !isUndefinedError && (
-          <div className='absolute flex justify-center items-center h-10 mt-2 right-28 cursor-pointer'>
+          <div className='absolute flex justify-center items-center h-10 mt-2 pl-r2005 sm:pl-0 sm:pl-0 sm:right-28 cursor-pointer'>
             <Approve />
           </div>
         )}
 
         {props.error && !isUndefinedError && (
-          <div className='absolute flex justify-center items-center h-10 mt-2 right-28 cursor-pointer'>
+          <div className='absolute flex justify-center items-center h-10 mt-2 pl-r2005 sm:pl-0 sm:right-28 cursor-pointer'>
             <ErrorSvg />
           </div>
         )}
@@ -95,11 +95,11 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
               ? 'border-borderRed'
               : 'border-borderGreen'
           }
-          font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r24 h-r027 outline-none`}
+          font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r22 sm:w-r24 h-r027 outline-none`}
           ref={inputReference}
         />
       </div>
-    </>
+    </div>
   )
 }
 
