@@ -24,5 +24,10 @@
   "confirmPassword": "Confirm password",
   "confirmPasswordPlaceholder": "Confirm password",
   "singUpWithGoogle": "Sign up with Google",
-  "alreadyHaveAnAccount": "Already have an account?"
+  "alreadyHaveAnAccount": "Already have an account?",
+  "logInToYourAccount": "Log in to your account",
+  "welcomeBack": "Welcome back! Please enter your details.",
+  "rememberMe": "Remember me",
+  "forgotPassword": "Forgot password",
+  "signIn": "Sign in"
 }

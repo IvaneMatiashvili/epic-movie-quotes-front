@@ -24,5 +24,10 @@
   "confirmPassword": "გაიმეორეთ პაროლი",
   "confirmPasswordPlaceholder": "პაროლი",
   "singUpWithGoogle": "დარეგისტრირდი გუგლით",
-  "alreadyHaveAnAccount": "უკვე გაქვს ექაუნთი?"
+  "alreadyHaveAnAccount": "უკვე გაქვს ექაუნთი?",
+  "logInToYourAccount": "პროფილში შესვლა",
+  "welcomeBack": "გთხოვთ შეიყვანოთ თქვენი დეტალები.",
+  "rememberMe": "დამახსოვრება",
+  "forgotPassword": "დაგავიწყდა",
+  "signIn": "შესვლა"
 }
