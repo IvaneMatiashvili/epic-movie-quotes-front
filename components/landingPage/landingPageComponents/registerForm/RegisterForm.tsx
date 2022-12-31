@@ -3,6 +3,7 @@ import { useRegisterForm } from './useRegisterForm'
 import { InputTypeText, Error, GoogleSvg } from 'components'
 import { FormProvider } from 'react-hook-form'
 import React from 'react'
+import Link from 'next/link'
 
 const RegisterForm: React.FC<Props> = (props) => {
   const {
@@ -22,18 +23,18 @@ const RegisterForm: React.FC<Props> = (props) => {
   return (
     <>
       <div
-        className={`fixed w-screen z-30 h-screen bg-blurBlack/30 backdrop-blur flex justify-center items-center`}
+        className={`fixed w-screen z-30 h-screen bg-blurBlack/30 backdrop-blur flex justify-center items-center overflow-hidden`}
       >
-        <div className='w-r37 h-[55rem] absolute z-40 bg-softBlue rounded-xl flex flex-col justify-center items-center'>
+        <div className='w-full sm:w-r37 h-screen sm:h-r55 absolute z-40 bg-softBlue sm:rounded-xl flex flex-col sm:justify-center items-center'>
           <p
-            className={`font-normal text-3xl text-white ${
+            className={`font-normal text-2xl sm:text-3xl text-white mt-24 sm:mt-0 ${
               locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
             }`}
           >
             {t('home:createAnAccount')}
           </p>
           <p
-            className={`font-light text-base mt-4 text-grayJourney ${
+            className={`font-light sm:text-base mt-4 text-grayJourney ${
               locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
             }`}
           >
@@ -144,7 +145,7 @@ const RegisterForm: React.FC<Props> = (props) => {
 
               <button
                 type='submit'
-                className={`bg-signInRed h-r027 w-r24 flex justify-center items-center rounded-md mt-8 cursor-pointer`}
+                className={`bg-signInRed h-r027 w-r22 sm:w-r24 flex justify-center items-center rounded-md mt-8 cursor-pointer`}
               >
                 <p
                   className={`
@@ -158,7 +159,7 @@ const RegisterForm: React.FC<Props> = (props) => {
             </form>
           </FormProvider>
 
-          <div className='bg-softBlue border h-r027 w-r24 flex justify-center items-center rounded-md mt-4 cursor-pointer'>
+          <div className='bg-softBlue border h-r027 w-r22 sm:w-r24 flex justify-center items-center rounded-md mt-4 cursor-pointer'>
             <div className='mr-2'>
               <GoogleSvg />
             </div>
@@ -177,24 +178,22 @@ const RegisterForm: React.FC<Props> = (props) => {
                 locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
               }`}
             >
-              {t('home:startYourJourney')}
+              {t('home:alreadyHaveAnAccount')}
             </p>
-            <p
+            <Link
+              href='?stage=login'
               className={`font-light text-sm mt-8 ml-2 text-blueLogin underline cursor-pointer ${
                 locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
               }`}
             >
               {t('home:logIn')}
-            </p>
+            </Link>
           </div>
         </div>
         <div
           className='w-screen h-screen absolute z-30 bg-transparent'
           onClick={() =>
-            returnScrollbarAndCloseRegisterForm(
-              props.setHasScrollBar,
-              props.setIsRegisterOn
-            )
+            returnScrollbarAndCloseRegisterForm(props.setHasScrollBar)
           }
         ></div>
       </div>
