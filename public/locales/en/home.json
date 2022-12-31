@@ -12,5 +12,17 @@
   "findQuoteFirstLine": "Find any quote in",
   "findQuoteSecondLine": "millions of movie lines",
   "getStarted": "Get started",
-  "movieQuotesC": "© 2022 movie quotes. All rights reserved."
+  "movieQuotesC": "© 2022 movie quotes. All rights reserved.",
+  "createAnAccount": "Create an account",
+  "startYourJourney": "Start your journey!",
+  "name": "Name",
+  "namePlaceholder": "At least 3 & max.15 lower case characters",
+  "email": "Email",
+  "emailPlaceholder": "Enter your email",
+  "password": "Password",
+  "passwordPlaceholder": "At least 8 & max.15 lower case characters",
+  "confirmPassword": "Confirm password",
+  "confirmPasswordPlaceholder": "Confirm password",
+  "singUpWithGoogle": "Sign up with Google",
+  "alreadyHaveAnAccount": "Already have an account?"
 }

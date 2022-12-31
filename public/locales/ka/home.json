@@ -12,5 +12,17 @@
   "findQuoteFirstLine": "იპოვეთ ნებისმიერი ციტატა",
   "findQuoteSecondLine": "მილიონობით ფილმში",
   "getStarted": "დაწყება",
-  "movieQuotesC": "© ფილმის ციტატები. ყველა უფლება დაცულია"
+  "movieQuotesC": "© ფილმის ციტატები. ყველა უფლება დაცულია",
+  "createAnAccount": "პროფილის შექმნა",
+  "startYourJourney": "დაიწყე შენი მოგზაურობა!",
+  "name": "სახელი",
+  "namePlaceholder": "სახელი",
+  "email": "ელ-ფოსტა",
+  "emailPlaceholder": "ელ-ფოსტის მისამართი",
+  "password": "პაროლი",
+  "passwordPlaceholder": "პაროლი",
+  "confirmPassword": "გაიმეორეთ პაროლი",
+  "confirmPasswordPlaceholder": "პაროლი",
+  "singUpWithGoogle": "დარეგისტრირდი გუგლით",
+  "alreadyHaveAnAccount": "უკვე გაქვს ექაუნთი?"
 }

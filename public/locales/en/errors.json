@@ -1,0 +1,12 @@
+{
+  "name": "name field is required",
+  "nameMin": "at least 3 lower case characters",
+  "nameMax": "max.15 lower case characters",
+  "email": "email field is required",
+  "emailValid": "email is invalid",
+  "password": "password field is required",
+  "passwordMin": "at least 8 lower case characters",
+  "passwordMax": "max.15 lower case characters",
+  "confirmPasswordReq": "confirm password field is required",
+  "passwordConfirmation": "password does not match"
+}

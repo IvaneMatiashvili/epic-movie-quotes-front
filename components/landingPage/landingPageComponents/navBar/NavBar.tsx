@@ -2,10 +2,11 @@ import { DownArrow } from 'components'
 import Link from 'next/link'
 import { useNavBar } from './useNavBar'
 import React from 'react'
-import { PropsType } from './types'
+import { Props } from './types'
 import Image from 'next/image'
+import movieQuotes from '/public/assets/movie-quotes.png'
 
-const NavBar: React.FC<PropsType> = (props) => {
+const NavBar: React.FC<Props> = (props) => {
   const {
     locale,
     t,
@@ -28,7 +29,7 @@ const NavBar: React.FC<PropsType> = (props) => {
         onClick={closeDropdownOnBlur}
       >
         <div className='flex justify-between items-center w-sw93 h-20'>
-          <Image src='/assets/movie-quotes.png' alt='movie quotes' />
+          <Image src={movieQuotes} alt='movie quotes' />
 
           <div className='flex'>
             <div

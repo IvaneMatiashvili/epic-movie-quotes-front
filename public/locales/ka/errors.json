@@ -1,0 +1,12 @@
+{
+  "name": "შეავსეთ ველი",
+  "nameMin": "მინიმუმ 3 სიმბოლო",
+  "nameMax": "მაქსიმუმ 15 სიმბოლო",
+  "email": "შეავსეთ ველი",
+  "emailValid": "ელ-ფოსტა არ არის ვალიდური",
+  "password": "შეავსეთ ველი",
+  "passwordMin": "მინიმუმ 8 სიმბოლო",
+  "passwordMax": "მაქსიმუმ 15 სიმბოლო",
+  "confirmPasswordReq": "შეავსეთ ველი",
+  "passwordConfirmation": "გაიმეორეთ სწორად"
+}
