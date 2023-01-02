@@ -1,4 +1,3 @@
-import { SetState } from 'types'
 import { useTranslation } from 'next-i18next'
 import { useForm, useWatch } from 'react-hook-form'
 import { useEffect, useState } from 'react'
@@ -6,13 +5,6 @@ import { useRouter } from 'next/router'
 
 export const useRegisterForm = () => {
   const { locale, push } = useRouter()
-
-  const returnScrollbarAndCloseRegisterForm = async (
-    setHasScrollBar: SetState<boolean>
-  ) => {
-    setHasScrollBar(true)
-    await push('/')
-  }
 
   const { t } = useTranslation()
 
@@ -50,8 +42,11 @@ export const useRegisterForm = () => {
   const [isTypePassword, setIsTypePassword] = useState(true)
   const [isTypeConfirmPassword, setIsTypeConfirmPassword] = useState(true)
 
+  const showFeedback = async () => {
+    await push('?stage=checkYourEmail')
+  }
+
   return {
-    returnScrollbarAndCloseRegisterForm,
     t,
     errors,
     isTypePassword,
@@ -62,5 +57,6 @@ export const useRegisterForm = () => {
     form,
     watchPassword,
     locale,
+    showFeedback,
   }
 }
