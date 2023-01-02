@@ -29,5 +29,20 @@
   "welcomeBack": "Welcome back! Please enter your details.",
   "rememberMe": "Remember me",
   "forgotPassword": "Forgot password",
-  "signIn": "Sign in"
+  "signIn": "Sign in",
+  "thankYou": "Thank you!",
+  "checkYourEmail": "Please check your email and follow the instructions to activate your account.",
+  "goToEmail": "Go to my email",
+  "emailActivated": "Your account has been activated.",
+  "passwordChanged": "Your Password changed successfully",
+  "passwordRecover": "We have sent a password recover instructions to your email",
+  "checkYourEmailText": "Check your email",
+  "confirmLater": "Skip, I’ll confirm later",
+  "forgotPasswordSecond": "Forgot password?",
+  "enterTheEmail": "Enter the email and we’ll send an email with instructions to reset your password",
+  "sendInstructions": "Send instructions",
+  "backToLogin": "Back to log in",
+  "newPassword": "Create new password",
+  "mustBeDifferent": "Your new password must be different from previous used passwords",
+  "resetPassword": "Reset password"
 }
