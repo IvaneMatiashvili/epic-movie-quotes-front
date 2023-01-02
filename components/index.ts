@@ -1,3 +1,5 @@
 export * from './landingPage'
 export * from './svg'
 export * from './form'
+export * from './layout'
+export * from './errorPage'
