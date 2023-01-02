@@ -1,18 +1,10 @@
-import { SetState } from 'types'
 import { useTranslation } from 'next-i18next'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 export const useLoginForm = () => {
-  const { locale, push } = useRouter()
-
-  const returnScrollbarAndCloseLoginForm = async (
-    setHasScrollBar: SetState<boolean>
-  ) => {
-    setHasScrollBar(true)
-    await push('/')
-  }
+  const { locale } = useRouter()
 
   const { t } = useTranslation()
 
@@ -28,7 +20,6 @@ export const useLoginForm = () => {
   const [isTypePassword, setIsTypePassword] = useState(true)
 
   return {
-    returnScrollbarAndCloseLoginForm,
     t,
     errors,
     isTypePassword,
