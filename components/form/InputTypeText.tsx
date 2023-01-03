@@ -17,7 +17,7 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
   return (
     <div>
       <div className='flex justify-center'>
-        <div className='w-r22 sm:w-r24'>
+        <div className='w-r19 nm:w-r22 sm:w-r24'>
           <label
             htmlFor={props.id}
             className={`block font-normal text-base text-white mt-6
@@ -31,7 +31,7 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
         {(props.name === 'password' || props.name === 'confirm_password') &&
           props.isTypePassword && (
             <div
-              className='absolute flex justify-center items-center h-10 mt-2 pl-r18 sm:pl-0 sm:right-r085 cursor-pointer'
+              className='absolute flex justify-center items-center mt-2 ml-60 nm:ml-r18 sm:ml-0 sm:right-r085 cursor-pointer'
               onClick={() =>
                 changePasswordType(
                   props.isTypePassword!,
@@ -45,7 +45,7 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
         {(props.name === 'password' || props.name === 'confirm_password') &&
           !props.isTypePassword && (
             <div
-              className='absolute flex justify-center items-center h-10 mt-2 pl-r18 sm:pl-0 sm:right-r085 cursor-pointer'
+              className='absolute flex justify-center items-center mt-2 ml-60 nm:ml-r18 sm:ml-0 sm:right-r085 cursor-pointer'
               onClick={() =>
                 changePasswordType(
                   props.isTypePassword!,
@@ -58,13 +58,14 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
           )}
 
         {!props.error && !isUndefinedError && (
-          <div className='absolute flex justify-center items-center h-10 mt-2 pl-r2005 sm:pl-0 sm:pl-0 sm:right-28 cursor-pointer'>
+          <div className='absolute flex justify-center items-center mt-2 ml-r1705 nm:ml-r2005 sm:ml-0 sm:right-28'>
             <Approve />
           </div>
         )}
 
-        {props.error && !isUndefinedError && (
-          <div className='absolute flex justify-center items-center h-10 mt-2 pl-r2005 sm:pl-0 sm:right-28 cursor-pointer'>
+        {((props.error && !isUndefinedError) ||
+          (props.error && isUndefinedError)) && (
+          <div className='absolute flex justify-center items-center mt-2 ml-r1705 nm:ml-r2005 sm:ml-0 sm:right-28'>
             <ErrorSvg />
           </div>
         )}
@@ -95,7 +96,7 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
               ? 'border-borderRed'
               : 'border-borderGreen'
           }
-          font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r22 sm:w-r24 h-r027 outline-none`}
+          font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r19 nm:w-r22 sm:w-r24 h-r027 outline-none pr-11 sm:pr-0`}
           ref={inputReference}
         />
       </div>

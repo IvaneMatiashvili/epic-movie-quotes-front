@@ -4,7 +4,7 @@ import { useNavBar } from './useNavBar'
 import React from 'react'
 import { Props } from './types'
 import Image from 'next/image'
-import movieQuotes from '/public/assets/movie-quotes.png'
+import { movieQuotes } from 'public'
 
 const NavBar: React.FC<Props> = (props) => {
   const {

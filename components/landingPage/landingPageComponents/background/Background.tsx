@@ -26,7 +26,7 @@ const Background: React.FC<Props> = (props) => {
             <div>
               {props.firstLine && (
                 <p
-                  className={`xl:text-5xl sm:text-xl md:text-2xl text-base ${
+                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-base text-xs ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-bold text-white sm:ml-6 ml-2`}
                 >
@@ -35,7 +35,7 @@ const Background: React.FC<Props> = (props) => {
               )}
               {props.secondLine && (
                 <p
-                  className={`xl:text-5xl sm:text-xl md:text-2xl text-base ${
+                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-base text-xs ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-bold text-white sm:ml-6 ml-2 sm:mt-4 mt-2`}
                 >
@@ -44,7 +44,7 @@ const Background: React.FC<Props> = (props) => {
               )}
               {props.thirdLine && (
                 <p
-                  className={`xl:text-5xl sm:text-xl md:text-2xl text-base ${
+                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-base text-xs ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-bold text-white sm:ml-6 ml-2 sm:mt-4 mt-2`}
                 >
@@ -52,7 +52,7 @@ const Background: React.FC<Props> = (props) => {
                 </p>
               )}
               <p
-                className={`xl:text-3xl sm:text-lg md:text-xl text-sm ${
+                className={`xl:text-3xl sm:text-lg md:text-xl nm:text-sm text-ultraSm ${
                   locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                 } font-normal text-softGray sm:ml-6 ml-2 sm:mt-8 mt-4`}
               >

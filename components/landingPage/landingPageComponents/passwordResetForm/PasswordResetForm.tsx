@@ -1,11 +1,16 @@
 import { Props } from './types'
-import { useRegisterForm } from './useRegisterForm'
-import { InputTypeText, Error, GoogleSvg, FormLayout } from 'components'
+import { usePasswordResetForm } from './usePasswordResetForm'
+import {
+  InputTypeText,
+  Error,
+  FormLayout,
+  LeftArrowSvg,
+} from 'components/index'
 import { FormProvider } from 'react-hook-form'
 import React from 'react'
 import Link from 'next/link'
 
-const RegisterForm: React.FC<Props> = (props) => {
+const PasswordResetForm: React.FC<Props> = (props) => {
   const {
     setIsTypePassword,
     isTypePassword,
@@ -18,71 +23,27 @@ const RegisterForm: React.FC<Props> = (props) => {
     locale,
     watchPassword,
     showFeedback,
-  } = useRegisterForm()
+  } = usePasswordResetForm()
 
   return (
-    <FormLayout setHasScrollBar={props.setHasScrollBar} form='register'>
+    <FormLayout setHasScrollBar={props.setHasScrollBar} form='passwordReset'>
       <p
-        className={`font-normal text-2xl sm:text-3xl text-white mt-24 sm:mt-0 ${
+        className={`font-normal text-2xl sm:text-3xl text-white mt-40 sm:mt-0 ${
           locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
         }`}
       >
-        {t('home:createAnAccount')}
+        {t('home:newPassword')}
       </p>
       <p
-        className={`font-light sm:text-base mt-4 text-grayJourney ${
+        className={`font-light text-r0081 sm:text-r0095 mt-4 text-grayJourney w-r22 sm:w-r24 text-center align-middle ${
           locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
         }`}
       >
-        {t('home:startYourJourney')}
+        {t('home:mustBeDifferent')}
       </p>
 
       <FormProvider {...form}>
         <form onSubmit={handleSubmit(showFeedback)}>
-          <InputTypeText
-            name='name'
-            errors={{
-              required: t('errors:name'),
-              minLength: {
-                value: 3,
-                message: t('errors:nameMin'),
-              },
-              maxLength: {
-                value: 15,
-                message: t('errors:nameMax'),
-              },
-            }}
-            id='name'
-            key='name'
-            placeholder={t('home:namePlaceholder')}
-            labelContent={t('home:name')}
-            error={errors.name}
-            isTypePassword={null}
-            setIsTypePassword={null}
-          />
-
-          <Error errors={errors} name='name' />
-
-          <InputTypeText
-            name='email'
-            errors={{
-              required: t('errors:email'),
-              pattern: {
-                value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                message: t('errors:emailValid'),
-              },
-            }}
-            id='email'
-            key='email'
-            placeholder={t('home:emailPlaceholder')}
-            labelContent={t('home:email')}
-            error={errors.email}
-            isTypePassword={null}
-            setIsTypePassword={null}
-          />
-
-          <Error errors={errors} name='email' />
-
           <InputTypeText
             name='password'
             errors={{
@@ -145,44 +106,27 @@ const RegisterForm: React.FC<Props> = (props) => {
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-base text-white`}
             >
-              {t('home:getStarted')}
+              {t('home:resetPassword')}
             </p>
           </button>
         </form>
       </FormProvider>
 
-      <div className='bg-softBlue border h-r027 w-r19 nm:w-r22 sm:w-r24 flex justify-center items-center rounded-md mt-4 cursor-pointer'>
-        <div className='mr-2'>
-          <GoogleSvg />
-        </div>
+      <Link
+        href='?stage=login'
+        className='flex w-full justify-center items-center mt-12 '
+      >
+        <LeftArrowSvg />
         <p
-          className={`
-                  ${
-                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-normal text-base text-white`}
-        >
-          {t('home:singUpWithGoogle')}
-        </p>
-      </div>
-      <div className='flex w-full justify-center items-center '>
-        <p
-          className={`font-light text-sm mt-8 text-grayJourney ${
+          className={`font-light text-sm text-grayJourney ml-4 ${
             locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
           }`}
         >
-          {t('home:alreadyHaveAnAccount')}
+          {t('home:backToLogin')}
         </p>
-        <Link
-          href='?stage=login'
-          className={`font-light text-sm mt-8 ml-2 text-blueLogin underline cursor-pointer ${
-            locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-          }`}
-        >
-          {t('home:logIn')}
-        </Link>
-      </div>
+      </Link>
     </FormLayout>
   )
 }
 
-export default RegisterForm
+export default PasswordResetForm

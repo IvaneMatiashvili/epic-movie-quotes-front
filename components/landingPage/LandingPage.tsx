@@ -3,6 +3,12 @@ import {
   NavBar,
   RegisterForm,
   LoginForm,
+  CheckYourEmail,
+  EmailActivated,
+  PasswordChanged,
+  PasswordRecover,
+  ForgotPasswordForm,
+  PasswordResetForm,
 } from './landingPageComponents'
 import { useLandingPage } from './useLandingPage'
 
@@ -14,7 +20,32 @@ const LandingPage = () => {
       {stage === 'register' && (
         <RegisterForm setHasScrollBar={setHasScrollBar} />
       )}
+
+      {stage === 'checkYourEmail' && (
+        <CheckYourEmail setHasScrollBar={setHasScrollBar} />
+      )}
+
+      {stage === 'emailActivated' && (
+        <EmailActivated setHasScrollBar={setHasScrollBar} />
+      )}
+
       {stage === 'login' && <LoginForm setHasScrollBar={setHasScrollBar} />}
+
+      {stage === 'forgotPassword' && (
+        <ForgotPasswordForm setHasScrollBar={setHasScrollBar} />
+      )}
+
+      {stage === 'passwordRecover' && (
+        <PasswordRecover setHasScrollBar={setHasScrollBar} />
+      )}
+
+      {stage === 'passwordReset' && (
+        <PasswordResetForm setHasScrollBar={setHasScrollBar} />
+      )}
+
+      {stage === 'passwordChanged' && (
+        <PasswordChanged setHasScrollBar={setHasScrollBar} />
+      )}
 
       <main className={`h-screen ${!hasScrollBar && 'overflow-hidden'}`}>
         <NavBar setHasScrollBar={setHasScrollBar} />

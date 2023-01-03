@@ -3,22 +3,14 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-export const useRegisterForm = () => {
-  const { locale, push } = useRouter()
-
-  const { t } = useTranslation()
-
+export const usePasswordResetForm = () => {
   const form = useForm({
     defaultValues: {
-      name: '',
-      email: '',
       password: '',
       confirm_password: '',
       mode: 'all',
     },
   })
-  const { errors, isValid } = form.formState
-
   const watchPassword = useWatch({
     control: form.control,
     name: 'password',
@@ -27,6 +19,8 @@ export const useRegisterForm = () => {
     control: form.control,
     name: 'confirm_password',
   })
+  const { errors, isValid } = form.formState
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (watchPasswordConfirmation.length >= 8) {
@@ -39,12 +33,14 @@ export const useRegisterForm = () => {
     }
   }, [watchPassword, watchPasswordConfirmation, isValid, form, t])
 
-  const [isTypePassword, setIsTypePassword] = useState(true)
-  const [isTypeConfirmPassword, setIsTypeConfirmPassword] = useState(true)
+  const { locale, push } = useRouter()
 
   const showFeedback = async () => {
-    await push('?stage=checkYourEmail')
+    await push('?stage=passwordChanged')
   }
+
+  const [isTypePassword, setIsTypePassword] = useState(true)
+  const [isTypeConfirmPassword, setIsTypeConfirmPassword] = useState(true)
 
   return {
     t,
