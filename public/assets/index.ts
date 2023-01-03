@@ -1,0 +1,5 @@
+export { default as gandalf } from './gandalf.png'
+export { default as gandalfBackground } from './gandalf-background.png'
+export { default as ghost } from './ghost.png'
+export { default as shadow } from './shadow.png'
+export { default as movieQuotes } from './movie-quotes.png'

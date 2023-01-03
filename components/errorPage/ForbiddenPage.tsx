@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import gandalf from '/public/assets/gandalf.png'
-import gandalfBackground from '/public/assets/gandalfBackground.png'
+import { gandalf, gandalfBackground } from 'public'
 import Link from 'next/link'
 import React from 'react'
 import { useErrorPage } from './useErrorPage'

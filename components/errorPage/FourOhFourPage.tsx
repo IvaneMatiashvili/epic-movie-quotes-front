@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import ghost from '/public/assets/ghost.png'
-import shadow from '/public/assets/shadow.png'
+import { ghost, shadow } from 'public'
 import Link from 'next/link'
 import React from 'react'
 import { useErrorPage } from './useErrorPage'
