@@ -33,6 +33,7 @@ const ForbiddenPage = () => {
 
       <Link
         href='/'
+        passHref
         className='flex items-center justify-center  bg-danger w-48 h-12 mt-12 rounded-lg'
       >
         <p

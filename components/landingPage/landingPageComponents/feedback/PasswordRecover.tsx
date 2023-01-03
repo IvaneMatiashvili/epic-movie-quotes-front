@@ -30,6 +30,7 @@ const PasswordRecover: React.FC<Props> = (props) => {
       </p>
       <Link
         href='https://mail.google.com'
+        passHref
         type='submit'
         className={`bg-signInRed h-r027 w-full sm:w-r24 flex justify-center items-center rounded-md mt-10 cursor-pointer`}
       >

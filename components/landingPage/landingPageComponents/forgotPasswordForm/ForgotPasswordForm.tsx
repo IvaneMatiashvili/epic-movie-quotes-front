@@ -66,6 +66,7 @@ const ForgotPasswordForm: React.FC<Props> = (props) => {
 
       <Link
         href='?stage=login'
+        passHref
         className='flex w-full justify-center items-center mt-8 '
       >
         <LeftArrowSvg />

@@ -82,6 +82,7 @@ const NavBar: React.FC<Props> = (props) => {
                   removeScrollbarAndOpenRegisterForm(props.setHasScrollBar)
                 }
                 href='?stage=register'
+                passHref
               >
                 <p
                   className={`
@@ -99,6 +100,7 @@ const NavBar: React.FC<Props> = (props) => {
                   removeScrollbarAndOpenRegisterForm(props.setHasScrollBar)
                 }
                 href='?stage=login'
+                passHref
               >
                 <p
                   className={`
@@ -138,6 +140,7 @@ const NavBar: React.FC<Props> = (props) => {
             removeScrollbarAndOpenRegisterForm(props.setHasScrollBar)
           }
           href='?stage=register'
+          passHref
         >
           <p
             className={`

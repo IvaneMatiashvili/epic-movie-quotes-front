@@ -2,8 +2,19 @@ import { useTranslation } from 'next-i18next'
 import { useForm, useWatch } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useMutation, useQueryClient } from 'react-query'
+import { createUser } from 'services'
+import { FormObj } from './types'
 
 export const useRegisterForm = () => {
+  const queryClient = useQueryClient()
+
+  const { mutate: submitForm, isLoading } = useMutation(createUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('registerForm')
+    },
+  })
+
   const { locale, push } = useRouter()
 
   const { t } = useTranslation()
@@ -42,7 +53,13 @@ export const useRegisterForm = () => {
   const [isTypePassword, setIsTypePassword] = useState(true)
   const [isTypeConfirmPassword, setIsTypeConfirmPassword] = useState(true)
 
-  const showFeedback = async () => {
+  const showFeedback = async (data: FormObj) => {
+    data['password_confirmation'] = data['confirm_password']
+    delete data['confirm_password']
+
+    submitForm(data, {
+      onError: () => {},
+    })
     await push('?stage=checkYourEmail')
   }
 
