@@ -34,11 +34,7 @@ const LoginForm: React.FC<Props> = (props) => {
       </p>
 
       <FormProvider {...form}>
-        <form
-          onSubmit={handleSubmit(() => {
-            console.log('here')
-          })}
-        >
+        <form onSubmit={handleSubmit(() => {})}>
           <InputTypeText
             name='email'
             errors={{
