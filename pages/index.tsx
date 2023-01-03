@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { LandingPage } from 'components'
 import { NextPage } from 'next'
+import { Locale } from 'types'
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
     </>
   )
 }
-export const getStaticProps = async ({ locale }: { locale: string }) => {
+export const getStaticProps = async ({ locale }: Locale) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['home', 'errors'])),
