@@ -1,15 +1,15 @@
+import { Background } from './background'
+import { NavBar } from './navBar'
+import { RegisterForm } from './registerForm'
+import { LoginForm } from './loginForm'
 import {
-  Background,
-  NavBar,
-  RegisterForm,
-  LoginForm,
   CheckYourEmail,
   EmailActivated,
   PasswordChanged,
   PasswordRecover,
-  ForgotPasswordForm,
-  PasswordResetForm,
-} from './landingPageComponents'
+} from './feedback'
+import { ForgotPasswordForm } from './forgotPasswordForm'
+import { PasswordResetForm } from './passwordResetForm'
 import { useLandingPage } from './useLandingPage'
 
 const LandingPage = () => {
