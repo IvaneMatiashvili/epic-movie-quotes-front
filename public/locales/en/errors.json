@@ -8,5 +8,9 @@
   "passwordMin": "at least 8 lower case characters",
   "passwordMax": "max.15 lower case characters",
   "confirmPasswordReq": "confirm password field is required",
-  "passwordConfirmation": "password does not match"
+  "passwordConfirmation": "password does not match",
+  "emailExists": "email already exists",
+  "nameExists": "username already exists",
+  "credentialsExist": "credentials exist",
+  "userDoesNotExist": "user does not exist"
 }
