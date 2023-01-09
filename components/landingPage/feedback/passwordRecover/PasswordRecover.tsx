@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckYourEmailSvg, FeedbackLayout } from 'components/index'
+import { CheckYourEmailSvg, FeedbackLayout } from 'components'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'

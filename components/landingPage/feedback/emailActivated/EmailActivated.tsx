@@ -1,5 +1,5 @@
 import React from 'react'
-import { EmailApproveSvg, FeedbackLayout } from 'components/index'
+import { EmailApproveSvg, FeedbackLayout } from 'components'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -32,7 +32,7 @@ const EmailActivated: React.FC<FeedbackProps> = (props) => {
         {t('home:emailActivated')}
       </p>
       <Link
-        href='components/landingPage/landingPageComponents/feedback?stage=login'
+        href='?stage=login'
         passHref
         type='submit'
         className={`bg-signInRed h-r027 w-52 sm:w-r24 flex justify-center items-center rounded-md mt-10 cursor-pointer`}
