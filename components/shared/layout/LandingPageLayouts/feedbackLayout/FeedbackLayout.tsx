@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLayout } from 'hooks'
-import { FeedbackProps } from '../types'
+import { FeedbackProps } from './types'
 
 const FeedbackLayout: React.FC<FeedbackProps> = (props) => {
   const { returnScrollbarAndCloseLoginForm } = useLayout()

@@ -1,4 +1,4 @@
-import { Approve, ErrorSvg, Hide, Show } from 'components/index'
+import { Approve, ErrorSvg, Hide, Show } from 'components'
 import { useForm } from './useForm'
 import { InputTypeTextProps } from './types'
 import React from 'react'
