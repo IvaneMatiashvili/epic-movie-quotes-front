@@ -56,11 +56,7 @@ export const usePasswordResetForm = () => {
         `${feedback}&paramId=${paramId}&signature=${signature}`
       ),
     {
-      onSuccess: () => {
-        console.log('some')
-      },
       onError: () => {
-        console.log('error')
         push('/404')
       },
       enabled: !!stage,
@@ -73,8 +69,6 @@ export const usePasswordResetForm = () => {
   const showFeedback = async (data: FormObj) => {
     data['password_confirmation'] = data['confirm_password']
     delete data['confirm_password']
-
-    console.log(data)
 
     submitForm({
       url: `${feedback}&paramId=${paramId}&signature=${signature}`,

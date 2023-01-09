@@ -1,11 +1,6 @@
 import { Props } from './types'
 import { usePasswordResetForm } from './usePasswordResetForm'
-import {
-  InputTypeText,
-  Error,
-  FormLayout,
-  LeftArrowSvg,
-} from 'components/index'
+import { InputTypeText, Error, FormLayout, LeftArrowSvg } from 'components'
 import { FormProvider } from 'react-hook-form'
 import React from 'react'
 import Link from 'next/link'
