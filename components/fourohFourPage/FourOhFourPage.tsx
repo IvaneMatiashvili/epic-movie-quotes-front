@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { ghost, shadow } from 'public'
 import Link from 'next/link'
 import React from 'react'
-import { useTranslationAndLocale } from "hooks";
+import { useTranslationAndLocale } from 'hooks'
 
 const FourOhFourPage = () => {
   const { t, locale } = useTranslationAndLocale()

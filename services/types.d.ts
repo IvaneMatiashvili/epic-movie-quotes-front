@@ -1,4 +1,4 @@
-export type ResetPasswordProps = {
+export type ResetPassword = {
   url: string
   data: object
 }
