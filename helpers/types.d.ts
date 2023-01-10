@@ -1,6 +1,6 @@
 import { SetError } from 'types'
 
-export type Props = {
+export type CheckErrorMessageData = {
   setError: SetError
   field: string
   message: string
