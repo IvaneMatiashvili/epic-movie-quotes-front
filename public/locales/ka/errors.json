@@ -8,5 +8,9 @@
   "passwordMin": "მინიმუმ 8 სიმბოლო",
   "passwordMax": "მაქსიმუმ 15 სიმბოლო",
   "confirmPasswordReq": "შეავსეთ ველი",
-  "passwordConfirmation": "გაიმეორეთ სწორად"
+  "passwordConfirmation": "გაიმეორეთ სწორად",
+  "emailExists": "ელ-ფოსტა უკვე არსებობს",
+  "nameExists": "მომხმარებლის სახელი უკვე არსებობს",
+  "credentialsExist": "მონაცემები უკვე არსებობს",
+  "userDoesNotExist": "მომხმარებელი არ არსებობს"
 }

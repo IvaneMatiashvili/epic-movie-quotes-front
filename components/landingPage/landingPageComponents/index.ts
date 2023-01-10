@@ -1,7 +1,0 @@
-export * from './background'
-export * from './navBar'
-export * from './registerForm'
-export * from './loginForm'
-export * from './feedback'
-export * from './forgotPasswordForm'
-export * from './passwordResetForm'
