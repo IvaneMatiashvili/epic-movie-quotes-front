@@ -2,12 +2,10 @@ import Image from 'next/image'
 import { ghost, shadow } from 'public'
 import Link from 'next/link'
 import React from 'react'
-import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
+import { useTranslationAndLocale } from "hooks";
 
 const FourOhFourPage = () => {
-  const { t } = useTranslation()
-  const { locale } = useRouter()
+  const { t, locale } = useTranslationAndLocale()
 
   return (
     <div className='w-full h-screen bg-darkBlue flex flex-col justify-center items-center'>

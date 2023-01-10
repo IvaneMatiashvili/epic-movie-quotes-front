@@ -1,13 +1,11 @@
 import React from 'react'
 import { CheckYourEmailSvg, FeedbackLayout } from 'components'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 import { FeedbackProps } from 'types'
+import { useTranslationAndLocale } from 'hooks'
 
 const CheckYourEmail: React.FC<FeedbackProps> = (props) => {
-  const { locale } = useRouter()
-  const { t } = useTranslation()
+  const { t, locale } = useTranslationAndLocale()
 
   return (
     <FeedbackLayout
