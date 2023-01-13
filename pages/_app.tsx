@@ -1,9 +1,10 @@
-import '/styles/globals.css'
-import type { AppProps } from 'next/app'
-import { appWithTranslation } from 'next-i18next'
-import { ReactQueryDevtools } from 'react-query/devtools'
-
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import { appWithTranslation } from 'next-i18next'
+import type { AppProps } from 'next/app'
+import { Provider } from 'react-redux'
+import { store } from 'store'
+import '/styles/globals.css'
 import React from 'react'
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -13,7 +14,9 @@ const App = ({ Component, pageProps }: AppProps) => {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </Hydrate>
     </QueryClientProvider>
   )
