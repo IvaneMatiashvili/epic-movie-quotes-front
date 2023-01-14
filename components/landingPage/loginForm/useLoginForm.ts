@@ -60,9 +60,7 @@ export const useLoginForm = () => {
         })
       },
       onSuccess: (response) => {
-        setCookie('name', response.data.name)
-        setCookie('userId', response.data.user_id)
-        setCookie('googleId', response.data.google_id)
+        setCookie('userInfo', JSON.stringify(response.data))
       },
     })
   }

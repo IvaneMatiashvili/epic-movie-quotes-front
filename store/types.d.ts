@@ -1,7 +1,3 @@
-export interface SetUserState {
-  value: {
-    name: string
-    userId: string
-    googleId: string | null
-  }
+export type UserInformation = {
+  value: object
 }
