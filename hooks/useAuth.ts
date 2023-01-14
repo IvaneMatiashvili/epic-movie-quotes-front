@@ -12,9 +12,7 @@ export const useAuth = () => {
   useQuery('userData', getUser, {
     onError: async () => {
       if (router.pathname === '/news-feed') {
-        deleteCookie('name')
-        deleteCookie('user_id')
-        deleteCookie('google_id')
+        deleteCookie('userInfo')
         await router.push('/403')
       }
     },
