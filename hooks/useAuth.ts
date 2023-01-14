@@ -9,7 +9,7 @@ export const useAuth = () => {
   const router = useRouter()
   const [hasUserId, setHasUserId] = useState(false)
 
-  useQuery('getUserData', getUser, {
+  useQuery('userData', getUser, {
     onError: async () => {
       if (router.pathname === '/news-feed') {
         deleteCookie('name')
