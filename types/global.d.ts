@@ -17,4 +17,13 @@ export interface FormObj {
 }
 
 export type RootState = ReturnType<typeof store.getState>
+
 export type AppDispatch = typeof store.dispatch
+
+export type UserInformation = {
+  value: {
+    name: string
+    user_id: string
+    google_id: string
+  }
+}
