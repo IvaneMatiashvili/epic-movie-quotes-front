@@ -24,8 +24,8 @@ export const useRegisterForm = () => {
       email: '',
       password: '',
       confirm_password: '',
-      mode: 'all',
     },
+    mode: 'all',
   })
   const { errors, isValid } = form.formState
   const { setIsLoginWithGoogleClicked } = useLoginWithGoogle(

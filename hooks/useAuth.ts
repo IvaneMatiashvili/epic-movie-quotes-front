@@ -10,10 +10,10 @@ export const useAuth = () => {
   const [hasUserId, setHasUserId] = useState(false)
 
   useQuery('userData', getUser, {
-    onError: async () => {
+    onError: () => {
       if (router.pathname === '/news-feed') {
         deleteCookie('userInfo')
-        await router.push('/403')
+        router.push('/403')
       }
     },
     enabled: hasUserId,

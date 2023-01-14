@@ -20,8 +20,8 @@ export const useLoginForm = () => {
       email: '',
       password: '',
       remember_me: '',
-      mode: 'all',
     },
+    mode: 'all',
   })
   const { errors } = form.formState
 
