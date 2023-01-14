@@ -4,7 +4,7 @@ import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { store } from 'store'
-import '/styles/globals.css'
+import 'styles/globals.css'
 import React from 'react'
 
 const App = ({ Component, pageProps }: AppProps) => {
