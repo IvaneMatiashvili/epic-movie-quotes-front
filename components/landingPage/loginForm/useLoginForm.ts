@@ -7,6 +7,7 @@ import { loginUser } from 'services'
 import { FormObj } from 'types'
 import { useLoginWithGoogle } from 'hooks'
 import { checkErrorMessage } from 'helpers'
+import { setCookie } from 'cookies-next'
 
 export const useLoginForm = () => {
   const { locale, push } = useRouter()
@@ -19,8 +20,8 @@ export const useLoginForm = () => {
       email: '',
       password: '',
       remember_me: '',
-      mode: 'all',
     },
+    mode: 'all',
   })
   const { errors } = form.formState
 
@@ -57,6 +58,9 @@ export const useLoginForm = () => {
           message: t('errors:userDoesNotExist'),
           error: error?.response?.data?.errors?.user_does_not_exist,
         })
+      },
+      onSuccess: (response) => {
+        setCookie('userInfo', response.data)
       },
     })
   }

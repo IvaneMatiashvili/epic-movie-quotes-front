@@ -11,8 +11,8 @@ export const usePasswordResetForm = () => {
     defaultValues: {
       password: '',
       confirm_password: '',
-      mode: 'all',
     },
+    mode: 'all',
   })
   const watchPassword = useWatch({
     control: form.control,

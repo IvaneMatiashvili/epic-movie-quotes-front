@@ -1,1 +1,1 @@
-export * from './formService'
+export * from './authService'

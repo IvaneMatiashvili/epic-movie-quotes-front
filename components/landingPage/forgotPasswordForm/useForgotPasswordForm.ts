@@ -18,8 +18,8 @@ export const useForgotPasswordForm = () => {
   const form = useForm({
     defaultValues: {
       email: '',
-      mode: 'all',
     },
+    mode: 'all',
   })
   const { errors } = form.formState
 
