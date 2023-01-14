@@ -1,11 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { UserInformation } from './types'
 import { getCookie } from 'cookies-next'
+import { UserInformation } from 'types'
 
 const initialState: UserInformation = {
-  value: getCookie('userInfo')
-    ? (JSON.parse(getCookie('userInfo') as string) as object)
-    : {},
+  value: getCookie('userInfo') ? JSON.parse(<string>getCookie('userInfo')) : {},
 }
 
 export const userDataSlice = createSlice({

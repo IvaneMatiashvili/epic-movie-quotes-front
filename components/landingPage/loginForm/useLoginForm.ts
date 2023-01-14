@@ -60,7 +60,7 @@ export const useLoginForm = () => {
         })
       },
       onSuccess: (response) => {
-        setCookie('userInfo', JSON.stringify(response.data))
+        setCookie('userInfo', response.data)
       },
     })
   }
