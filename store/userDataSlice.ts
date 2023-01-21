@@ -10,6 +10,8 @@ const initialState: UserInformation = {
   name: user?.name,
   user_id: user?.user_id,
   google_id: user?.google_id,
+  user_image: user?.user_image,
+  emails: user?.emails,
 }
 
 export const userDataSlice = createSlice({
@@ -17,7 +19,10 @@ export const userDataSlice = createSlice({
   initialState,
   reducers: {
     setUserData: (state, action) => {
-      state = action.payload
+      state.name = action.payload.name
+      state.user_id = action.payload.user_id
+      state.google_id = action.payload.google_id
+      state.user_image = action.payload.user_image
     },
   },
 })
