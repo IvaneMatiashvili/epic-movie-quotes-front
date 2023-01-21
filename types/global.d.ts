@@ -24,4 +24,6 @@ export type UserInformation = {
   name: string
   user_id: string
   google_id: string
+  user_image: string
+  emails: object[object]
 }
