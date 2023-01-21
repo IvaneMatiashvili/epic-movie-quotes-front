@@ -1,18 +1,18 @@
-import { Background } from '../background'
-import { NavBar } from '../navBar'
-import { RegisterForm } from '../registerForm'
-import { LoginForm } from '../loginForm'
+import { Background } from '../Background'
+import { NavBar } from '../NavBar'
+import { RegisterForm } from '../RegisterForm'
+import { LoginForm } from '../LoginForm'
 import {
   CheckYourEmail,
   EmailActivated,
   PasswordChanged,
   PasswordRecover,
-} from '../feedback'
-import { ForgotPasswordForm } from '../forgotPasswordForm'
-import { PasswordResetForm } from '../passwordResetForm'
+} from '../Feedback'
+import { ForgotPasswordForm } from '../ForgotPasswordForm'
+import { PasswordResetForm } from '../PasswordResetForm'
 import { useLandingPage } from './useLandingPage'
 
-const LandingPage = () => {
+const LandingPageMain = () => {
   const { setHasScrollBar, hasScrollBar, locale, t, stage } = useLandingPage()
 
   return (
@@ -95,4 +95,4 @@ const LandingPage = () => {
   )
 }
 
-export default LandingPage
+export default LandingPageMain

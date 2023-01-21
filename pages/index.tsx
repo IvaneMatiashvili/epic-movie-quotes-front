@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { LandingPage } from 'components'
+import { LandingPageMain } from 'components'
 import { NextPage } from 'next'
 import { Locale } from 'types'
 
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <LandingPage />
+      <LandingPageMain />
     </>
   )
 }
