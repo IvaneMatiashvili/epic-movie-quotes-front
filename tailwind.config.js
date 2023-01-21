@@ -13,6 +13,7 @@ module.exports = {
         r013: '1.3rem',
         r023: '2.3rem',
         r027: '2.7rem',
+        r065: '6.5rem',
         r085: '8.5rem',
         r13599: '13.599rem',
         r14662: '14.662rem',
@@ -33,8 +34,10 @@ module.exports = {
         r37: '37rem',
         r40: '40rem',
         r44: '44rem',
+        r45: '45rem',
         r50: '50rem',
         r55: '55rem',
+        r65: '65rem',
         r70: '70rem',
         sw93: '93vw',
         sh375: '375vh',
@@ -63,6 +66,11 @@ module.exports = {
         grayJourney: '#6C757D',
         blueLogin: '#0D6EFD',
         danger: '#E31221',
+        borderBlackBlue: 'rgba(34, 32, 48, 0.2)',
+        smoothGray: '#CED4DA',
+        profileImageBorderRed: '#E31221',
+        blackPurple: '#11101A',
+        grayLine: 'rgba(206, 212, 218, 0.5)',
       },
       backgroundImage: {
         theRoyalTenenbaums:
@@ -77,6 +85,10 @@ module.exports = {
           'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
         softBlue:
           'linear-gradient(187.16deg, #222030 0.07%, #222030 51.65%, #222030 98.75%)',
+        blackBlue:
+          'linear-gradient(187.16deg, rgba(36,34,47,255) 0.07%, rgba(36,34,47,255) 51.65%, rgba(36,34,47,255) 98.75%)',
+        layoutBackground:
+          'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
       },
       fontFamily: {
         helveticaEn: ['HelveticaEn'],
@@ -84,6 +96,10 @@ module.exports = {
       },
       screens: {
         nm: '380px',
+      },
+      backgroundSize: {
+        '50%': '50%',
+        r12: '20rem',
       },
     },
   },
