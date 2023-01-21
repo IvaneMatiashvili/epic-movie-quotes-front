@@ -1,15 +1,15 @@
-import { Background } from './background'
-import { NavBar } from './navBar'
-import { RegisterForm } from './registerForm'
-import { LoginForm } from './loginForm'
+import { Background } from '../background'
+import { NavBar } from '../navBar'
+import { RegisterForm } from '../registerForm'
+import { LoginForm } from '../loginForm'
 import {
   CheckYourEmail,
   EmailActivated,
   PasswordChanged,
   PasswordRecover,
-} from './feedback'
-import { ForgotPasswordForm } from './forgotPasswordForm'
-import { PasswordResetForm } from './passwordResetForm'
+} from '../feedback'
+import { ForgotPasswordForm } from '../forgotPasswordForm'
+import { PasswordResetForm } from '../passwordResetForm'
 import { useLandingPage } from './useLandingPage'
 
 const LandingPage = () => {
