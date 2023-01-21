@@ -1,27 +1,26 @@
-import { hasCookie } from 'cookies-next'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { getUser } from 'services'
-import { deleteCookie } from 'cookies-next'
+import { getUserInfo } from 'services'
+import { deleteCookie, getCookie, setCookie } from 'cookies-next'
 import { useQuery } from 'react-query'
+import { AUTH_ROUTES } from '../constants'
+import { useDispatch } from 'react-redux'
+import { setUserData } from 'store'
 
 export const useAuth = () => {
   const router = useRouter()
-  const [hasUserId, setHasUserId] = useState(false)
+  const dispatch = useDispatch()
 
-  useQuery('userData', getUser, {
+  useQuery('userInfo', getUserInfo, {
     onError: () => {
-      if (router.pathname === '/news-feed') {
-        deleteCookie('userInfo')
+      if (AUTH_ROUTES.test(router.pathname)) {
+        getCookie('userInfo') && deleteCookie('userInfo')
+        getCookie('userInfo') && deleteCookie('userInfo')
         router.push('/403')
       }
     },
-    enabled: hasUserId,
+    onSuccess: (response) => {
+      setCookie('userInfo', response?.data)
+      dispatch(setUserData(response?.data))
+    },
   })
-
-  useEffect(() => {
-    if (hasCookie('user_id')) {
-      setHasUserId(true)
-    }
-  }, [router])
 }
