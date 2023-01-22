@@ -1,5 +1,5 @@
 import { GoogleProfile } from '../GoogleProfile'
-import { UserPageMainLayout } from 'components/index'
+import { UserPageMainLayout } from 'components'
 import React from 'react'
 
 const ProfilePageMain = () => {
