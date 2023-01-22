@@ -6,13 +6,12 @@ import React from 'react'
 const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
   const {
     locale,
-    setValue,
     inputReference,
     register,
     changePasswordType,
     isUndefinedError,
-    setUndefinedError,
-  } = useForm()
+    changeInputValue,
+  } = useForm(props.name)
 
   return (
     <div>
@@ -73,13 +72,7 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
         <input
           {...register(props.name, {
             ...props.errors,
-            onChange: (e) => {
-              e.target.value = e.target.value.trim()
-              setUndefinedError(false)
-              setValue(props.name, e.target.value.trim(), {
-                shouldValidate: true,
-              })
-            },
+            onChange: changeInputValue,
           })}
           id={props.id}
           placeholder={props.placeholder}

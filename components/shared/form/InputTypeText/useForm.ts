@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { SetState } from 'types'
 
-export const useForm = () => {
+export const useForm = (name: string) => {
   const { register, setValue } = useFormContext()
   const { locale } = useRouter()
 
@@ -17,6 +17,16 @@ export const useForm = () => {
     inputReference.current !== null && inputReference.current.focus()
   }
 
+  const changeInputValue: React.ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    event.target.value = event.target.value.trim()
+    setUndefinedError(false)
+    setValue(name, event.target.value.trim(), {
+      shouldValidate: true,
+    })
+  }
+
   const [isUndefinedError, setUndefinedError] = useState(true)
 
   return {
@@ -27,5 +37,6 @@ export const useForm = () => {
     changePasswordType,
     isUndefinedError,
     setUndefinedError,
+    changeInputValue,
   }
 }

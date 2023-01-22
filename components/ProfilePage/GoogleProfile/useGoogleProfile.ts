@@ -40,9 +40,9 @@ export const useGoogleProfile = () => {
     setIsUserNameEditModeOn(false)
     setSelectedImage(null)
     form.setValue('name', userInformation.name)
+    form.setValue('email', userInformation.emails[0]?.email)
   }
 
-  useQuery(['loginWithGoogle'], () => getUserInfo)
   const openEditMode = () => {
     setIsEditModeOn(true)
   }
@@ -70,6 +70,7 @@ export const useGoogleProfile = () => {
     userInformation.user_image
       ? setCurrentImageUrl(userInformation.user_image)
       : setCurrentImageUrl(gandalfProfile)
+
     userInformation.emails &&
       form.setValue('email', userInformation.emails[0]?.email)
   }, [userInformation, form])

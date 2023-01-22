@@ -4,7 +4,7 @@ import { ProfileInputTypeTextProps } from './types'
 import React from 'react'
 
 const InputTypeText: React.FC<ProfileInputTypeTextProps> = (props) => {
-  const { locale, setValue, register, isUndefinedError, setUndefinedError, t } =
+  const { locale, register, isUndefinedError, t, changeInputValue } =
     useProfileInputTypeText()
 
   return (
@@ -45,13 +45,7 @@ const InputTypeText: React.FC<ProfileInputTypeTextProps> = (props) => {
         <input
           {...register(props.name, {
             ...props.errors,
-            onChange: (e) => {
-              e.target.value = e.target.value.trim()
-              setUndefinedError(false)
-              setValue(props.name, e.target.value.trim(), {
-                shouldValidate: true,
-              })
-            },
+            onChange: changeInputValue,
           })}
           id={props.id}
           disabled={!props.isEditModeOn}

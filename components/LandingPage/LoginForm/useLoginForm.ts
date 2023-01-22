@@ -10,7 +10,7 @@ import { checkErrorMessage } from 'helpers'
 import { setCookie } from 'cookies-next'
 
 export const useLoginForm = () => {
-  const { locale, push } = useRouter()
+  const { locale, push, reload } = useRouter()
   const { t } = useTranslation()
 
   const { mutate: submitForm } = useMutation(loginUser)
@@ -59,8 +59,10 @@ export const useLoginForm = () => {
           error: error?.response?.data?.errors?.user_does_not_exist,
         })
       },
-      onSuccess: (response) => {
-        setCookie('userInfo', response.data)
+      onSuccess: async (response) => {
+        await setCookie('userInfo', response.data)
+        await reload()
+        await push('/profile')
       },
     })
   }

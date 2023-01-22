@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as process from 'process'
-import { getCookie } from 'cookies-next'
+import { NextResponse } from 'next/server'
+import { deleteCookie, getCookie, setCookie } from 'cookies-next'
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URI,
@@ -24,6 +25,24 @@ instance.interceptors.request.use(
     return config
   },
   (error) => {
+    return Promise.reject(error)
+  }
+)
+
+instance.interceptors.response.use(
+  async (response) => {
+    return response
+  },
+
+  async (error) => {
+    const status = error?.response?.status
+
+    if (status === 401) {
+      NextResponse.redirect(new URL('/403', '/'))
+      getCookie('userInfo') && deleteCookie('userInfo')
+      getCookie('XSRF-TOKEN') && deleteCookie('XSRF-TOKEN')
+    }
+
     return Promise.reject(error)
   }
 )

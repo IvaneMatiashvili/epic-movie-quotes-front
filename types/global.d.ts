@@ -21,7 +21,7 @@ export type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch
 
-interface emails {
+type emails = {
   email: string
 }
 
@@ -40,6 +40,7 @@ export type SetStateString =
   | StaticImageData
   | Blob
   | null
+
 export type SetStateFile =
   | string
   | StaticImport

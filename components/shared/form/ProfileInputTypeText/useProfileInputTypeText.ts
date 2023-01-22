@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'next-i18next'
 
 export const useProfileInputTypeText = () => {
@@ -9,6 +9,15 @@ export const useProfileInputTypeText = () => {
   const { t } = useTranslation()
 
   const [isUndefinedError, setUndefinedError] = useState(true)
+  const changeInputValue: React.ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    event.target.value = event.target.value.trim()
+    setUndefinedError(false)
+    setValue('name', event.target.value.trim(), {
+      shouldValidate: true,
+    })
+  }
 
   return {
     register,
@@ -17,5 +26,6 @@ export const useProfileInputTypeText = () => {
     isUndefinedError,
     setUndefinedError,
     t,
+    changeInputValue,
   }
 }
