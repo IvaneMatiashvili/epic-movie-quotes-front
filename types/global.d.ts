@@ -21,12 +21,16 @@ export type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch
 
+interface emails {
+  email: string
+}
+
 export type UserInformation = {
   name: string
   user_id: string
   google_id: string
   user_image: string
-  emails: object[object]
+  emails: emails[]
 }
 
 export type SetStateString = string | StaticImageData | null
