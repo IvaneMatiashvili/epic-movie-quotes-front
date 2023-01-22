@@ -1,4 +1,4 @@
-const CheckYourEmailSvg = () => {
+const CheckYourEmailIcon = () => {
   return (
     <svg
       width='57'
@@ -23,4 +23,4 @@ const CheckYourEmailSvg = () => {
   )
 }
 
-export default CheckYourEmailSvg
+export default CheckYourEmailIcon

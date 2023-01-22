@@ -1,4 +1,4 @@
-const Approve = () => {
+const ApproveIcon = () => {
   return (
     <svg
       width='18'
@@ -15,4 +15,4 @@ const Approve = () => {
   )
 }
 
-export default Approve
+export default ApproveIcon

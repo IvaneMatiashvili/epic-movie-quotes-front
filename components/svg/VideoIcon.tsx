@@ -1,4 +1,4 @@
-const VideoSvg = () => {
+const VideoIcon = () => {
   return (
     <svg
       width='32'
@@ -23,4 +23,4 @@ const VideoSvg = () => {
   )
 }
 
-export default VideoSvg
+export default VideoIcon

@@ -1,4 +1,4 @@
-const Hide = () => {
+const HideIcon = () => {
   return (
     <svg
       width='21'
@@ -15,4 +15,4 @@ const Hide = () => {
   )
 }
 
-export default Hide
+export default HideIcon

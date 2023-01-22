@@ -1,4 +1,4 @@
-const Show = () => {
+const ShowIcon = () => {
   return (
     <svg
       width='21'
@@ -15,4 +15,4 @@ const Show = () => {
   )
 }
 
-export default Show
+export default ShowIcon

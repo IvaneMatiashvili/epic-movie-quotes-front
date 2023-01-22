@@ -1,4 +1,4 @@
-const EmailApproveSvg = () => {
+const EmailApproveIcon = () => {
   return (
     <svg
       width='50'
@@ -15,4 +15,4 @@ const EmailApproveSvg = () => {
   )
 }
 
-export default EmailApproveSvg
+export default EmailApproveIcon
