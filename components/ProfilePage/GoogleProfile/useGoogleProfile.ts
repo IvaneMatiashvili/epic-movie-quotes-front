@@ -1,9 +1,9 @@
 import { useTranslation } from 'next-i18next'
 import { useForm } from 'react-hook-form'
-import { SetStateAction, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useRouter } from 'next/router'
-import { FormObj, RootState } from 'types'
+import { FormObj, RootState, SetStateFile, SetStateString } from 'types'
 import { editUserInfo, getUserInfo } from 'services'
 import { setCookie } from 'cookies-next'
 import { useSelector, useDispatch } from 'react-redux'
@@ -19,10 +19,11 @@ export const useGoogleProfile = () => {
   const dispatch = useDispatch()
   useAuth()
 
-  const [currentUserImageUrl, setCurrentImageUrl] = useState(null)
+  const [currentUserImageUrl, setCurrentImageUrl] =
+    useState<SetStateString>(null)
   const [isEditModeOn, setIsEditModeOn] = useState(false)
   const [isUserNameEditModeOn, setIsUserNameEditModeOn] = useState(false)
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedImage, setSelectedImage] = useState<SetStateFile>(null)
 
   const form = useForm({
     defaultValues: {
@@ -63,12 +64,12 @@ export const useGoogleProfile = () => {
   }
 
   const changeInputImage = (file: File) => {
-    file && setSelectedImage(file as SetStateAction<any>)
+    file && setSelectedImage(file)
   }
   useEffect(() => {
     userInformation.user_image
-      ? setCurrentImageUrl(userInformation.user_image as SetStateAction<any>)
-      : setCurrentImageUrl(gandalfProfile as SetStateAction<any>)
+      ? setCurrentImageUrl(userInformation.user_image)
+      : setCurrentImageUrl(gandalfProfile)
     userInformation.emails &&
       form.setValue('email', userInformation.emails[0]?.email)
   }, [userInformation, form])
