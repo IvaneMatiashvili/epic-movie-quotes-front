@@ -1,2 +1,2 @@
-export * from './formLayout'
-export * from './feedbackLayout'
+export * from './FormLayout'
+export * from './FeedbackLayout'

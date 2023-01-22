@@ -1,2 +1,4 @@
-export * from './inputTypeText'
-export * from './error'
+export * from './ProfileInputTypeText'
+export * from './ProfileInputError'
+export * from './InputTypeText'
+export * from './Error'
