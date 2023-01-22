@@ -13,7 +13,7 @@ export const useUserPageMainLayout = () => {
 
   const [currentUserImageUrl, setCurrentImageUrl] = useState(null)
   const [userName, setUserName] = useState(null)
-  let [isActiveDropdown, setIsActiveDropdown] = useState(false)
+  const [isActiveDropdown, setIsActiveDropdown] = useState(false)
 
   const userInformation = useSelector((state: RootState) => state.userData)
 
