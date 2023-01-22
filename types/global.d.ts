@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import { UseFormSetError } from 'react-hook-form'
 import { store } from 'store'
-import { StaticImageData } from 'next/image'
+import { ImageLoader, StaticImageData } from 'next/image'
 
 export type SetState<T> = Dispatch<SetStateAction<T>>
 
@@ -33,5 +33,17 @@ export type UserInformation = {
   emails: emails[]
 }
 
-export type SetStateString = string | StaticImageData | null
-export type SetStateFile = string | Blob | File | null
+export type SetStateString =
+  | string
+  | StaticImport
+  | ImageLoader
+  | StaticImageData
+  | Blob
+  | null
+export type SetStateFile =
+  | string
+  | StaticImport
+  | File
+  | ImageLoader
+  | Blob
+  | null

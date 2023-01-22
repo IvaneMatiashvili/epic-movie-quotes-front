@@ -2,7 +2,7 @@ import { useGoogleProfile } from './useGoogleProfile'
 import React from 'react'
 import { ProfileInputError, ProfileInputTypeText } from 'components'
 import { FormProvider } from 'react-hook-form'
-import Image from 'next/image'
+import Image, { ImageLoader } from 'next/image'
 
 const GoogleProfile = () => {
   const {
@@ -45,10 +45,10 @@ const GoogleProfile = () => {
               className='w-48 h-48 absolute rounded-full object-fill'
               height={100}
               width={100}
-              loader={() => currentUserImageUrl}
+              loader={(() => currentUserImageUrl) as ImageLoader}
               src={
                 selectedImage
-                  ? URL.createObjectURL(selectedImage)
+                  ? URL.createObjectURL(selectedImage as File)
                   : currentUserImageUrl
               }
               alt={'user image'}
