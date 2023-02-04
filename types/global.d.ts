@@ -21,16 +21,18 @@ export type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch
 
-type emails = {
+export type Emails = {
   email: string
+  primary_email: number
+  email_verified_at: null | string
 }
 
 export type UserInformation = {
   name: string
-  user_id: string
+  id: number
   google_id: string
   user_image: string
-  emails: emails[]
+  emails: Emails<object>[]
 }
 
 export type SetStateString =
