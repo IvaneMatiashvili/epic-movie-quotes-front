@@ -5,11 +5,15 @@ import { useRouter } from 'next/router'
 import { SetError } from 'types'
 import { useTranslation } from 'next-i18next'
 import { checkErrorMessage } from 'helpers'
+import { setCookie } from 'cookies-next'
+import { setUserData } from 'store'
+import { useDispatch } from 'react-redux'
 
 export const useLoginWithGoogle = (setError: SetError, form: string) => {
   const { locale, push, query, asPath } = useRouter()
   const { from, code, prompt, stage } = query
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   const [isLoginWithGoogleClicked, setIsLoginWithGoogleClicked] =
     useState(false)
@@ -30,8 +34,11 @@ export const useLoginWithGoogle = (setError: SetError, form: string) => {
     () =>
       loginUserWithGoogleCallback(asPath, stage as string, locale as string),
     {
-      onSuccess: () => {
-        push('/')
+      onSuccess: async (response) => {
+        setCookie('userInfo', response?.data.id)
+        localStorage.setItem('userInfo', JSON.stringify(response.data))
+        dispatch(setUserData(response.data))
+        await push('profile')
       },
       onError: (err: any) => {
         if (form === 'login') {

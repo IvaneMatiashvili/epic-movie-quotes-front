@@ -1,5 +1,4 @@
 import { getUserInfo } from 'services'
-import { setCookie } from 'cookies-next'
 import { useQuery } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { setUserData } from 'store'
@@ -9,8 +8,11 @@ export const useAuth = () => {
 
   useQuery('userInfo', getUserInfo, {
     onSuccess: (response) => {
-      setCookie('userInfo', response?.data)
-      dispatch(setUserData(response?.data))
+      localStorage.setItem('userInfo', JSON.stringify(response.data))
+      dispatch(setUserData(response.data))
     },
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    retry: 0,
   })
 }
