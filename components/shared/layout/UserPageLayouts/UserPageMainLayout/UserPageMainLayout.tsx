@@ -15,6 +15,8 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
     isActiveDropdown,
     currentUserImageUrl,
     userName,
+    stage,
+    asPath,
   } = useUserPageMainLayout()
   return (
     <>
@@ -24,9 +26,19 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
         } `}
         onClick={closeDropdownOnBlur}
       ></div>
+
+      <Link
+        href={'/profile'}
+        locale={locale}
+        className={`h-screen w-full fixed z-10 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
+          stage !== 'addEmail' && 'hidden'
+        }
+        ${stage === 'addEmail' && ' hidden sm:block'} 
+         `}
+      ></Link>
       <div className='min-h-screen w-screen bg-layoutBackground overflow-x-hidden'>
         <header
-          className='w-full fixed h-20 z-20 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
+          className='w-full fixed h-20 z-40 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
           onClick={closeDropdownOnBlur}
         >
           <div className='flex justify-between items-center w-sw93 h-20'>
@@ -57,7 +69,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   >
                     <div className='w-16 h-10 flex flex-col justify-center items-center'>
                       <Link
-                        href='/profile'
+                        href={asPath}
                         locale='en'
                         className={`w-full h-full flex justify-center items-center font-helveticaEn`}
                       >
@@ -67,7 +79,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
 
                     <div className='w-16 h-10 flex border-t justify-center items-center'>
                       <Link
-                        href='/profile'
+                        href={asPath}
                         locale={`${locale === 'en' ? 'ka' : 'en'}`}
                         className={`w-full h-full flex justify-center items-center font-helveticaKa`}
                       >
@@ -96,9 +108,9 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
           </div>
         </header>
 
-        <div className='flex mt-28'>
-          <div className='flex flex-col justify-start items-center w-96 h-96 ml-14'>
-            <div className='flex justify-start items-center w-96 h-20'>
+        <div className='flex sm:mt-28'>
+          <div className='hidden lg:flex flex-col justify-start items-center w-96 h-96 ml-14'>
+            <div className='flex justify-start items-center w-96 h-20 z-10'>
               {currentUserImageUrl && (
                 <Image
                   priority={true}
@@ -130,7 +142,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 </p>
               </div>
             </div>
-            <div className='flex justify-start items-center w-96 h-20'>
+            <div className='flex justify-start items-center w-96 h-20 z-10'>
               <div className='w-16 h-16 flex justify-center items-center'>
                 <HomeSvg />
               </div>
@@ -145,7 +157,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 </p>
               </div>
             </div>
-            <div className='flex justify-start items-center w-96 h-20'>
+            <div className='flex justify-start items-center w-96 h-20 z-10'>
               <div className='w-16 h-16 flex justify-center items-center'>
                 <VideoSvg />
               </div>

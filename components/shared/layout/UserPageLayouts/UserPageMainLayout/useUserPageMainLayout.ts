@@ -8,7 +8,8 @@ import { useAuth } from 'hooks'
 
 export const useUserPageMainLayout = () => {
   const { t } = useTranslation()
-  const { locale } = useRouter()
+  const { locale, query, push, asPath } = useRouter()
+  const { stage } = query
   useAuth()
 
   const [currentUserImageUrl, setCurrentImageUrl] =
@@ -29,6 +30,10 @@ export const useUserPageMainLayout = () => {
     if (isActiveDropdown) {
       setIsActiveDropdown(false)
     }
+
+    if (stage === 'addEmail') {
+      push('profile')
+    }
   }
   useEffect(() => {
     userInformation.user_image
@@ -45,5 +50,7 @@ export const useUserPageMainLayout = () => {
     closeDropdownOnBlur,
     currentUserImageUrl,
     userName,
+    stage,
+    asPath,
   }
 }
