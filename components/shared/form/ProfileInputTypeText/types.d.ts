@@ -8,6 +8,6 @@ export type ProfileInputTypeTextProps = {
   key: string
   labelContent: string
   error: FieldError | undefined
-  isEditModeOn: boolean
+  isEditModeOn: boolean | null
   setIsEditModeOn: SetState<boolean> | null
 }

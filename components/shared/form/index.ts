@@ -1,3 +1,4 @@
+export * from './ProfileInputTypeEmailAndPassword'
 export * from './ProfileInputTypeText'
 export * from './ProfileInputError'
 export * from './InputTypeText'

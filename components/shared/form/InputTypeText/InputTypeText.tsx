@@ -2,6 +2,7 @@ import { Approve, ErrorSvg, Hide, Show } from 'components'
 import { useForm } from './useForm'
 import { InputTypeTextProps } from './types'
 import React from 'react'
+import { checkTypeAndError } from 'helpers'
 
 const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
   const {
@@ -76,20 +77,20 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
           })}
           id={props.id}
           placeholder={props.placeholder}
-          type={`${
-            (props.name === 'password' && props.isTypePassword) ||
-            (props.name === 'confirm_password' && props.isTypePassword)
-              ? 'password'
-              : 'text'
-          }`}
-          className={`font-helveticaKa placeholder-gray-500 placeholder-4 placeholder-base border-2 ${
-            !props.error && isUndefinedError
-              ? 'border-borderGray'
-              : (props.error && !isUndefinedError) ||
-                (props.error && isUndefinedError)
-              ? 'border-borderRed'
-              : 'border-borderGreen'
-          }
+          type={`${checkTypeAndError({
+            error: null,
+            isUndefinedError: null,
+            name: props.name,
+            isTypePassword: props.isTypePassword,
+          })}`}
+          className={`font-helveticaKa placeholder-gray-500 placeholder-4 placeholder-base border-2 ${checkTypeAndError(
+            {
+              error: props.error,
+              isUndefinedError,
+              name: null,
+              isTypePassword: null,
+            }
+          )}
           font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r19 nm:w-r22 sm:w-r24 h-r027 outline-none pr-11 sm:pr-0`}
           ref={inputReference}
         />
