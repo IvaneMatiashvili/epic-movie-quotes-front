@@ -8,10 +8,13 @@ import { FormObj } from 'types'
 import { useLoginWithGoogle } from 'hooks'
 import { checkErrorMessage } from 'helpers'
 import { setCookie } from 'cookies-next'
+import { setUserData } from 'store'
+import { useDispatch } from 'react-redux'
 
 export const useLoginForm = () => {
-  const { locale, push, reload } = useRouter()
+  const { locale, push } = useRouter()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   const { mutate: submitForm } = useMutation(loginUser)
 
@@ -60,9 +63,10 @@ export const useLoginForm = () => {
         })
       },
       onSuccess: async (response) => {
-        await setCookie('userInfo', response.data)
-        await reload()
-        await push('/profile')
+        setCookie('userInfo', response?.data.id)
+        localStorage.setItem('userInfo', JSON.stringify(response.data))
+        dispatch(setUserData(JSON.stringify(response.data)))
+        await push('profile')
       },
     })
   }
