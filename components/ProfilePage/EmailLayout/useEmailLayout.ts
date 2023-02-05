@@ -3,30 +3,33 @@ import { useTranslation } from 'next-i18next'
 import { EmailLayoutProps } from './types'
 import { useState } from 'react'
 
-export const useEmailLayout = (emailLayoutProps: EmailLayoutProps) => {
+export const useEmailLayout = ({
+  setPrimaryEmail,
+  email,
+  setRemovedEmails,
+  setValue,
+  setUserEmails,
+  userEmails,
+  setIsEditModeOn,
+  setIsSubmitFormOpen,
+}: EmailLayoutProps) => {
   const { locale } = useRouter()
   const { t } = useTranslation()
 
   const [isWarningOpen, setIsWarningHidden] = useState(false)
 
   const removeEmail = async () => {
-    emailLayoutProps.setUserEmails(
-      emailLayoutProps.userEmails.filter(
-        (el) => el.email !== emailLayoutProps.email
-      )
-    )
-    emailLayoutProps.setRemovedEmails((arr) => [...arr, emailLayoutProps.email])
-    emailLayoutProps.setIsEditModeOn(true)
-    emailLayoutProps.setIsSubmitFormOpen &&
-      emailLayoutProps.setIsSubmitFormOpen(true)
+    setUserEmails(userEmails.filter((el) => el.email !== email))
+    setRemovedEmails((arr) => [...arr, email])
+    setIsEditModeOn(true)
+    setIsSubmitFormOpen && setIsSubmitFormOpen(true)
   }
 
   const makeEmailPrimary = () => {
-    emailLayoutProps.setPrimaryEmail(emailLayoutProps.email)
-    emailLayoutProps.setValue('email', emailLayoutProps.email)
-    emailLayoutProps.setIsEditModeOn(true)
-    emailLayoutProps.setIsSubmitFormOpen &&
-      emailLayoutProps.setIsSubmitFormOpen(true)
+    setPrimaryEmail(email)
+    setValue('email', email)
+    setIsEditModeOn(true)
+    setIsSubmitFormOpen && setIsSubmitFormOpen(true)
   }
 
   const showWarning = () => {
