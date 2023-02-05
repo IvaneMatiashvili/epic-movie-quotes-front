@@ -3,7 +3,6 @@ import { useEmailLayout } from './useEmailLayout'
 import { EmailLayoutProps } from './types'
 import { WarningGrayIcon, WarningIcon, WhiteDownArrowIcon } from 'components'
 import Link from 'next/link'
-import { ButtonAndCancelMobile } from '../ButtonAndCancelMobile'
 
 const EmailLayout: React.FC<EmailLayoutProps> = (props) => {
   const {
@@ -14,17 +13,7 @@ const EmailLayout: React.FC<EmailLayoutProps> = (props) => {
     isWarningOpen,
     showWarning,
     hideWarning,
-  } = useEmailLayout({
-    setUserEmails: props.setUserEmails,
-    email: props.email,
-    userEmails: props.userEmails,
-    setRemovedEmails: props.setRemovedEmails,
-    setValue: props.setValue,
-    setIsEditModeOn: props.setIsEditModeOn,
-    primaryEmail: props.primaryEmail,
-    setPrimaryEmail: props.setPrimaryEmail,
-    setIsSubmitFormOpen: props.setIsSubmitFormOpen,
-  })
+  } = useEmailLayout(props)
 
   return (
     <>
