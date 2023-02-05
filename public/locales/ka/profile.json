@@ -35,5 +35,6 @@
   "simpleAlertMobile": "გაფრთხილება",
   "addNewEmailUpper": "ახალი იმეილი",
   "confirm": "დადასტურება",
-  "areYouSure": "ნამდვილად გსურთ მონაცემების შეცვლა?"
+  "areYouSure": "ნამდვილად გსურთ მონაცემების შეცვლა?",
+  "emailVerified": "ელ-ფოსტა გააქტიურდა"
 }

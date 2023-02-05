@@ -35,5 +35,6 @@
   "simpleAlertMobile": "A simple alert",
   "addNewEmailUpper": "ADD NEW EMAIL",
   "confirm": "Confirm",
-  "areYouSure": "Are you sure to make changes ?"
+  "areYouSure": "Are you sure to make changes ?",
+  "emailVerified": "email verified successfully"
 }
