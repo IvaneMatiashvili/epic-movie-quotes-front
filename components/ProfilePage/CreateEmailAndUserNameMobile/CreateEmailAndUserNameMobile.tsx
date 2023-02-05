@@ -29,6 +29,7 @@ const CreateEmailAndUserNameMobile: React.FC<
     setDefaultUserEmails: props.setDefaultUserEmails,
     name: props.name,
   })
+
   return (
     <div className={'sm:hidden'}>
       <FormProvider {...form}>
