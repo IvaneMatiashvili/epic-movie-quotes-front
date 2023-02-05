@@ -3,11 +3,9 @@ import { UserNameAndPasswordProps } from './types'
 import { useTranslationAndLocale } from 'hooks'
 import Link from 'next/link'
 
-const UserNameAndPasswordMobile: React.FC<UserNameAndPasswordProps> = ({
-  name,
-  content,
-  label,
-}) => {
+const UserNameAndPasswordMobile: React.FC<UserNameAndPasswordProps> = (
+  props
+) => {
   const { t, locale } = useTranslationAndLocale()
   return (
     <>
@@ -20,7 +18,7 @@ const UserNameAndPasswordMobile: React.FC<UserNameAndPasswordProps> = ({
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-sm text-white cursor-default`}
             >
-              {label}
+              {props.label}
             </p>
 
             <p
@@ -41,15 +39,17 @@ const UserNameAndPasswordMobile: React.FC<UserNameAndPasswordProps> = ({
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-base ${
-                content === 'password' ? 'text-smoothGrayText' : 'text-white'
+                props.content === 'password'
+                  ? 'text-smoothGrayText'
+                  : 'text-white'
               } cursor-default`}
             >
-              {name && name}
+              {props.name && props.name}
             </p>
 
             <Link
               href={
-                content === 'userName'
+                props.content === 'userName'
                   ? '/profile?stage=updateUsername'
                   : '/profile?stage=updatePassword'
               }
