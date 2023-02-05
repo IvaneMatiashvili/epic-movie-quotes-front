@@ -16,8 +16,8 @@ export const checkTypeAndError = ({
     }
   } else {
     if (
-      (name === 'password' && isTypePassword) ||
-      (name === 'confirm_password' && isTypePassword)
+      isTypePassword &&
+      (name === 'password' || name === 'confirm_password')
     ) {
       return 'password'
     } else {
