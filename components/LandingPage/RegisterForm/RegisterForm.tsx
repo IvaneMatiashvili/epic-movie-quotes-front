@@ -58,8 +58,6 @@ const RegisterForm: React.FC<Props> = (props) => {
             placeholder={t('home:namePlaceholder')}
             labelContent={t('home:name')}
             error={errors.name}
-            isTypePassword={null}
-            setIsTypePassword={null}
           />
 
           <Error errors={errors} name='name' />
@@ -78,8 +76,6 @@ const RegisterForm: React.FC<Props> = (props) => {
             placeholder={t('home:emailPlaceholder')}
             labelContent={t('home:email')}
             error={errors.email}
-            isTypePassword={null}
-            setIsTypePassword={null}
           />
 
           <Error errors={errors} name='email' />

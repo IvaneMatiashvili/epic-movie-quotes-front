@@ -94,8 +94,6 @@ const ProfileInputTypeEmailAndPassword: React.FC<
           id={props.id}
           placeholder={props.placeholder}
           type={`${checkTypeAndError({
-            error: null,
-            isUndefinedError: null,
             name: props.name,
             isTypePassword: props.isTypePassword,
           })}`}
@@ -103,8 +101,6 @@ const ProfileInputTypeEmailAndPassword: React.FC<
             {
               error: props.error,
               isUndefinedError,
-              name: null,
-              isTypePassword: null,
             }
           )}
           font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r18 nm:w-r21 ${

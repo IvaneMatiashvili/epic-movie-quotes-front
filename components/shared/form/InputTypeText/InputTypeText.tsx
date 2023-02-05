@@ -78,8 +78,6 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
           id={props.id}
           placeholder={props.placeholder}
           type={`${checkTypeAndError({
-            error: null,
-            isUndefinedError: null,
             name: props.name,
             isTypePassword: props.isTypePassword,
           })}`}
@@ -87,8 +85,6 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
             {
               error: props.error,
               isUndefinedError,
-              name: null,
-              isTypePassword: null,
             }
           )}
           font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r19 nm:w-r22 sm:w-r24 h-r027 outline-none pr-11 sm:pr-0`}

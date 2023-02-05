@@ -9,8 +9,8 @@ export type CheckErrorMessageData = {
 }
 
 export type TypeAndError = {
-  name: string | null
-  isTypePassword: boolean | null
-  error: FieldError | undefined | null
-  isUndefinedError: boolean | null
+  name?: string
+  isTypePassword?: boolean
+  error?: FieldError | undefined
+  isUndefinedError?: boolean
 }
