@@ -1,4 +1,5 @@
 import { TypeAndError } from './types'
+
 export const checkTypeAndError = ({
   name,
   isTypePassword,
