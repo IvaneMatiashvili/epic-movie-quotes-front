@@ -31,9 +31,11 @@ export const useEmailLayout = ({
     setIsEditModeOn(true)
     setIsSubmitFormOpen && setIsSubmitFormOpen(true)
   }
+
   const showWarning = () => {
     setIsWarningHidden(true)
   }
+
   const hideWarning = () => {
     setIsWarningHidden(false)
   }
