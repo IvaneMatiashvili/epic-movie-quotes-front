@@ -198,8 +198,6 @@ const StandardProfile = () => {
                         setIsEditModeOn={setIsEditModeOn}
                         primaryEmail={primaryEmail}
                         setPrimaryEmail={setPrimaryEmail}
-                        isSubmitFormOpen={null}
-                        setIsSubmitFormOpen={null}
                       />
                     ))}
 

@@ -10,8 +10,8 @@ export type EmailLayoutProps = {
   setIsEditModeOn: SetState<boolean>
   primaryEmail: string
   setPrimaryEmail: SetState<string | undefined>
-  isSubmitFormOpen: boolean | null
-  setIsSubmitFormOpen: SetState<boolean> | null
+  isSubmitFormOpen?: boolean
+  setIsSubmitFormOpen?: SetState<boolean>
 }
 
 export type UseEmailLayout = {
@@ -23,5 +23,5 @@ export type UseEmailLayout = {
   setIsEditModeOn: SetState<boolean>
   primaryEmail: string
   setPrimaryEmail: SetState<string | undefined>
-  setIsSubmitFormOpen: SetState<boolean> | null
+  setIsSubmitFormOpen?: SetState<boolean>
 }
