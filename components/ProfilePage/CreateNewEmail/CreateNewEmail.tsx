@@ -1,5 +1,9 @@
 import { useCreateNewEmail } from './useCreateNewEmail'
-import { ProfileInputError, ProfileInputTypeEmailAndPassword } from 'components'
+import {
+  LoadingSpinner,
+  ProfileInputError,
+  ProfileInputTypeEmailAndPassword,
+} from 'components'
 import { FormProvider } from 'react-hook-form'
 import React from 'react'
 import Link from 'next/link'
@@ -7,15 +11,23 @@ import { CreateNewEmail } from 'types'
 import { CreateEmailAndUserNameMobile } from '../CreateEmailAndUserNameMobile'
 
 const CreateNewEmail: React.FC<CreateNewEmail> = (props) => {
-  const { t, form, handleSubmit, errors, locale, showFeedback, stage } =
-    useCreateNewEmail({
-      setUserEmails: props.setUserEmails,
-      setDefaultUserEmails: props.setDefaultUserEmails,
-    })
+  const {
+    t,
+    form,
+    handleSubmit,
+    errors,
+    locale,
+    showFeedback,
+    stage,
+    isLoading,
+  } = useCreateNewEmail({
+    setUserEmails: props.setUserEmails,
+    setDefaultUserEmails: props.setDefaultUserEmails,
+  })
 
   return (
     <>
-      <div className='absolute top-r22 hidden sm:flex flex-col justify-center bg-blackBlueSoft z-30 w-r38 h-r22 rounded-xl'>
+      <div className='absolute top-r22 sm:ml-3 md:ml-64 lg:ml-0 hidden sm:flex flex-col justify-center bg-blackBlueSoft z-30 w-r38 h-r22 rounded-xl'>
         <p
           className={`font-normal text-2xl sm:text-2xl text-white mt-8 ml-8 ${
             locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
@@ -64,14 +76,21 @@ const CreateNewEmail: React.FC<CreateNewEmail> = (props) => {
                 type='submit'
                 className={`bg-signInRed h-r027 w-20 ml-4 flex justify-center items-center rounded-md cursor-pointer`}
               >
-                <p
-                  className={`
+                {!isLoading && (
+                  <p
+                    className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-base text-white`}
-                >
-                  {t('profile:add')}
-                </p>
+                  >
+                    {t('profile:add')}
+                  </p>
+                )}
+                {isLoading && (
+                  <div className={'ml-2'}>
+                    <LoadingSpinner />
+                  </div>
+                )}
               </button>
             </div>
           </form>

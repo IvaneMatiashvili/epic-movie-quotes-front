@@ -24,6 +24,7 @@ const CreateEmailAndUserNameMobile: React.FC<
     isSubmitFormOpen,
     setIsSubmitFormOpen,
     stage,
+    isLoading,
   } = useCreateEmailAndUserNameMobile({
     setUserEmails: props.setUserEmails,
     setDefaultUserEmails: props.setDefaultUserEmails,
@@ -39,7 +40,11 @@ const CreateEmailAndUserNameMobile: React.FC<
       ${isSubmitFormOpen && 'hidden'} 
         `}
           >
-            <div className='mt-r065 ml-8'>
+            <div
+              className={`${
+                props.profile === 'google' ? 'mt-r065' : 'mt-16'
+              } ml-8`}
+            >
               <Link
                 href={
                   stage === 'updateUsername'
@@ -115,7 +120,10 @@ const CreateEmailAndUserNameMobile: React.FC<
             </div>
           </div>
           <div className={`${!isSubmitFormOpen && 'hidden'}`}>
-            <ButtonAndCancelMobile setIsSubmitFormOpen={setIsSubmitFormOpen} />
+            <ButtonAndCancelMobile
+              setIsSubmitFormOpen={setIsSubmitFormOpen}
+              isLoading={isLoading}
+            />
           </div>
         </form>
       </FormProvider>

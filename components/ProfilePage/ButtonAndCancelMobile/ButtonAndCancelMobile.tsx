@@ -1,6 +1,7 @@
 import React from 'react'
 import { useButtonAndCancelMobile } from './useButtonAndCancelMobile'
 import { ButtonAndCancelMobileProps } from './types'
+import { LoadingSpinner } from '../../svg'
 
 const ButtonAndCancelMobile: React.FC<ButtonAndCancelMobileProps> = (props) => {
   const { t, locale, hideModal } = useButtonAndCancelMobile({
@@ -41,14 +42,21 @@ const ButtonAndCancelMobile: React.FC<ButtonAndCancelMobileProps> = (props) => {
                 locale === 'en' ? 'w-20' : 'w-28'
               } ml-4 flex justify-center items-center rounded-md cursor-pointer`}
             >
-              <p
-                className={`
+              {!props.isLoading && (
+                <p
+                  className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-sm text-white`}
-              >
-                {t('profile:confirm')}
-              </p>
+                >
+                  {t('profile:confirm')}
+                </p>
+              )}
+              {props.isLoading && (
+                <div className={'ml-2'}>
+                  <LoadingSpinner />
+                </div>
+              )}
             </button>
           </div>
         </div>

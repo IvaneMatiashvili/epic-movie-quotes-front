@@ -23,7 +23,7 @@ export const useCreateEmailAndUserNameMobile = ({
 
   const dispatch = useDispatch()
 
-  const { mutate: submitEmailForm } = useMutation(createNewEmail)
+  const { mutate: submitEmailForm, isLoading } = useMutation(createNewEmail)
   const queryClient = useQueryClient()
   const { mutate: submitNameForm } = useMutation(editUserInfo)
 
@@ -47,6 +47,8 @@ export const useCreateEmailAndUserNameMobile = ({
   }
 
   const showFeedback = async (data: FormObj) => {
+    data['locale'] = locale as string
+
     if (name === 'email') {
       submitEmailForm(data, {
         onError: (error: any) => {
@@ -135,5 +137,6 @@ export const useCreateEmailAndUserNameMobile = ({
     isSubmitFormOpen,
     setIsSubmitFormOpen,
     stage,
+    isLoading,
   }
 }

@@ -7,7 +7,6 @@ import { Emails, FormObj, CreateNewEmail } from 'types'
 import { setCookie } from 'cookies-next'
 import 'react-toastify/dist/ReactToastify.css'
 import { checkErrorMessage, reactToastify } from 'helpers'
-import 'react-toastify/dist/ReactToastify.css'
 
 export const useCreateNewEmail = ({
   setUserEmails,
@@ -17,7 +16,7 @@ export const useCreateNewEmail = ({
   const { stage } = query
   const { t } = useTranslation()
 
-  const { mutate: submitForm } = useMutation(createNewEmail)
+  const { mutate: submitForm, isLoading } = useMutation(createNewEmail)
 
   const form = useForm({
     defaultValues: {
@@ -28,6 +27,8 @@ export const useCreateNewEmail = ({
   const { errors } = form.formState
 
   const showFeedback = async (data: FormObj) => {
+    data['locale'] = locale as string
+
     submitForm(data, {
       onError: (error: any) => {
         checkErrorMessage({
@@ -75,5 +76,6 @@ export const useCreateNewEmail = ({
     register: form.register,
     query,
     stage,
+    isLoading,
   }
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
 import { Emails, FormObj, RootState, SetStateFileOrNull } from 'types'
-import { editUserInfo, getUserInfo, verifyUser } from 'services'
+import { editUserInfo, getUserInfo } from 'services'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUserData } from 'store'
 import { gandalfProfile } from 'public'
@@ -22,7 +22,7 @@ export const useStandardProfile = () => {
 
   const dispatch = useDispatch()
 
-  const { stage, feedback, signature, paramId } = query
+  const { stage } = query
 
   useAuth()
 
@@ -45,23 +45,6 @@ export const useStandardProfile = () => {
 
   const [isSubmitFormOpen, setIsSubmitFormOpen] = useState(false)
   const [isDataUpdated, setIsDataUpdated] = useState(false)
-
-  useQuery(
-    ['verifyUser', `${feedback}&paramId=${paramId}&signature=${signature}`],
-    () => verifyUser(`${feedback}&paramId=${paramId}&signature=${signature}`),
-    {
-      onError: () => {
-        push('/404')
-      },
-      onSuccess: () => {
-        queryClient.invalidateQueries('userInfo')
-      },
-      enabled: !!feedback && !!signature && !!paramId,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      retry: 0,
-    }
-  )
 
   const form = useForm({
     defaultValues: {
@@ -281,6 +264,13 @@ export const useStandardProfile = () => {
     stage,
     userEmails,
   ])
+
+  useEffect(() => {
+    if (stage === 'emailActivated') {
+      createReactToast(t('profile:emailVerified'))
+      push('profile')
+    }
+  }, [stage])
 
   return {
     t,
