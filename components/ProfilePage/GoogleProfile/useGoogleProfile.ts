@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setUserData } from 'store'
 import { gandalfProfile } from 'public'
 import { useAuth } from 'hooks'
+import { reactToastify } from 'helpers'
 
 export const useGoogleProfile = () => {
   const userInformation = useSelector((state: RootState) => state.userData)
@@ -25,6 +26,7 @@ export const useGoogleProfile = () => {
   const [isUserNameEditModeOn, setIsUserNameEditModeOn] = useState(false)
   const [selectedImage, setSelectedImage] = useState<SetStateFileOrNull>(null)
   const [userName, setUserName] = useState('')
+  const [defaultUserName, setDefaultUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
   const [isDataUpdated, setIsDataUpdated] = useState(false)
 
@@ -47,6 +49,7 @@ export const useGoogleProfile = () => {
       form.setValue('email', response?.data?.emails[0]?.email)
       form.setValue('name', response?.data?.name)
       setUserEmail(response?.data?.emails[0]?.email)
+      setDefaultUserName(response?.data?.name)
 
       localStorage.setItem('userInfo', JSON.stringify(response?.data))
       dispatch(setUserData(response?.data))
@@ -62,6 +65,13 @@ export const useGoogleProfile = () => {
     setSelectedImage(null)
     await form.setValue('name', userInformation?.name)
     form.setValue('email', userInformation?.emails[0]?.email)
+  }
+
+  const createReactToast = (content: string) => {
+    reactToastify({
+      content,
+      verifyEmail: false,
+    })
   }
 
   const openEditMode = () => {
@@ -89,6 +99,14 @@ export const useGoogleProfile = () => {
 
         setIsDataUpdated(true)
         form.setValue('name', response?.data?.name)
+
+        selectedImage && createReactToast(t('profile:userImageChanged'))
+        setSelectedImage(null)
+
+        defaultUserName !== data['name'] &&
+          createReactToast(t('profile:userNameChanged'))
+
+        setDefaultUserName(response?.data?.name)
       },
     })
   }

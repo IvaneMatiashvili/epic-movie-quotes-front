@@ -173,7 +173,7 @@ const GoogleProfile = () => {
         <div className={'sm:hidden mobile'}>
           <form className='sm:hidden' onSubmit={handleSubmit(editInfo)}>
             {!stage && (
-              <div className='mt-16 ml-8'>
+              <div className='mt-r065 ml-8'>
                 <Link href={'/news-feed'}>
                   <LeftArrowWhiteIcon />
                 </Link>
@@ -248,7 +248,7 @@ const GoogleProfile = () => {
                     className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-normal text-base text-white cursor-default
+                  } font-normal text-base text-white cursor-default break-all
                   `}
                   >
                     {email && email}

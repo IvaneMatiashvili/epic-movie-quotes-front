@@ -39,7 +39,7 @@ const CreateEmailAndUserNameMobile: React.FC<
       ${isSubmitFormOpen && 'hidden'} 
         `}
           >
-            <div className='mt-16 ml-8'>
+            <div className='mt-r065 ml-8'>
               <Link
                 href={
                   stage === 'updateUsername'
