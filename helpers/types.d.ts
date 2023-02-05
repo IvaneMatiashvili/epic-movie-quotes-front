@@ -14,3 +14,7 @@ export type TypeAndError = {
   error?: FieldError | undefined
   isUndefinedError?: boolean
 }
+export type ReactToastify = {
+  content: string
+  verifyEmail: boolean
+}
