@@ -269,8 +269,10 @@ export const useStandardProfile = () => {
       ? setCurrentImageUrl(userInformation.user_image)
       : setCurrentImageUrl(gandalfProfile)
 
-    userInformation.name && form.setValue('name', userInformation.name)
-    userInformation.name && setUserName(userInformation.name)
+    if (userInformation.name) {
+      form.setValue('name', userInformation.name)
+      setUserName(userInformation.name)
+    }
 
     if (watchPasswordConfirmation.length >= 8) {
       watchPassword === watchPasswordConfirmation
