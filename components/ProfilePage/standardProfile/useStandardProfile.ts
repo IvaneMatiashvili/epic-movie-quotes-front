@@ -121,6 +121,12 @@ export const useStandardProfile = () => {
     name: 'confirm_password',
   })
 
+  const closeEditMode = () => {
+    setIsUserNameEditModeOn(false)
+    setIsPasswordEditModeOn(false)
+    setIsEditModeOn(false)
+  }
+
   const validatePassword = async () => {
     await form.trigger('password')
     await form.trigger('confirm_password')
@@ -138,9 +144,7 @@ export const useStandardProfile = () => {
     await queryClient.invalidateQueries('userInfo')
 
     form.reset()
-    setIsUserNameEditModeOn(false)
-    setIsPasswordEditModeOn(false)
-    setIsEditModeOn(false)
+    closeEditMode()
     setSelectedImage(null)
 
     form.setValue('name', userInformation.name)
@@ -180,9 +184,7 @@ export const useStandardProfile = () => {
       onSuccess: async (response) => {
         localStorage.setItem('userInfo', JSON.stringify(response.data))
 
-        setIsUserNameEditModeOn(false)
-        setIsPasswordEditModeOn(false)
-        setIsEditModeOn(false)
+        closeEditMode()
 
         dispatch(setUserData(JSON.stringify(response?.data)))
 
