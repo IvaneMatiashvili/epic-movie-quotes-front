@@ -238,13 +238,13 @@ export const useStandardProfile = () => {
 
         if (stage === 'updatePassword') {
           await push('profile?stage=updatePassword')
-          setIsSubmitFormOpen(false)
         }
 
         if (stage === 'showEmails') {
           await push('profile?stage=showEmails')
-          setIsSubmitFormOpen(false)
         }
+
+        setIsSubmitFormOpen(false)
       },
 
       onError: (error: any) => {
