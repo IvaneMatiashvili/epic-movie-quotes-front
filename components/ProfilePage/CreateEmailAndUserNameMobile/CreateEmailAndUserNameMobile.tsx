@@ -67,7 +67,7 @@ const CreateEmailAndUserNameMobile: React.FC<
                   name={props.name}
                   errors={props.errors}
                   id={props.id}
-                  key={props.name}
+                  key={props.id}
                   placeholder={props.placeholder}
                   labelContent={props.labelContent}
                   error={props.name === 'name' ? errors.name : errors.email}
