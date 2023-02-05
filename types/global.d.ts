@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 import { UseFormSetError } from 'react-hook-form'
 import { store } from 'store'
-import { ImageLoader, StaticImageData } from 'next/image'
 
 export type SetState<T> = Dispatch<SetStateAction<T>>
 
