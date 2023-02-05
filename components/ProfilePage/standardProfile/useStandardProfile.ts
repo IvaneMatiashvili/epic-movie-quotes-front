@@ -54,8 +54,8 @@ export const useStandardProfile = () => {
       onError: () => {
         push('/404')
       },
-      onSuccess: async () => {
-        await queryClient.invalidateQueries('userInfo')
+      onSuccess: () => {
+        queryClient.invalidateQueries('userInfo')
       },
       enabled: !!feedback && !!signature && !!paramId,
       refetchOnMount: false,
