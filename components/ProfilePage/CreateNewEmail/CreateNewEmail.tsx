@@ -44,8 +44,6 @@ const CreateNewEmail: React.FC<CreateNewEmail> = (props) => {
                 placeholder={t('profile:enterNewEmail')}
                 labelContent={t('profile:newEmail')}
                 error={errors.email}
-                isTypePassword={null}
-                setIsTypePassword={null}
               />
               <ProfileInputError errors={errors} name='email' />
             </div>

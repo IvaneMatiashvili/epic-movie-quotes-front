@@ -71,8 +71,6 @@ const CreateEmailAndUserNameMobile: React.FC<
                   placeholder={props.placeholder}
                   labelContent={props.labelContent}
                   error={props.name === 'name' ? errors.name : errors.email}
-                  isTypePassword={null}
-                  setIsTypePassword={null}
                 />
                 <div className='flex justify-center w-screen'>
                   <div className='flex justify-between w-r18 nm:w-r21'>

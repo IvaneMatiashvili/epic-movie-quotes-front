@@ -7,8 +7,8 @@ export type InputTypeEmailAndPasswordProps = {
   errors: object
   id: string
   key: string
-  isTypePassword: boolean | null
-  setIsTypePassword: SetState<boolean> | null
+  isTypePassword?: boolean
+  setIsTypePassword?: SetState<boolean>
   placeholder: string
   labelContent: string
   error: FieldError | undefined
