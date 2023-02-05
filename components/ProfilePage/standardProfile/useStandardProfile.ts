@@ -27,7 +27,7 @@ export const useStandardProfile = () => {
   useAuth()
 
   const [userName, setUserName] = useState('')
-  const [currentUserImageUrl, setCurrentImageUrl] = useState<string>('')
+  const [currentUserImageUrl, setCurrentImageUrl] = useState('')
   const [isEditModeOn, setIsEditModeOn] = useState(false)
   const [isUserNameEditModeOn, setIsUserNameEditModeOn] = useState(false)
   const [isPasswordEditModeOn, setIsPasswordEditModeOn] = useState(false)
