@@ -167,8 +167,6 @@ export const useStandardProfile = () => {
 
     selectedImage && formData.append('user_image', selectedImage!)
 
-    formData.append('name', data['name'])
-
     if (removedEmails.length > 0) {
       formData.append('emails', JSON.stringify(removedEmails))
     }
