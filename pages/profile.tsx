@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Locale } from 'types'
 import { ProfilePageMain } from 'components'
 
-const FourOhFour = () => {
+const ProfilePage = () => {
   return <ProfilePageMain />
 }
 export const getStaticProps = async ({ locale }: Locale) => {
@@ -18,4 +18,4 @@ export const getStaticProps = async ({ locale }: Locale) => {
   }
 }
 
-export default FourOhFour
+export default ProfilePage
