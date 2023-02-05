@@ -25,8 +25,8 @@ export const useGoogleProfile = () => {
   const [isEditModeOn, setIsEditModeOn] = useState(false)
   const [isUserNameEditModeOn, setIsUserNameEditModeOn] = useState(false)
   const [selectedImage, setSelectedImage] = useState<SetStateFile>(null)
-  const [userName, setUserName] = useState<string>('')
-  const [userEmail, setUserEmail] = useState<string>('')
+  const [userName, setUserName] = useState('')
+  const [userEmail, setUserEmail] = useState('')
   const [isDataUpdated, setIsDataUpdated] = useState(false)
 
   const form = useForm({
