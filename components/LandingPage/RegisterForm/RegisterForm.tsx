@@ -1,6 +1,12 @@
 import { Props } from './types'
 import { useRegisterForm } from './useRegisterForm'
-import { InputTypeText, Error, GoogleSvg, FormLayout } from 'components'
+import {
+  InputTypeText,
+  Error,
+  GoogleSvg,
+  FormLayout,
+  LoadingSpinner,
+} from 'components'
 import { FormProvider } from 'react-hook-form'
 import React from 'react'
 import Link from 'next/link'
@@ -19,6 +25,7 @@ const RegisterForm: React.FC<Props> = (props) => {
     watchPassword,
     showFeedback,
     loginWithGoogle,
+    isLoading,
   } = useRegisterForm()
 
   return (
@@ -136,14 +143,21 @@ const RegisterForm: React.FC<Props> = (props) => {
             type='submit'
             className={`bg-signInRed h-r027 w-r19 nm:w-r22 sm:w-r24 flex justify-center items-center rounded-md mt-8 cursor-pointer`}
           >
-            <p
-              className={`
+            {!isLoading && (
+              <p
+                className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-base text-white`}
-            >
-              {t('home:getStarted')}
-            </p>
+              >
+                {t('home:getStarted')}
+              </p>
+            )}
+            {isLoading && (
+              <div className={'ml-2'}>
+                <LoadingSpinner />
+              </div>
+            )}
           </button>
         </form>
       </FormProvider>

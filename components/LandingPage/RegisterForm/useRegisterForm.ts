@@ -12,7 +12,7 @@ export const useRegisterForm = () => {
   const { locale, push } = useRouter()
   const { t } = useTranslation()
 
-  const { mutate: submitForm } = useMutation(createUser, {
+  const { mutate: submitForm, isLoading } = useMutation(createUser, {
     onSuccess: () => {
       push('?stage=checkYourEmail')
     },
@@ -96,5 +96,6 @@ export const useRegisterForm = () => {
     locale,
     showFeedback,
     loginWithGoogle,
+    isLoading,
   }
 }
