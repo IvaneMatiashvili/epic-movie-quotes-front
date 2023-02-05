@@ -35,21 +35,7 @@ export type UserInformation = {
   emails: Emails<object>[]
 }
 
-export type SetStateString =
-  | string
-  | StaticImport
-  | ImageLoader
-  | StaticImageData
-  | Blob
-  | null
-
-export type SetStateFile =
-  | string
-  | StaticImport
-  | File
-  | ImageLoader
-  | Blob
-  | null
+export type SetStateFileOrNull = File | null
 
 export type CreateNewEmail = {
   setUserEmails: SetState<Emails[]>

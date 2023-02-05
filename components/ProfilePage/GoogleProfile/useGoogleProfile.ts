@@ -3,7 +3,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useRouter } from 'next/router'
-import { Emails, FormObj, RootState, SetStateFile, SetStateString } from 'types'
+import { FormObj, RootState, SetStateFileOrNull } from 'types'
 import { editUserInfo, getUserInfo } from 'services'
 import { setCookie } from 'cookies-next'
 import { useSelector, useDispatch } from 'react-redux'
@@ -20,11 +20,10 @@ export const useGoogleProfile = () => {
   const dispatch = useDispatch()
   useAuth()
 
-  const [currentUserImageUrl, setCurrentImageUrl] =
-    useState<SetStateString>(null)
+  const [currentUserImageUrl, setCurrentImageUrl] = useState<string>('')
   const [isEditModeOn, setIsEditModeOn] = useState(false)
   const [isUserNameEditModeOn, setIsUserNameEditModeOn] = useState(false)
-  const [selectedImage, setSelectedImage] = useState<SetStateFile>(null)
+  const [selectedImage, setSelectedImage] = useState<SetStateFileOrNull>(null)
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
   const [isDataUpdated, setIsDataUpdated] = useState(false)
@@ -101,7 +100,7 @@ export const useGoogleProfile = () => {
   useEffect(() => {
     userInformation.user_image
       ? setCurrentImageUrl(userInformation.user_image)
-      : setCurrentImageUrl(gandalfProfile)
+      : setCurrentImageUrl(gandalfProfile.src)
 
     userInformation.name && setUserName(userInformation?.name)
   }, [userInformation, form, userName, setUserName])

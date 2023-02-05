@@ -3,7 +3,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
-import { Emails, FormObj, RootState, SetStateFile, SetStateString } from 'types'
+import { Emails, FormObj, RootState, SetStateFileOrNull } from 'types'
 import { editUserInfo, getUserInfo, verifyUser } from 'services'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUserData } from 'store'
@@ -27,13 +27,12 @@ export const useStandardProfile = () => {
   useAuth()
 
   const [userName, setUserName] = useState('')
-  const [currentUserImageUrl, setCurrentImageUrl] =
-    useState<SetStateString>(null)
+  const [currentUserImageUrl, setCurrentImageUrl] = useState<string>('')
   const [isEditModeOn, setIsEditModeOn] = useState(false)
   const [isUserNameEditModeOn, setIsUserNameEditModeOn] = useState(false)
   const [isPasswordEditModeOn, setIsPasswordEditModeOn] = useState(false)
 
-  const [selectedImage, setSelectedImage] = useState<SetStateFile>(null)
+  const [selectedImage, setSelectedImage] = useState<SetStateFileOrNull>(null)
 
   const [isTypePassword, setIsTypePassword] = useState(true)
   const [isTypeConfirmPassword, setIsTypeConfirmPassword] = useState(true)
@@ -256,7 +255,7 @@ export const useStandardProfile = () => {
   useEffect(() => {
     userInformation.user_image
       ? setCurrentImageUrl(userInformation.user_image)
-      : setCurrentImageUrl(gandalfProfile)
+      : setCurrentImageUrl(gandalfProfile.src)
 
     if (userInformation.name) {
       form.setValue('name', userInformation.name)
