@@ -3,15 +3,15 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 import { createNewEmail } from 'services'
-import { Emails, FormObj, CreateNewEmail } from 'types'
+import { Emails, FormObj, SetState } from 'types'
 import { setCookie } from 'cookies-next'
 import 'react-toastify/dist/ReactToastify.css'
 import { checkErrorMessage, reactToastify } from 'helpers'
 
-export const useCreateNewEmail = ({
-  setUserEmails,
-  setDefaultUserEmails,
-}: CreateNewEmail) => {
+export const useCreateNewEmail = (
+  setUserEmails: SetState<Emails[]>,
+  setDefaultUserEmails: SetState<Emails[]>
+) => {
   const { locale, push, query } = useRouter()
   const { stage } = query
   const { t } = useTranslation()
@@ -56,10 +56,7 @@ export const useCreateNewEmail = ({
           )[0],
         ])
 
-        reactToastify({
-          content: t('profile:pleaseCheckEmail'),
-          verifyEmail: true,
-        })
+        reactToastify(t('profile:pleaseCheckEmail'), true)
 
         await push('profile')
       },

@@ -20,10 +20,7 @@ const CreateNewEmail: React.FC<CreateNewEmail> = (props) => {
     showFeedback,
     stage,
     isLoading,
-  } = useCreateNewEmail({
-    setUserEmails: props.setUserEmails,
-    setDefaultUserEmails: props.setDefaultUserEmails,
-  })
+  } = useCreateNewEmail(props.setUserEmails, props.setDefaultUserEmails)
 
   return (
     <>

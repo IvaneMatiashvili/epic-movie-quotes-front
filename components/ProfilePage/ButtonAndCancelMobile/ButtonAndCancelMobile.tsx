@@ -4,9 +4,9 @@ import { ButtonAndCancelMobileProps } from './types'
 import { LoadingSpinner } from '../../svg'
 
 const ButtonAndCancelMobile: React.FC<ButtonAndCancelMobileProps> = (props) => {
-  const { t, locale, hideModal } = useButtonAndCancelMobile({
-    setIsSubmitFormOpen: props.setIsSubmitFormOpen,
-  })
+  const { t, locale, hideModal } = useButtonAndCancelMobile(
+    props.setIsSubmitFormOpen
+  )
   return (
     <>
       <div

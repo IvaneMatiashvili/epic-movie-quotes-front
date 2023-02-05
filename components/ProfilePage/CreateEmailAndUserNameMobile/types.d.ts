@@ -12,8 +12,3 @@ export type CreateEmailAndChangePasswordMobileProps = {
   setDefaultUserEmails?: SetState<Emails[]>
   profile: string
 }
-export type CreateEmailAndChangePasswordMobile = {
-  setUserEmails?: SetState<Emails[]>
-  setDefaultUserEmails?: SetState<Emails[]>
-  name: string
-}

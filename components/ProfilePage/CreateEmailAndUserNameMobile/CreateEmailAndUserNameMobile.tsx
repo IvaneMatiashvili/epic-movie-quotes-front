@@ -25,11 +25,11 @@ const CreateEmailAndUserNameMobile: React.FC<
     setIsSubmitFormOpen,
     stage,
     isLoading,
-  } = useCreateEmailAndUserNameMobile({
-    setUserEmails: props.setUserEmails,
-    setDefaultUserEmails: props.setDefaultUserEmails,
-    name: props.name,
-  })
+  } = useCreateEmailAndUserNameMobile(
+    props.setUserEmails,
+    props.setDefaultUserEmails,
+    props.name
+  )
 
   return (
     <div className={'sm:hidden'}>

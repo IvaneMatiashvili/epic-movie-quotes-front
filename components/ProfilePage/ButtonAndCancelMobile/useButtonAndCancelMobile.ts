@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { ButtonAndCancelMobile } from './types'
+import { SetState } from 'types'
 
-export const useButtonAndCancelMobile = ({
-  setIsSubmitFormOpen,
-}: ButtonAndCancelMobile) => {
+export const useButtonAndCancelMobile = (
+  setIsSubmitFormOpen?: SetState<boolean>
+) => {
   const { locale } = useRouter()
   const { t } = useTranslation()
 
