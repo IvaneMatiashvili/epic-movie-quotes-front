@@ -294,8 +294,6 @@ const GoogleProfile = () => {
           <div>
             {stage === 'updateUsername' && (
               <CreateEmailAndUserNameMobile
-                setUserEmails={null}
-                setDefaultUserEmails={null}
                 input='name'
                 name='name'
                 errors={{

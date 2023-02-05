@@ -1,7 +1,7 @@
 import { Emails, SetState } from 'types'
 
 export type CreateEmailAndChangePasswordMobileProps = {
-  setUserEmails: null | SetState<Emails[]>
+  setUserEmails?: SetState<Emails[]>
   name: string
   input: string
   errors: object
@@ -9,11 +9,11 @@ export type CreateEmailAndChangePasswordMobileProps = {
   key: string
   placeholder: string
   labelContent: string
-  setDefaultUserEmails: null | SetState<Emails[]>
+  setDefaultUserEmails?: SetState<Emails[]>
   profile: string
 }
 export type CreateEmailAndChangePasswordMobile = {
-  setUserEmails: null | SetState<Emails[]>
-  setDefaultUserEmails: null | SetState<Emails[]>
+  setUserEmails?: SetState<Emails[]>
+  setDefaultUserEmails?: SetState<Emails[]>
   name: string
 }
