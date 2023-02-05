@@ -11,3 +11,7 @@ export const editUserInfo = async (data: object) => {
 export const getUserInfo = async () => {
   return await axios.get('/api/get-user-information')
 }
+
+export const createNewEmail = async (data: object) => {
+  return await axios.post('/api/create-new-email', data)
+}

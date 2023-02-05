@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getCookie } from 'cookies-next'
 import { UserInformation } from 'types'
 
-const user: UserInformation = getCookie('userInfo')
-  ? JSON.parse(<string>getCookie('userInfo'))
-  : ''
+const user: UserInformation =
+  typeof window !== 'undefined' && localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo') as string)
+    : ''
 
 const initialState: UserInformation = {
   name: user?.name,
-  user_id: user?.user_id,
+  id: user?.id,
   google_id: user?.google_id,
   user_image: user?.user_image,
   emails: user?.emails,
@@ -19,9 +19,9 @@ export const userDataSlice = createSlice({
   initialState,
   reducers: {
     setUserData: (state, action) => {
-      const { name, user_id, google_id, user_image } = action.payload
+      const { name, id, google_id, user_image } = action.payload
       state.name = name
-      state.user_id = user_id
+      state.id = id
       state.google_id = google_id
       state.user_image = user_image
     },

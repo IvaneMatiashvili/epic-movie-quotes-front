@@ -2,18 +2,18 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useSelector } from 'react-redux'
-import { RootState, SetStateString } from 'types'
+import { RootState } from 'types'
 import { gandalfProfile } from 'public'
 import { useAuth } from 'hooks'
 
 export const useUserPageMainLayout = () => {
   const { t } = useTranslation()
-  const { locale } = useRouter()
+  const { locale, query, push, asPath } = useRouter()
+  const { stage } = query
   useAuth()
 
-  const [currentUserImageUrl, setCurrentImageUrl] =
-    useState<SetStateString>(null)
-  const [userName, setUserName] = useState<SetStateString>(null)
+  const [currentUserImageUrl, setCurrentImageUrl] = useState('')
+  const [userName, setUserName] = useState('')
   const [isActiveDropdown, setIsActiveDropdown] = useState(false)
 
   const userInformation = useSelector((state: RootState) => state.userData)
@@ -29,11 +29,15 @@ export const useUserPageMainLayout = () => {
     if (isActiveDropdown) {
       setIsActiveDropdown(false)
     }
+
+    if (stage === 'addEmail') {
+      push('profile')
+    }
   }
   useEffect(() => {
     userInformation.user_image
       ? setCurrentImageUrl(userInformation.user_image)
-      : setCurrentImageUrl(gandalfProfile)
+      : setCurrentImageUrl(gandalfProfile.src)
     userInformation.name && setUserName(userInformation.name)
   }, [userInformation])
 
@@ -45,5 +49,7 @@ export const useUserPageMainLayout = () => {
     closeDropdownOnBlur,
     currentUserImageUrl,
     userName,
+    stage,
+    asPath,
   }
 }

@@ -42,8 +42,6 @@ const ForgotPasswordForm: React.FC<Props> = (props) => {
             placeholder={t('home:emailPlaceholder')}
             labelContent={t('home:email')}
             error={errors.email}
-            isTypePassword={null}
-            setIsTypePassword={null}
           />
 
           <Error errors={errors} name='email' />

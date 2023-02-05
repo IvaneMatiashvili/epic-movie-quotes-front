@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { store } from 'store'
 import 'styles/globals.css'
 import React from 'react'
+import { ToastContainer } from 'react-toastify'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = React.useState(() => new QueryClient())
@@ -16,6 +17,10 @@ const App = ({ Component, pageProps }: AppProps) => {
         <ReactQueryDevtools initialIsOpen={false} />
         <Provider store={store}>
           <Component {...pageProps} />
+          <ToastContainer
+            toastClassName='toast-background'
+            progressClassName='progress-color'
+          />
         </Provider>
       </Hydrate>
     </QueryClientProvider>

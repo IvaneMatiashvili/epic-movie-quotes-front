@@ -42,4 +42,32 @@
     border-radius: 100vh;
     border: 3px solid #808189;
   }
+
+  .toast-background {
+    background: #d1e7dd !important;
+    width: 25rem !important;
+    left: -20rem !important;
+    top: 4rem !important;
+    border-radius: 0 !important;
+  }
+  .progress-color {
+    background: #118919 !important;
+  }
+
+  @media (max-width: 640px) {
+    .toast-background {
+      top: 6rem !important;
+      left: 0 !important;
+      width: 23rem !important;
+      right: 0 !important;
+      margin: auto !important;
+      border-radius: 8px !important;
+      margin-top: 1rem !important;
+    }
+  }
+  @media (max-width: 380px) {
+    .toast-background {
+      width: 20rem !important;
+    }
+  }
 }
