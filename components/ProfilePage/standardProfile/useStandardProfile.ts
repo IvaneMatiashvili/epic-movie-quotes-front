@@ -39,7 +39,7 @@ export const useStandardProfile = () => {
   const [isTypeConfirmPassword, setIsTypeConfirmPassword] = useState(true)
   const [userEmails, setUserEmails] = useState<Array<Emails>>([])
   const [removedEmails, setRemovedEmails] = useState<string[]>([])
-  const [primaryEmail, setPrimaryEmail] = useState('')
+  const [primaryEmail, setPrimaryEmail] = useState<string | undefined>('')
 
   const [defaultUserEmails, setDefaultUserEmails] = useState<Array<Emails>>([])
   const [defaultPrimaryEmail, setDefaultPrimaryEmail] = useState()
