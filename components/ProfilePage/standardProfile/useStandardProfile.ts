@@ -73,6 +73,7 @@ export const useStandardProfile = () => {
     },
     mode: 'all',
   })
+
   const { errors, isValid } = form.formState
 
   useQuery('userInfo', getUserInfo, {
@@ -114,6 +115,7 @@ export const useStandardProfile = () => {
     control: form.control,
     name: 'password',
   })
+
   const watchPasswordConfirmation = useWatch({
     control: form.control,
     name: 'confirm_password',
@@ -131,6 +133,7 @@ export const useStandardProfile = () => {
     form.resetField('password')
     form.resetField('confirm_password')
   }
+
   const resetForm = async () => {
     await queryClient.invalidateQueries('userInfo')
 
@@ -262,6 +265,7 @@ export const useStandardProfile = () => {
     file && setSelectedImage(file)
     setIsDataUpdated(false)
   }
+
   useEffect(() => {
     userInformation.user_image
       ? setCurrentImageUrl(userInformation.user_image)
