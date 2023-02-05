@@ -50,3 +50,8 @@ export type SetStateFile =
   | ImageLoader
   | Blob
   | null
+
+export type CreateNewEmail = {
+  setUserEmails: SetState<Emails[]>
+  setDefaultUserEmails: SetState<Emails[]>
+}

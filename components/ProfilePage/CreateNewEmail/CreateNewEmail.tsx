@@ -3,10 +3,10 @@ import { ProfileInputError, ProfileInputTypeEmailAndPassword } from 'components'
 import { FormProvider } from 'react-hook-form'
 import React from 'react'
 import Link from 'next/link'
-import { CreateNewEmailProps } from './types'
+import { CreateNewEmail } from 'types'
 import { CreateEmailAndUserNameMobile } from '../CreateEmailAndUserNameMobile'
 
-const CreateNewEmail: React.FC<CreateNewEmailProps> = (props) => {
+const CreateNewEmail: React.FC<CreateNewEmail> = (props) => {
   const { t, form, handleSubmit, errors, locale, showFeedback, stage } =
     useCreateNewEmail({
       setUserEmails: props.setUserEmails,

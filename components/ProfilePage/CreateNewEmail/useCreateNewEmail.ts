@@ -3,13 +3,11 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 import { createNewEmail } from 'services'
-import { Emails, FormObj } from 'types'
+import { Emails, FormObj, CreateNewEmail } from 'types'
 import { setCookie } from 'cookies-next'
 import 'react-toastify/dist/ReactToastify.css'
 import { checkErrorMessage, reactToastify } from 'helpers'
 import 'react-toastify/dist/ReactToastify.css'
-
-import { CreateNewEmail } from './types'
 
 export const useCreateNewEmail = ({
   setUserEmails,
