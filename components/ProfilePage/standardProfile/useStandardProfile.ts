@@ -127,6 +127,13 @@ export const useStandardProfile = () => {
     setIsEditModeOn(false)
   }
 
+  const createReactToast = (content: string) => {
+    reactToastify({
+      content,
+      verifyEmail: false,
+    })
+  }
+
   const validatePassword = async () => {
     await form.trigger('password')
     await form.trigger('confirm_password')
@@ -191,40 +198,20 @@ export const useStandardProfile = () => {
         await queryClient.invalidateQueries('userInfo')
 
         data['name'] !== userInformation.name &&
-          reactToastify({
-            content: t('profile:userNameChanged'),
-            verifyEmail: false,
-          })
+          createReactToast(t('profile:userNameChanged'))
 
         data['password'].length > 0 &&
-          reactToastify({
-            content: t('profile:passwordChanged'),
-            verifyEmail: false,
-          })
+          createReactToast(t('profile:passwordChanged'))
 
-        selectedImage &&
-          reactToastify({
-            content: t('profile:userImageChanged'),
-            verifyEmail: false,
-          })
+        selectedImage && createReactToast(t('profile:userImageChanged'))
 
-        removedEmails.length > 1 &&
-          reactToastify({
-            content: t('profile:emailsRemoved'),
-            verifyEmail: false,
-          })
+        removedEmails.length > 1 && createReactToast(t('profile:emailsRemoved'))
 
         removedEmails.length === 1 &&
-          reactToastify({
-            content: t('profile:emailRemoved'),
-            verifyEmail: false,
-          })
+          createReactToast(t('profile:emailRemoved'))
 
         primaryEmail !== defaultPrimaryEmail &&
-          reactToastify({
-            content: t('profile:primaryEmailChanged'),
-            verifyEmail: false,
-          })
+          createReactToast(t('profile:primaryEmailChanged'))
 
         setRemovedEmails([])
 
