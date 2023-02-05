@@ -69,7 +69,7 @@ const Notification: React.FC<NotificationPageProps> = (props) => {
                 {props.content}
               </p>
             </div>
-            <div className={`${locale === 'en' ? 'ml-6' : 'ml-14'}`}>
+            <div className={`ml-6`}>
               <CloseIcon />
             </div>
           </div>
