@@ -45,11 +45,11 @@ export const useGoogleProfile = () => {
 
   useQuery('userInfo', getUserInfo, {
     onSuccess: async (response) => {
-      form.setValue('email', response.data.emails[0]?.email)
-      form.setValue('name', response.data.name)
-      setUserEmail(response.data.emails[0]?.email)
+      form.setValue('email', response?.data?.emails[0]?.email)
+      form.setValue('name', response?.data?.name)
+      setUserEmail(response?.data?.emails[0]?.email)
 
-      localStorage.setItem('userInfo', JSON.stringify(response.data))
+      localStorage.setItem('userInfo', JSON.stringify(response?.data))
       dispatch(setUserData(response?.data))
     },
     refetchOnMount: false,
@@ -61,8 +61,8 @@ export const useGoogleProfile = () => {
     setIsEditModeOn(false)
     setIsUserNameEditModeOn(false)
     setSelectedImage(null)
-    await form.setValue('name', userInformation.name)
-    form.setValue('email', userInformation.emails[0]?.email)
+    await form.setValue('name', userInformation?.name)
+    form.setValue('email', userInformation?.emails[0]?.email)
   }
 
   const openEditMode = () => {
@@ -82,10 +82,10 @@ export const useGoogleProfile = () => {
       onSuccess: async (response) => {
         setIsEditModeOn(false)
         setIsUserNameEditModeOn(false)
-        setUserName(response?.data.name)
+        setUserName(response?.data?.name)
 
-        setCookie('userInfo', response?.data.id)
-        localStorage.setItem('userInfo', JSON.stringify(response.data))
+        setCookie('userInfo', response?.data?.id)
+        localStorage.setItem('userInfo', JSON.stringify(response?.data))
         dispatch(setUserData(response.data))
 
         setIsDataUpdated(true)
@@ -103,7 +103,7 @@ export const useGoogleProfile = () => {
       ? setCurrentImageUrl(userInformation.user_image)
       : setCurrentImageUrl(gandalfProfile)
 
-    userInformation.name && setUserName(userInformation.name)
+    userInformation.name && setUserName(userInformation?.name)
   }, [userInformation, form, userName, setUserName])
 
   useEffect(() => {
