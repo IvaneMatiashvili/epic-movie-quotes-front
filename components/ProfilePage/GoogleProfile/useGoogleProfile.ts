@@ -107,14 +107,13 @@ export const useGoogleProfile = () => {
   }, [userInformation, form, userName, setUserName])
 
   useEffect(() => {
-    if (userInformation) {
-      if (
-        userInformation?.name?.length > 15 &&
-        userInformation?.name === watchName &&
-        isSubmitting
-      ) {
-        form.setValue('name', '.   .')
-      }
+    if (
+      userInformation &&
+      userInformation?.name?.length > 15 &&
+      userInformation?.name === watchName &&
+      isSubmitting
+    ) {
+      form.setValue('name', '.   .')
     }
   }, [userInformation, form, watchName, isSubmitting, isDirty])
 
