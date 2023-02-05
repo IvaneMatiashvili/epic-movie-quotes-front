@@ -3,20 +3,18 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { useMutation, useQueryClient } from 'react-query'
 import { createNewEmail, editUserInfo } from 'services'
-import { Emails, FormObj } from 'types'
+import { Emails, FormObj, SetState } from 'types'
 import { setCookie } from 'cookies-next'
 import { checkErrorMessage, reactToastify } from 'helpers'
-
-import { CreateEmailAndChangePasswordMobile } from './types'
 import { useState } from 'react'
 import { setUserData } from 'store'
 import { useDispatch } from 'react-redux'
 
-export const useCreateEmailAndUserNameMobile = ({
-  setUserEmails,
-  setDefaultUserEmails,
-  name,
-}: CreateEmailAndChangePasswordMobile) => {
+export const useCreateEmailAndUserNameMobile = (
+  setUserEmails?: SetState<Emails[]>,
+  setDefaultUserEmails?: SetState<Emails[]>,
+  name?: string
+) => {
   const { locale, push, query } = useRouter()
   const { stage } = query
   const { t } = useTranslation()
@@ -66,10 +64,7 @@ export const useCreateEmailAndUserNameMobile = ({
           setCookie('userInfo', response?.data.id)
           dispatch(setUserData(JSON.stringify(response?.data)))
 
-          reactToastify({
-            content: t('profile:pleaseCheckEmail'),
-            verifyEmail: true,
-          })
+          reactToastify(t('profile:pleaseCheckEmail'), true)
           if (setDefaultUserEmails) {
             setDefaultUserEmails((arr: object[]) => [
               ...arr,
@@ -105,10 +100,7 @@ export const useCreateEmailAndUserNameMobile = ({
 
           await queryClient.invalidateQueries('userInfo')
 
-          reactToastify({
-            content: t('profile:userNameChanged'),
-            verifyEmail: false,
-          })
+          reactToastify(t('profile:userNameChanged'), false)
           await push('profile')
         },
         onError: (error: any) => {

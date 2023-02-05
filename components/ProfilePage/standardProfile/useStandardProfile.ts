@@ -110,10 +110,7 @@ export const useStandardProfile = () => {
   }
 
   const createReactToast = (content: string) => {
-    reactToastify({
-      content,
-      verifyEmail: false,
-    })
+    reactToastify(content, false)
   }
 
   const validatePassword = async () => {
