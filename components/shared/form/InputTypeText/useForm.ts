@@ -8,15 +8,6 @@ export const useForm = (name: string) => {
   const { locale } = useRouter()
 
   const inputReference = useRef<HTMLInputElement>(null)
-
-  const changePasswordType = (
-    isTypePassword: boolean,
-    setIsTypePassword: SetState<boolean>
-  ) => {
-    isTypePassword ? setIsTypePassword(false) : setIsTypePassword(true)
-    inputReference.current !== null && inputReference.current.focus()
-  }
-
   const changeInputValue: React.ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
@@ -25,6 +16,14 @@ export const useForm = (name: string) => {
     setValue(name, event.target.value.trim(), {
       shouldValidate: true,
     })
+  }
+
+  const changePasswordType = (
+    isTypePassword: boolean,
+    setIsTypePassword: SetState<boolean>
+  ) => {
+    isTypePassword ? setIsTypePassword(false) : setIsTypePassword(true)
+    inputReference.current !== null && inputReference.current.focus()
   }
 
   const [isUndefinedError, setUndefinedError] = useState(true)

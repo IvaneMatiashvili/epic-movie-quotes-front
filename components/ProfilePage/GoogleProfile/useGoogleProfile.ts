@@ -54,7 +54,6 @@ export const useGoogleProfile = () => {
       localStorage.setItem('userInfo', JSON.stringify(response?.data))
       dispatch(setUserData(response?.data))
     },
-    refetchOnMount: false,
     refetchOnWindowFocus: false,
     retry: 0,
   })
