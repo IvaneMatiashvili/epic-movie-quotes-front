@@ -15,12 +15,22 @@
 
 @layer utilities {
   input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #ced4da inset;
+    -webkit-box-shadow: 0 0 0 1000px #ced4da inset;
   }
 
   input:-webkit-autofill:focus {
-    -webkit-box-shadow: transparent !important;
-    -webkit-text-fill-color: #333;
+    -webkit-box-shadow: transparent;
+    -webkit-text-fill-color: black;
+  }
+
+  .movies-input:-webkit-autofill,
+  .movies-input:-webkit-autofill:hover,
+  .movies-input:-webkit-autofill:focus,
+  select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px rgba(17, 16, 26, 1) inset;
+    transition: background-color 5000s;
+    -webkit-text-fill-color: white !important;
+    caret-color: white !important;
   }
 
   :root input {
@@ -41,6 +51,19 @@
     background: #808189;
     border-radius: 100vh;
     border: 3px solid #808189;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    filter: invert(1) !important;
+    position: relative !important;
+    left: 2rem !important;
+  }
+
+  input[type='file']::file-selector-button {
+    display: none !important;
+  }
+  input[type='file'] {
+    color: transparent !important;
   }
 
   .toast-background {
@@ -70,4 +93,23 @@
       width: 20rem !important;
     }
   }
+
+  .search-animation {
+    animation: searchAnimation 500ms linear;
+  }
+
+  @keyframes searchAnimation {
+    from {
+      opacity: 0;
+      width: 1rem;
+      position: absolute;
+    }
+
+    to {
+      width: 43rem;
+      opacity: 1;
+    }
+  }
+
+
 }
