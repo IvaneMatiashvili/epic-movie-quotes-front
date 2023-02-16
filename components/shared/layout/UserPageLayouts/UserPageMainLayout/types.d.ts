@@ -1,3 +1,7 @@
+import { SetState } from 'types'
+
 export type UserPageProps = {
   children: JSX.Element
+  openEditOrDelete?: boolean[]
+  setIsSetBackground?: SetState<boolean>
 }
