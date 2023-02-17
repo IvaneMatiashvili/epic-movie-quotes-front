@@ -16,7 +16,7 @@ export const useMovieDescriptionMain = () => {
 
   const queryClient = useQueryClient()
   const [openEditOrDelete, setOpenEditOrDelete] = useState<boolean[]>([])
-  const [isSetBackground, setIsSetBackground] = useState<boolean>(false)
+  const [isSetBackground, setIsSetBackground] = useState(false)
 
   const [genres, setGenres] = useState([])
 
