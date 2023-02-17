@@ -17,11 +17,15 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
     userName,
     stage,
     asPath,
-  } = useUserPageMainLayout()
+    pathname,
+    movie,
+    quote,
+    edit,
+  } = useUserPageMainLayout(props.setIsSetBackground)
   return (
     <>
       <div
-        className={`h-screen w-full absolute z-10 bg-transparent ${
+        className={`min-h-screen w-full fixed z-10 bg-transparent ${
           !isActiveDropdown && 'hidden'
         } `}
         onClick={closeDropdownOnBlur}
@@ -31,11 +35,81 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
         href={'/profile'}
         locale={locale}
         className={`h-screen w-full fixed z-10 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
-          stage !== 'addEmail' && 'hidden'
+          (stage !== 'addEmail' || pathname !== '/profile') && 'hidden'
         }
-        ${stage === 'addEmail' && ' hidden sm:block'} 
+        ${
+          stage === 'addEmail' && pathname === '/profile' && ' hidden sm:block'
+        } 
          `}
       ></Link>
+
+      <Link
+        href={'/movies'}
+        locale={locale}
+        className={`h-screen w-full fixed z-10 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
+          (stage !== 'addMovie' || pathname !== '/movies') && 'hidden'
+        }
+        ${stage === 'addMovie' && pathname === '/movies' && 'hidden sm:block'} 
+         `}
+      ></Link>
+
+      <Link
+        href={`/movies/${movie}`}
+        locale={locale}
+        className={`h-screen w-full fixed z-10 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
+          (stage !== 'addQuote' ||
+            pathname.split('/')[1] !== 'movies' ||
+            edit) &&
+          'hidden'
+        }
+        ${
+          (stage === 'addQuote' || edit) &&
+          pathname.split('/')[1] === 'movies' &&
+          'hidden sm:block'
+        } 
+         `}
+      ></Link>
+
+      <Link
+        href={'/movies'}
+        locale={locale}
+        className={`h-screen w-full fixed z-10 bg-transparent blur opacity-70 cursor-default
+                ${(stage !== 'search' || pathname !== '/movies') && 'hidden'}
+        ${stage === 'search' && pathname === '/movies' && 'hidden sm:block'} 
+
+         `}
+      ></Link>
+
+      <Link
+        href={`/movies/${movie}`}
+        locale={locale}
+        className={`h-screen w-full fixed z-10 bg-transparent blur opacity-70 cursor-default
+                ${(!quote || pathname.split('/')[1] === 'movies') && 'hidden'}
+        ${quote && pathname.split('/')[1] === 'movies' && 'hidden sm:block'} 
+
+         `}
+      ></Link>
+
+      <Link
+        href={`/movies/${movie}/quote/${quote}`}
+        locale={locale}
+        className={`h-screen w-full fixed z-10 bg-transparent blur opacity-70 cursor-default
+                ${
+                  (!quote ||
+                    pathname.split('/')[1] === 'movies' ||
+                    stage !== 'editQuote') &&
+                  'hidden'
+                }
+        ${
+          quote &&
+          pathname.split('/')[1] === 'movies' &&
+          stage === 'editQuote' &&
+          'hidden sm:block'
+        } 
+
+         `}
+      ></Link>
+
       <div className='min-h-screen w-screen bg-layoutBackground overflow-x-hidden'>
         <header
           className='w-full fixed h-20 z-40 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
@@ -80,7 +154,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                     <div className='w-16 h-10 flex border-t justify-center items-center'>
                       <Link
                         href={asPath}
-                        locale={`${locale === 'en' ? 'ka' : 'en'}`}
+                        locale={`ka`}
                         className={`w-full h-full flex justify-center items-center font-helveticaKa`}
                       >
                         ქარ
@@ -109,8 +183,13 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
         </header>
 
         <div className='flex sm:mt-28'>
-          <div className='hidden lg:flex flex-col justify-start items-center w-96 h-96 ml-14'>
-            <div className='flex justify-start items-center w-96 h-20 z-10'>
+          <div className='hidden lg:flex flex-col justify-start items-center w-72 h-96 ml-14 mr-10'>
+            <Link
+              href='/profile'
+              locale={locale}
+              passHref={true}
+              className='flex justify-start items-center w-72 h-20 z-10'
+            >
               {currentUserImageUrl && (
                 <Image
                   priority={true}
@@ -128,7 +207,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-normal text-base text-white`}
+                  } font-normal text-xl text-white`}
                 >
                   {userName && userName}
                 </p>
@@ -141,8 +220,13 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   {t('profile:editProfile')}
                 </p>
               </div>
-            </div>
-            <div className='flex justify-start items-center w-96 h-20 z-10'>
+            </Link>
+            <Link
+              href='/news-feed'
+              locale={locale}
+              passHref
+              className='flex justify-start items-center w-72 h-20 z-10'
+            >
               <div className='w-16 h-16 flex justify-center items-center'>
                 <HomeSvg />
               </div>
@@ -156,8 +240,13 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   {t('profile:newsFeed')}
                 </p>
               </div>
-            </div>
-            <div className='flex justify-start items-center w-96 h-20 z-10'>
+            </Link>
+            <Link
+              href='/movies'
+              locale={locale}
+              passHref
+              className='flex justify-start items-center w-72 h-20 z-10'
+            >
               <div className='w-16 h-16 flex justify-center items-center'>
                 <VideoSvg />
               </div>
@@ -171,7 +260,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   {t('profile:listOfMovies')}
                 </p>
               </div>
-            </div>
+            </Link>
           </div>
           <div>{props.children}</div>
         </div>

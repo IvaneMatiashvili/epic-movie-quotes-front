@@ -7,8 +7,11 @@ export const checkTypeAndError = ({
   isUndefinedError,
 }: TypeAndError) => {
   if (!name) {
-    if (!error && isUndefinedError) {
-      return 'border-borderGray'
+    if (typeof window !== 'undefined' && !error && isUndefinedError) {
+      const pathname = window.location.pathname.split('/')
+      if (pathname[1] !== 'movies' && pathname[2] !== 'movies') {
+        return 'border-borderGray'
+      }
     } else if ((error && !isUndefinedError) || (error && isUndefinedError)) {
       return 'border-borderRed'
     } else {

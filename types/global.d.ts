@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { UseFormSetError } from 'react-hook-form'
 import { store } from 'store'
 
@@ -39,4 +39,42 @@ export type SetStateFileOrNull = File | null
 export type CreateNewEmail = {
   setUserEmails: SetState<Emails[]>
   setDefaultUserEmails: SetState<Emails[]>
+}
+
+export type ReactDivMouseEvent = React.MouseEvent<HTMLDivElement, MouseEvent>
+
+export type Transition = {
+  en: string
+  ka: string
+}
+export type Comments = {
+  comment: string
+  user: UserInformation
+}
+
+export type Likes = {
+  like: string
+}
+
+export type Quote = {
+  quote?: Transition
+  id?: string
+  thumbnail?: string
+  comments?: Comments[]
+  likes?: Likes[]
+}
+
+export type Genres = {
+  genre: string
+}
+
+export type Movies = {
+  title?: Transition
+  director?: Transition
+  description?: Transition
+  id?: number
+  thumbnail?: string
+  release_date?: string
+  budget?: string
+  quotes?: Quote[]
 }

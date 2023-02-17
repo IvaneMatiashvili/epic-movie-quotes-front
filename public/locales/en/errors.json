@@ -12,5 +12,15 @@
   "emailExists": "email already exists",
   "nameExists": "username already exists",
   "credentialsExist": "credentials exist",
-  "userDoesNotExist": "user does not exist"
+  "userDoesNotExist": "user does not exist",
+  "onlyGeorgianLetters": "only georgian letters",
+  "onlyEnglishLetters": "only english letters",
+  "fieldIsRequired": "field is required",
+  "maxMovies": "max 255 characters",
+  "minMovies": "min 1 characters",
+  "onlyDigits": "only digits",
+  "minDate": "min date 1880",
+  "maxDate": "max date-current",
+  "maxTextarea": "max 600 characters",
+  "minTextarea": "min 10 characters"
 }

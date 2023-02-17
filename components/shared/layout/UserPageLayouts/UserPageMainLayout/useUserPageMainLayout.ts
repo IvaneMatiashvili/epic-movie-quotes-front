@@ -2,14 +2,16 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useSelector } from 'react-redux'
-import { RootState } from 'types'
+import { RootState, SetState } from 'types'
 import { gandalfProfile } from 'public'
 import { useAuth } from 'hooks'
 
-export const useUserPageMainLayout = () => {
+export const useUserPageMainLayout = (
+  setIsSetBackground: SetState<boolean> | undefined
+) => {
   const { t } = useTranslation()
-  const { locale, query, push, asPath } = useRouter()
-  const { stage } = query
+  const { locale, query, push, asPath, pathname } = useRouter()
+  const { stage, movie, quote, edit } = query
   useAuth()
 
   const [currentUserImageUrl, setCurrentImageUrl] = useState('')
@@ -25,13 +27,25 @@ export const useUserPageMainLayout = () => {
       setIsActiveDropdown(false)
     }
   }
-  const closeDropdownOnBlur = () => {
+  const closeDropdownOnBlur = async () => {
     if (isActiveDropdown) {
       setIsActiveDropdown(false)
     }
+    setIsSetBackground && setIsSetBackground(false)
 
-    if (stage === 'addEmail') {
-      push('profile')
+    switch (pathname.split('/')[1]) {
+      case 'profile':
+        push('profile')
+        break
+      case 'movies':
+        if (stage === 'addMovie' || stage === 'search' || edit) {
+          push('movies')
+        } else if (stage === 'editQuote') {
+          push(`/movies/${movie}/quote/${quote}`)
+        } else if (stage === 'addQuote' || quote) {
+          push(`/movies/${movie}`)
+        }
+        break
     }
   }
   useEffect(() => {
@@ -51,5 +65,9 @@ export const useUserPageMainLayout = () => {
     userName,
     stage,
     asPath,
+    pathname,
+    movie,
+    quote,
+    edit,
   }
 }

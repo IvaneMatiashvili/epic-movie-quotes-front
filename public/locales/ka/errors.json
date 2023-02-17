@@ -12,5 +12,10 @@
   "emailExists": "ელ-ფოსტა უკვე არსებობს",
   "nameExists": "მომხმარებლის სახელი უკვე არსებობს",
   "credentialsExist": "მონაცემები უკვე არსებობს",
-  "userDoesNotExist": "მომხმარებელი არ არსებობს"
+  "userDoesNotExist": "მომხმარებელი არ არსებობს",
+  "onlyGeorgianLetters": "მხოლოდ ქართული ასოები",
+  "onlyEnglishLetters": "მხოლოდ ინგლისური ასოები",
+  "onlyDigits": "მხოლოდ ციფრები",
+  "minDate": "მინმალური თარიღი-1880",
+  "maxDate": "მაქსიმალური თარიღი-ახლანდელი"
 }

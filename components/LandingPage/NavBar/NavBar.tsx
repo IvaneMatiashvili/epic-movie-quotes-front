@@ -67,7 +67,7 @@ const NavBar: React.FC<Props> = (props) => {
                   <div className='w-16 h-10 flex border-t justify-center items-center'>
                     <Link
                       href='/'
-                      locale={`${locale === 'en' ? 'ka' : 'en'}`}
+                      locale={`ka`}
                       className={`w-full h-full flex justify-center items-center font-helveticaKa`}
                     >
                       ქარ
