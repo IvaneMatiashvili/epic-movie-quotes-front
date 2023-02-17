@@ -10,7 +10,7 @@ const CommentsInput = () => {
     <>
       <FormProvider {...form}>
         <form
-          className={`w-r19 nm:w-[22.375rem] sm:w-r55 mt-8 flex items-center mb-10 justify-between sm:justify-start`}
+          className={`w-r19 nm:w-[22.375rem] lg:w-r55 mt-8 flex items-center mb-10 justify-between lg:justify-start`}
           onSubmit={handleSubmit(storeComment)}
         >
           {currentUserImageUrl && (
@@ -34,7 +34,7 @@ const CommentsInput = () => {
             placeholder={t('movies:writeAComment')!}
             className={`font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base movies-input
            border-0
-          font-normal rounded-xl text-lg bg-deleteOrEdit pl-6 w-[15rem] nm:w-[17.125rem] sm:w-[50.875rem] h-10 sm:h-[3.25rem] outline-none pr-16`}
+          font-normal rounded-xl text-lg bg-deleteOrEdit pl-6 w-[15rem] nm:w-[17.125rem] lg:w-[50.875rem] h-10 lg:h-[3.25rem] outline-none pr-16`}
           ></input>
         </form>
       </FormProvider>

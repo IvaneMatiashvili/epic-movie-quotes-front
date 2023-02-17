@@ -27,17 +27,17 @@ const MoviesPageMain = () => {
   return (
     <UserPageMainLayout>
       <div
-        className={`w-screen sm:w-[92rem] ${
+        className={`w-screen xlPlus:w-[92rem] ${
           stage === 'addMovie' && 'min-h-r75'
-        } mt-28 sm:mt-0 flex flex-col items-center sm:block`}
+        } mt-28 sm:mt-0 flex flex-col items-center justify-center sm:block`}
       >
         <div
           className={
-            'w-[19rem] nm:w-[22.375rem] sm:w-full flex justify-between items-center'
+            'w-[19rem] nm:w-[22.375rem] sm:w-screen lg:w-[40rem] mdLg:w-[60rem] xlPlus:w-full flex justify-between sm:justify-around mdLg:justify-between items-center'
           }
         >
           <p
-            className={`font-light text-sm sm:text-2xl text-white brake-words w-40 sm:w-96 ${
+            className={`font-light text-sm lg:text-2xl text-white brake-words w-40 lg:w-96 ${
               locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
             }`}
           >
@@ -47,7 +47,7 @@ const MoviesPageMain = () => {
           </p>
 
           <div className={'flex items-center justify-center'}>
-            <div className={'hidden lg:flex items-center justify-center'}>
+            <div className={'hidden mdLg:flex items-center justify-center'}>
               {stage !== 'search' && (
                 <Link
                   href={'/movies?stage=search'}
@@ -68,10 +68,10 @@ const MoviesPageMain = () => {
 
               {stage === 'search' && (
                 <div
-                  className={`hidden sm:flex flex-col items-center w-[43rem] justify-center absolute ml-[-45rem] search-animation z-40`}
+                  className={`hidden sm:flex flex-col items-center sm:w-60 xlPlus:w-[43rem] justify-center absolute ml-[-45rem] search-animation z-40`}
                 >
                   <div
-                    className={`flex items-center  justify-between w-[43rem]`}
+                    className={`flex items-center  justify-between sm:w-16 xlPlus:w-[43rem]`}
                   >
                     <button type='submit'>
                       <SearchIcon />
@@ -83,13 +83,15 @@ const MoviesPageMain = () => {
                       onChange={searchMovieOnChange}
                       ref={inputReference}
                       className={`
-                        font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base movies-input border-0
-                        font-normal rounded-md text-lg bg-transparent w-[40.5rem] h-8 outline-none pr-1
+                        font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base movies-input border-0 ml-4
+                        font-normal rounded-md text-lg bg-transparent w-[40.5rem] h-8 outline-none pr-8 xlPlus:pr-1
                     `}
                     />
                   </div>
                   <div
-                    className={'w-[43rem] h-0.1 bg-whiteGraySoftLine mt-4'}
+                    className={
+                      'w-64 ml-52 xlPlus:w-[43rem] h-0.1 bg-whiteGraySoftLine mt-4'
+                    }
                   ></div>
                 </div>
               )}
@@ -117,8 +119,8 @@ const MoviesPageMain = () => {
         {isAddMoviesFormOpen && <AddNewMovie />}
         {movies.length > 0 && (
           <div
-            className={`w-[19rem] nm:w-[22.375rem] sm:w-[40rem] lg:w-[92rem] min-h-screen flex mt-16 flex-wrap gap-[4.75rem] ${
-              (stage === 'addMovie' || edit) && 'hidden sm:flex'
+            className={`w-[19rem] nm:w-[22.375rem] sm:w-screen lg:w-[40rem] mdLg:w-[62rem] xlPlus:w-[92rem] min-h-screen flex sm:justify-center mdLg:justify-start mt-16 flex-wrap gap-[5rem] xlPlus:gap-[4.75rem] ${
+              (stage === 'addMovie' || edit) && 'hidden lgPlus:flex'
             }`}
           >
             {movies.map((el: Movies, inx) => (

@@ -38,7 +38,7 @@ const MovieDescriptionMain = () => {
     <UserPageMainLayout setIsSetBackground={setIsSetBackground}>
       <>
         <div
-          className={`${edit === 'editMovie' && 'min-h-[120vh]'} mt-28 sm:mt-0`}
+          className={`${edit === 'editMovie' && 'min-h-[120vh]'} mt-28 sm:mt-0 sm:ml-14 lgPlus:ml-0`}
         >
           <div
             className={`w-screen sm:w-[92rem] flex flex-col items-center sm:block ${
@@ -62,14 +62,14 @@ const MovieDescriptionMain = () => {
                 </div>
                 {currentMovie && (
                   <div
-                    className={`w-r19 nm:w-[22.375rem] sm:w-r92 flex flex-col sm:flex-row mt-8`}
+                    className={`w-r19 nm:w-[22.375rem] sm:w-r92 flex flex-col xlPlus:flex-row mt-8`}
                   >
                     <div>
                       {currentMovie.thumbnail && (
                         <Image
                           priority={true}
                           unoptimized={true}
-                          className='w-r19 nm:w-[22.375rem] h-[18.875rem] sm:w-r50 sm:h-r2705 rounded-xl object-fill'
+                          className='w-r19 nm:w-[22.375rem] h-[18.875rem] sm:w-r36125 lgPlus:w-r50 lgPlus:h-r2705 rounded-xl object-fill'
                           height={100}
                           width={100}
                           loader={(() => currentMovie.thumbnail) as ImageLoader}
@@ -80,7 +80,7 @@ const MovieDescriptionMain = () => {
                     </div>
 
                     <div
-                      className={`flex flex-col w-r19 nm:w-[22.375rem] sm:w-r36125 sm:ml-r01313 mt-6 sm:mt-0`}
+                      className={`flex flex-col w-r19 nm:w-[22.375rem] sm:w-r36125 xlPlus:ml-r01313 mt-6 xlPlus:mt-0`}
                     >
                       <div className={`flex items-center justify-between`}>
                         <p
@@ -300,13 +300,13 @@ const MovieDescriptionMain = () => {
                 <div
                   key={`${el} ${Math.random()}`}
                   className={
-                    'w-screen sm:w-r50563 h-[21.563rem] sm:h-r1675 bg-blackBlueSoft rounded-md flex flex-col items-center mt-10'
+                    'w-screen sm:w-r36125 lgPlus:w-r50563 min-h-[21.563rem] sm:min-h-[16.75rem] bg-blackBlueSoft rounded-md flex flex-col items-center mt-10'
                   }
                 >
                   {openEditOrDelete[inx] && isSetBackground && (
                     <div
                       tabIndex={1}
-                      className={`absolute w-r15578 h-r1205 flex items-center bg-deleteOrEdit ml-16 nm:ml-32 sm:ml-r5902 mt-24 sm:mt-12 rounded-md z-40`}
+                      className={`absolute w-r15578 h-r1205 flex items-center bg-deleteOrEdit ml-16 nm:ml-32 sm:ml-[18.5rem]  lgPlus:ml-r5902 mt-24 sm:mt-12 rounded-md z-40`}
                     >
                       <div className={`flex flex-col justify-around h-r1005`}>
                         <Link
@@ -363,7 +363,7 @@ const MovieDescriptionMain = () => {
                   )}
                   <div
                     onClick={() => openDropdown(inx)}
-                    className={`absolute mt-r02108 ml-r45 cursor-pointer hidden sm:block`}
+                    className={`absolute mt-r02108 ml-[32rem] lgPlus:ml-r45 cursor-pointer hidden sm:block`}
                   >
                     <DotsIcon />
                   </div>
@@ -375,13 +375,13 @@ const MovieDescriptionMain = () => {
                   )}
 
                   <div
-                    className={`flex flex-col sm:flex-row items-center pt-6 w-r46563`}
+                    className={`flex flex-col sm:flex-row items-center pt-6 sm:w-r36125 lgPlus:w-r46563`}
                   >
                     {el.thumbnail && (
                       <Image
                         priority={true}
                         unoptimized={true}
-                        className='w-r19 nm:w-[22.375rem] sm:w-r1675 h-r0875 rounded-xl object-fill'
+                        className='w-r19 nm:w-[22.375rem] sm:w-r1675 h-r0875 rounded-xl object-fill ml-0 sm:pl-2 lgPlus:ml-0'
                         height={100}
                         width={100}
                         loader={(() => currentMovie.thumbnail) as ImageLoader}
@@ -391,7 +391,7 @@ const MovieDescriptionMain = () => {
                     )}
 
                     <p
-                      className={`font-light text-xl text-smoothGrayText italic sm:ml-[2.125rem] w-[19.25rem] sm:w-r26 hidden sm:block ${
+                      className={`font-light text-xl text-smoothGrayText italic break-all sm:ml-[2.125rem] w-[19.25rem] sm:w-[13.5rem] lgPlus:w-r26 hidden sm:block ${
                         locale === 'en'
                           ? 'font-helveticaEn'
                           : 'font-helveticaKa'
@@ -418,11 +418,11 @@ const MovieDescriptionMain = () => {
                     </div>
                   </div>
                   <div
-                    className={`h-0.1 w-r19 nm:w-[22.375rem] sm:w-r46563 bg-whiteGraySoftLine mt-6`}
+                    className={`h-0.1 w-r19 nm:w-[22.375rem] sm:sm:w-r36125 lgPlus:w-r46563 bg-whiteGraySoftLine mt-6`}
                   ></div>
 
                   <div
-                    className={`mt-6 w-r19 nm:w-[22.375rem] sm:w-r46563 ml-4 flex`}
+                    className={`mt-6 w-r19 nm:w-[22.375rem] sm:sm:w-r36125 lgPlus:w-r46563 ml-4 flex`}
                   >
                     <div className={'flex items-center'}>
                       <p
@@ -463,6 +463,9 @@ const MovieDescriptionMain = () => {
                       ></div>
                     )}
                   </div>
+                  <div
+                    className={'w-10 h-10 hidden sm:block lgPlus:hidden'}
+                  ></div>
                 </div>
               ))}
             </div>

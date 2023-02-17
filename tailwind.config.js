@@ -164,6 +164,8 @@ module.exports = {
       screens: {
         nm: '380px',
         lgPlus: '1496px',
+        mdLg: '1352px',
+        xlPlus: '1800px',
       },
       backgroundSize: {
         '50%': '50%',

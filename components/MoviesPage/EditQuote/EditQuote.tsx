@@ -36,12 +36,12 @@ const EditQuote = () => {
     <div className={'min-h-screen bg-layoutBackground w-screen'}>
       <div
         className={
-          'w-screen sm:w-r60 min-h-r57 bg-blackBlueSoft relative z-50 sm:z-30 sm:rounded-xl sm:ml-r045 flex flex-col items-center'
+          'absolute w-screen top-0 left-0 lgPlus:w-r60 min-h-r57 bg-blackBlueSoft lgPlus:relative z-50 lgPlus:z-30 lgPlus:rounded-xl lgPlus:ml-r045 flex flex-col items-center'
         }
       >
         <div className={`flex w-full justify-center items-center`}>
           <div
-            className={`absolute mr-72 sm:mr-r55 w-36 h-10 bg-transparent flex items-center justify-center rounded-lg mt-[2.063rem]`}
+            className={`absolute mr-72 lg:mr-r55 w-36 h-10 bg-transparent flex items-center justify-center rounded-lg mt-[2.063rem]`}
           >
             <div className={'cursor-pointer'} onClick={deleteQuoteOnClick}>
               <DeleteIcon />
@@ -63,7 +63,7 @@ const EditQuote = () => {
             }`}
             locale={locale}
             passHref
-            className={`absolute ml-72 sm:ml-r55 flex items-center justify-center mt-[2.063rem]`}
+            className={`absolute ml-72 lg:ml-r55 flex items-center justify-center mt-[2.063rem]`}
           >
             <WhiteCloseIcon />
           </Link>
@@ -78,7 +78,7 @@ const EditQuote = () => {
         >
           <div
             className={
-              'flex justify-start items-center w-r19 nm:w-[22.375rem] sm:w-r55'
+              'flex justify-start items-center w-r19 nm:w-[22.375rem] lg:w-r55'
             }
           >
             {currentUserImageUrl && (
@@ -164,13 +164,13 @@ const EditQuote = () => {
                 <div
                   className={`
                 border border-borderGraySoft 
-                font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] sm:w-r55 h-[18.875rem] sm:h-[32.063rem] outline-none mt-[1.313rem] flex flex-col justify-center items-center
+                font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] lg:w-r55 h-[18.875rem] lg:h-[32.063rem] outline-none mt-[1.313rem] flex flex-col justify-center items-center
                 `}
                 >
                   <Image
                     priority={true}
                     unoptimized={true}
-                    className='w-r19 nm:w-[22.375rem] sm:w-r55 h-[18.875rem] sm:h-[32.063rem] rounded-lg object-fill'
+                    className='w-r19 nm:w-[22.375rem] lg:w-r55 h-[18.875rem] lg:h-[32.063rem] rounded-lg object-fill'
                     height={100}
                     width={100}
                     loader={() =>
@@ -195,7 +195,7 @@ const EditQuote = () => {
                     title=' '
                     className={` absolute
                 border border-borderGraySoft 
-                font-normal rounded-md text-lg bg-white/10 w-r19 nm:w-[22.375rem] sm:w-r55 h-[18.875rem] sm:h-[32.063rem] outline-none cursor-pointer z-10
+                font-normal rounded-md text-lg bg-white/10 w-r19 nm:w-[22.375rem] lg:w-r55 h-[18.875rem] lg:h-[32.063rem] outline-none cursor-pointer z-10
                  ${checkTypeAndError({
                    error: errors.image,
                    isUndefinedError: isUndefinedImageError,
@@ -228,7 +228,7 @@ const EditQuote = () => {
 
               <button
                 type='submit'
-                className={`bg-signInRed h-r027 w-r19 nm:w-[22.375rem] sm:w-r55 flex justify-center 
+                className={`bg-signInRed h-r027 w-r19 nm:w-[22.375rem] lg:w-r55 flex justify-center 
             items-center rounded-md mt-10 cursor-pointer mb-12`}
               >
                 <p

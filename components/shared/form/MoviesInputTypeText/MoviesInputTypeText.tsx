@@ -18,14 +18,14 @@ const MoviesInputTypeText: React.FC<MoviesInputTypeTextProps> = (props) => {
       <div className='flex flex-row items-center justify-center h-r027 mt-5'>
         {props.isEnglish && !props.budget && (
           <p
-            className={`font-normal absolute text-lg text-borderGraySoft ml-60 nm:ml-72 sm:ml-r50 font-helveticaKa`}
+            className={`font-normal absolute text-lg text-borderGraySoft ml-60 nm:ml-72 lg:ml-r50 font-helveticaKa`}
           >
             Eng
           </p>
         )}
         {!props.isEnglish && !props.budget && (
           <p
-            className={`font-light absolute text-lg text-borderGraySoft ml-60 nm:ml-72 sm:ml-r50 font-helveticaKa`}
+            className={`font-light absolute text-lg text-borderGraySoft ml-60 nm:ml-72 lg:ml-r50 font-helveticaKa`}
           >
             ქარ
           </p>
@@ -45,7 +45,7 @@ const MoviesInputTypeText: React.FC<MoviesInputTypeTextProps> = (props) => {
             isUndefinedError,
           })}
            border border-borderGraySoft
-          font-normal rounded-md text-lg bg-transparent pl-4 w-r19 nm:w-[22.375rem] sm:w-r55 h-r027 outline-none pr-16`}
+          font-normal rounded-md text-lg bg-transparent pl-4 w-r19 nm:w-[22.375rem] lg:w-r55 h-r027 outline-none pr-16`}
           ref={inputReference}
           onBlur={setValueOnBlur}
         />

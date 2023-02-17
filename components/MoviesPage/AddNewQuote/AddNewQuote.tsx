@@ -34,7 +34,7 @@ const AddNewQuote = () => {
     <>
       <div
         className={
-          'absolute w-screen sm:w-r60 min-h-r57 top-0 sm:top-24 bg-blackBlueSoft z-50 sm:z-30 sm:rounded-xl sm:ml-r045'
+          'absolute w-screen lgPlus:w-r60 min-h-full lg:min-h-r57 left-0 lgPlus:left-auto top-0 lgPlus:top-24 bg-blackBlueSoft z-50 lgPlus:z-30 lgPlus:rounded-xl lgPlus:ml-r045'
         }
       >
         <div className={`flex w-full justify-center items-center mt-8`}>
@@ -50,7 +50,7 @@ const AddNewQuote = () => {
             href={`/movies/${movie}`}
             locale={locale}
             passHref
-            className={`absolute ml-72 sm:ml-[55rem] flex items-center justify-center mt-1`}
+            className={`absolute ml-72 lg:ml-[55rem] flex items-center justify-center mt-1`}
           >
             <WhiteCloseIcon />
           </Link>
@@ -65,7 +65,7 @@ const AddNewQuote = () => {
         >
           <div
             className={
-              'flex justify-start items-center w-r19 nm:w-[22.375rem] sm:w-r55'
+              'flex justify-start items-center w-r19 nm:w-[22.375rem] lg:w-r55'
             }
           >
             {currentUserImageUrl && (
@@ -91,14 +91,14 @@ const AddNewQuote = () => {
 
           {currentMovie && (
             <div
-              className={`min-h-r09875 flex justify-center mt-8 w-r19 nm:w-[22.375rem] rounded-lg sm:round-0 sm:w-r55 bg-black sm:bg-transparent`}
+              className={`min-h-r09875 flex justify-center mt-8 w-r19 nm:w-[22.375rem] rounded-lg sm:rounded-0 lg:w-r55 bg-black lg:bg-transparent`}
             >
               <div className={`mt-4 sm:mt-0 mb-4 sm:mb-0`}>
                 {currentMovie.thumbnail && (
                   <Image
                     priority={true}
                     unoptimized={true}
-                    className='w-28 sm:w-r18125 min-h-full sm:min-h-full rounded-xl object-fill'
+                    className='w-28 lg:w-r18125 min-h-full lg:min-h-full rounded-xl object-fill'
                     height={100}
                     width={100}
                     loader={(() => currentMovie.thumbnail) as ImageLoader}
@@ -109,11 +109,11 @@ const AddNewQuote = () => {
               </div>
 
               <div
-                className={`flex flex-col w-[13rem] sm:w-r36125 ml-r01313 mt-4 sm:mt-0 mb-4 sm:mb-0`}
+                className={`flex flex-col w-[13rem] lg:w-r36125 ml-r01313 mt-4 lg:mt-0 mb-4 lg:mb-0`}
               >
                 <div className={`flex items-center justify-between`}>
                   <p
-                    className={`font-normal text-sm sm:text-xl text-movieTitle break-words ${
+                    className={`font-normal text-sm lg:text-xl text-movieTitle break-words ${
                       locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                     }`}
                   >
@@ -126,7 +126,7 @@ const AddNewQuote = () => {
                   </p>
                 </div>
 
-                <div className={'flex mt-2 item-center sm:hidden'}>
+                <div className={'flex mt-2 item-center lg:hidden'}>
                   <p
                     className={`font-normal text-sm text-white ${
                       locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
@@ -153,15 +153,15 @@ const AddNewQuote = () => {
 
                 {genres && (
                   <div
-                    className={`flex flex-wrap w-[13rem] sm:w-r36125 gap-2 mt-2 sm:mt-6`}
+                    className={`flex flex-wrap w-[13rem] lg:w-r36125 gap-2 mt-2 lg:mt-6`}
                   >
                     {genres.map((el: Genres, inx) => (
                       <div
                         key={el.genre + inx}
-                        className={`h-[1.3rem] sm:h-r01875 min-w-20 flex items-center justify-center bg-borderGraySoft rounded-sm cursor-default`}
+                        className={`h-[1.3rem] lg:h-r01875 min-w-20 flex items-center justify-center bg-borderGraySoft rounded-sm cursor-default`}
                       >
                         <p
-                          className={`font-medium text-sm sm:text-lg text-white font-helveticaKa ml-4 mr-4`}
+                          className={`font-medium text-sm lg:text-lg text-white font-helveticaKa ml-4 mr-4`}
                         >
                           {el.genre}
                         </p>
@@ -170,7 +170,7 @@ const AddNewQuote = () => {
                   </div>
                 )}
 
-                <div className={'hidden sm:flex mt-[1.606rem] item-center'}>
+                <div className={'hidden lg:flex mt-[1.606rem] item-center'}>
                   <p
                     className={`font-normal text-base text-white ${
                       locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
@@ -202,7 +202,7 @@ const AddNewQuote = () => {
               className={`mt-[1.813rem]`}
               onSubmit={handleSubmit(storeNewQuote)}
             >
-              <div className={`flex flex-col-reverse sm:flex-col`}>
+              <div className={`flex flex-col-reverse lg:flex-col`}>
                 <MoviesTextarea
                   id={'quote_en'}
                   errors={{
@@ -258,7 +258,7 @@ const AddNewQuote = () => {
                 <div
                   className={`
                 border border-borderGraySoft 
-                font-normal rounded-md text-lg bg-transparent  w-r19 nm:w-[22.375rem] sm:w-r55 h-r055 outline-none mt-[2.875rem] flex justify-start items-center
+                font-normal rounded-md text-lg bg-transparent  w-r19 nm:w-[22.375rem] lg:w-r55 h-r055 outline-none mt-[2.875rem] flex justify-start items-center
                 `}
                 >
                   <input
@@ -273,7 +273,7 @@ const AddNewQuote = () => {
                     title=' '
                     className={` absolute
                 border border-borderGraySoft 
-                font-normal rounded-md text-lg bg-transparent  w-r19 nm:w-[22.375rem] sm:w-r55 h-r055 outline-none cursor-pointer z-10
+                font-normal rounded-md text-lg bg-transparent  w-r19 nm:w-[22.375rem] lg:w-r55 h-r055 outline-none cursor-pointer z-10
                  ${checkTypeAndError({
                    error: errors.image,
                    isUndefinedError: isUndefinedImageError,
@@ -286,7 +286,7 @@ const AddNewQuote = () => {
                   </div>
 
                   <p
-                    className={`font-light text-base text-white ml-4 hidden sm:block ${
+                    className={`font-light text-base text-white ml-4 hidden lg:block ${
                       locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                     }`}
                   >
@@ -294,7 +294,7 @@ const AddNewQuote = () => {
                   </p>
 
                   <p
-                    className={`font-light text-xs nm:text-base text-white w-40 ml-4 sm:hidden ${
+                    className={`font-light text-xs nm:text-base text-white w-40 ml-4 lg:hidden ${
                       locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                     }`}
                   >
@@ -303,7 +303,7 @@ const AddNewQuote = () => {
 
                   <div className='flex bg-chooseFile items-center justify-center w-36 h-10 rounded-sm ml-4'>
                     <p
-                      className={`font-light text-xs nm:text-sm sm:text-base text-white ${
+                      className={`font-light text-xs nm:text-sm lg:text-base text-white ${
                         locale === 'en'
                           ? 'font-helveticaEn'
                           : 'font-helveticaKa'
@@ -325,8 +325,8 @@ const AddNewQuote = () => {
 
               <button
                 type='submit'
-                className={`bg-signInRed h-r027  w-r19 nm:w-[22.375rem] sm:w-r55 flex justify-center 
-            items-center rounded-md mt-8 cursor-pointer mb-12`}
+                className={`bg-signInRed h-r027  w-r19 nm:w-[22.375rem] lg:w-r55 flex justify-center 
+                items-center rounded-md mt-8 cursor-pointer mb-12`}
               >
                 <p
                   className={`

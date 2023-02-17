@@ -50,7 +50,7 @@ const AddNewMovie = () => {
     <>
       <div
         className={
-          'absolute w-screen sm:w-r60 min-h-r69 top-0 sm:top-24 bg-blackBlueSoft z-50 sm:z-30 sm:rounded-xl sm:ml-r045'
+          'absolute w-screen lgPlus:w-r60 min-h-r69 left-0 lgPlus:left-auto top-0 lgPlus:top-24 bg-blackBlueSoft z-50 lgPlus:z-30 lgPlus:rounded-xl lgPlus:ml-r045'
         }
       >
         {isOpenDropdown && (
@@ -74,7 +74,7 @@ const AddNewMovie = () => {
             href={edit ? `/movies/${movie}` : '/movies'}
             locale={locale}
             passHref
-            className={`absolute ml-72 sm:ml-[55rem] flex items-center justify-center mt-1`}
+            className={`absolute ml-72 lg:ml-[55rem] flex items-center justify-center mt-1`}
           >
             <WhiteCloseIcon />
           </Link>
@@ -89,7 +89,7 @@ const AddNewMovie = () => {
         >
           <div
             className={
-              'flex justify-start items-center w-r19 nm:w-[22.375rem] sm:w-r55'
+              'flex justify-start items-center w-r19 nm:w-[22.375rem] lg:w-r55'
             }
           >
             {currentUserImageUrl && (
@@ -177,7 +177,7 @@ const AddNewMovie = () => {
                     error: errors.genres,
                     isUndefinedError: isUndefinedGenresError,
                   })}
-            font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] sm:w-r55 min-h-[2.7rem] mt-5 flex items-center cursor-pointer flex-wrap
+            font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] lg:w-r55 min-h-[2.7rem] mt-5 flex items-center cursor-pointer flex-wrap
             `}
                 >
                   {selectedGenres.length === 0 && (
@@ -219,7 +219,7 @@ const AddNewMovie = () => {
                 {isOpenDropdown && genres && (
                   <>
                     <div
-                      className={`absolute bg-dropdownBackground w-r19 nm:w-[22.375rem] sm:w-r55 h-40 overflow-y-scroll rounded-md z-40`}
+                      className={`absolute bg-dropdownBackground w-r19 nm:w-[22.375rem] lg:w-r55 h-40 overflow-y-scroll rounded-md z-40`}
                     ></div>
                     <div
                       className={`absolute bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] sm:w-r55 h-40 overflow-y-scroll rounded-md z-40`}
@@ -388,7 +388,7 @@ const AddNewMovie = () => {
                    error: errors.release_date,
                    isUndefinedError,
                  })}
-                font-normal rounded-md text-lg bg-transparent pl-4 w-r19 nm:w-[22.375rem] sm:w-r55 h-r027 outline-none pr-11 cursor-pointer`}
+                font-normal rounded-md text-lg bg-transparent pl-4 w-r19 nm:w-[22.375rem] lg:w-r55 h-r027 outline-none pr-11 cursor-pointer`}
                 />
 
                 <MoviesInputError errors={errors} name='release_date' />
@@ -415,7 +415,7 @@ const AddNewMovie = () => {
                 <div
                   className={`
                 border border-borderGraySoft 
-                font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] sm:w-r55 h-r055 outline-none mt-8 flex justify-start items-center`}
+                font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] lg:w-r55 h-r055 outline-none mt-8 flex justify-start items-center`}
                 >
                   <input
                     type='file'
@@ -430,7 +430,7 @@ const AddNewMovie = () => {
                     title=' '
                     className={` absolute
                 border border-borderGraySoft 
-                font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] sm:w-r55 h-r055 outline-none cursor-pointer z-10
+                font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] lg:w-r55 h-r055 outline-none cursor-pointer z-10
                  ${checkTypeAndError({
                    error: errors.image,
                    isUndefinedError: isUndefinedImageError,
@@ -443,7 +443,7 @@ const AddNewMovie = () => {
                   </div>
 
                   <p
-                    className={`font-light text-base text-white ml-4 hidden sm:block ${
+                    className={`font-light text-base text-white ml-4 hidden lg:block ${
                       locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                     }`}
                   >
@@ -451,7 +451,7 @@ const AddNewMovie = () => {
                   </p>
 
                   <p
-                    className={`font-light text-xs nm:text-sm sm:text-base text-white ml-4 sm:hidden w-40 ${
+                    className={`font-light text-xs nm:text-sm lg:text-base text-white ml-4 lg:hidden w-40 ${
                       locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                     }`}
                   >
@@ -460,7 +460,7 @@ const AddNewMovie = () => {
 
                   <div className='flex bg-chooseFile items-center justify-center w-36 h-10 rounded-sm ml-4'>
                     <p
-                      className={`font-light text-xs sm:text-base text-white ${
+                      className={`font-light text-xs lg:text-base text-white ${
                         locale === 'en'
                           ? 'font-helveticaEn'
                           : 'font-helveticaKa'
@@ -470,20 +470,20 @@ const AddNewMovie = () => {
                     </p>
                   </div>
                   <p
-                    className={`font-light text-base text-white font-helveticaKa ml-4 hidden sm:block
+                    className={`font-light text-base text-white font-helveticaKa ml-4 hidden lg:block
                   `}
                   >
                     {imageName}
                   </p>
                   <p
-                    className={`font-light text-base text-white font-helveticaKa ml-4 sm:hidden
+                    className={`font-light text-base text-white font-helveticaKa ml-4 lg:hidden
                   `}
                   >
                     {''}
                   </p>
                 </div>
                 <p
-                  className={`font-light text-base text-white font-helveticaKa absolute sm:hidden
+                  className={`font-light text-base text-white font-helveticaKa absolute lg:hidden
                   `}
                 >
                   {imageName}
@@ -493,7 +493,7 @@ const AddNewMovie = () => {
 
                 <button
                   type='submit'
-                  className={`bg-signInRed h-r027 w-r19 nm:w-[22.375rem] sm:w-r55 flex justify-center 
+                  className={`bg-signInRed h-r027 w-r19 nm:w-[22.375rem] lg:w-r55 flex justify-center 
             items-center rounded-md mt-8 cursor-pointer`}
                 >
                   <p

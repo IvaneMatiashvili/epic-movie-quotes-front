@@ -16,14 +16,14 @@ const MoviesTextarea: React.FC<MoviesTextarea> = (props) => {
       <div className='flex flex-row justify-center mt-5'>
         {props.isEnglish && (
           <p
-            className={`font-normal absolute text-lg text-borderGraySoft ml-60 nm:ml-72 sm:ml-r50 font-helveticaKa pt-3`}
+            className={`font-normal absolute text-lg text-borderGraySoft ml-60 nm:ml-72 lg:ml-r50 font-helveticaKa pt-3`}
           >
             Eng
           </p>
         )}
         {!props.isEnglish && (
           <p
-            className={`font-light absolute text-lg text-borderGraySoft ml-60 nm:ml-72 sm:ml-r50 font-helveticaKa pt-3`}
+            className={`font-light absolute text-lg text-borderGraySoft ml-60 nm:ml-72 lg:ml-r50 font-helveticaKa pt-3`}
           >
             ქარ
           </p>
@@ -34,7 +34,7 @@ const MoviesTextarea: React.FC<MoviesTextarea> = (props) => {
             error: props.error,
             isUndefinedError,
           })}
-            border border-borderGraySoft rounded-md bg-transparent w-[19rem] nm:w-[22.375rem] sm:w-r55 h-r055
+            border border-borderGraySoft rounded-md bg-transparent w-[19rem] nm:w-[22.375rem] lg:w-r55 h-r055
             `}
         >
           <textarea
