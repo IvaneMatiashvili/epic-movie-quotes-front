@@ -77,14 +77,17 @@ export const useAddNewMovie = () => {
       if (genresArr.length > 0) {
         setSelectedGenres(genresArr)
       }
+
+      const responseData = response?.data[0]
+
       if (edit) {
-        form.setValue('name_en', response?.data[0]?.title?.en)
-        form.setValue('name_ka', response?.data[0]?.title?.ka)
-        form.setValue('director_en', response?.data[0]?.director.en)
-        form.setValue('director_ka', response?.data[0]?.director.ka)
-        form.setValue('description_en', response?.data[0]?.description.en)
-        form.setValue('description_ka', response?.data[0]?.description.ka)
-        form.setValue('budget', response?.data[0]?.budget)
+        form.setValue('name_en', responseData?.title?.en)
+        form.setValue('name_ka', responseData?.title?.ka)
+        form.setValue('director_en', responseData?.director.en)
+        form.setValue('director_ka', responseData?.director.ka)
+        form.setValue('description_en', responseData?.description.en)
+        form.setValue('description_ka', responseData?.description.ka)
+        form.setValue('budget', responseData?.budget)
         form.setValue('genres', 'yes')
       }
     },
