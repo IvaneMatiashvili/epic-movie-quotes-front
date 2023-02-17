@@ -3,9 +3,10 @@ import Image, { ImageLoader } from 'next/image'
 import React from 'react'
 import { Props } from './types'
 import { Genres } from 'types'
+import { useTranslationAndLocale } from 'hooks'
 
 const AddQuoteUserAndMovieInfo: React.FC<Props> = (props) => {
-  const { locale, t } = useAddQuoteUserAndMovieInfo()
+  const { locale, t } = useTranslationAndLocale()
 
   return (
     <>
