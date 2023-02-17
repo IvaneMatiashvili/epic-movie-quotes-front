@@ -46,6 +46,7 @@ const AddNewMovie = () => {
     currentMovie,
     movie,
   } = useAddNewMovie()
+
   return (
     <>
       <div

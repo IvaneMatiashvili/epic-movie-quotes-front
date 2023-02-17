@@ -34,11 +34,14 @@ const MovieDescriptionMain = () => {
     deleteMovieOnClick,
     deleteQuoteOnClick,
   } = useMovieDescriptionMain()
+
   return (
     <UserPageMainLayout setIsSetBackground={setIsSetBackground}>
       <>
         <div
-          className={`${edit === 'editMovie' && 'min-h-[120vh]'} mt-28 sm:mt-0 sm:ml-14 lgPlus:ml-0`}
+          className={`${
+            edit === 'editMovie' && 'min-h-[120vh]'
+          } mt-28 sm:mt-0 sm:ml-14 lgPlus:ml-0`}
         >
           <div
             className={`w-screen sm:w-[92rem] flex flex-col items-center sm:block ${

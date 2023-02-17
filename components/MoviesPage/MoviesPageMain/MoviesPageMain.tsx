@@ -24,6 +24,7 @@ const MoviesPageMain = () => {
     inputReference,
     edit,
   } = useMoviesPageMain()
+
   return (
     <UserPageMainLayout>
       <div

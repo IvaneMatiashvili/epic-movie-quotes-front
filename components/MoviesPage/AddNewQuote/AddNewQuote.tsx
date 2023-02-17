@@ -30,6 +30,7 @@ const AddNewQuote = () => {
     movie,
     storeNewQuote,
   } = useAddNewQuote()
+
   return (
     <>
       <div

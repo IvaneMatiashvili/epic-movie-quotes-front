@@ -32,6 +32,7 @@ const EditQuote = () => {
     stage,
     deleteQuoteOnClick,
   } = useEditQuote()
+
   return (
     <div className={'min-h-screen bg-layoutBackground w-screen'}>
       <div

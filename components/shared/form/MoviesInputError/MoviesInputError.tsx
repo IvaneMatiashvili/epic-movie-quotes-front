@@ -5,6 +5,7 @@ import React from 'react'
 
 const MoviesInputError: React.FC<MoviesErrorProps> = (props) => {
   const { locale } = useRouter()
+
   return (
     <ErrorMessage
       errors={props.errors}

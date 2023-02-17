@@ -28,6 +28,7 @@ const ViewQuote = () => {
     form,
     deleteQuoteOnClick,
   } = useViewQuote()
+
   return (
     <UserPageMainLayout>
       <>
