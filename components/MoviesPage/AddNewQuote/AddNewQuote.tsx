@@ -6,11 +6,10 @@ import {
   PhotoIcon,
   WhiteCloseIcon,
 } from 'components'
-import Image, { ImageLoader } from 'next/image'
 import { FormProvider } from 'react-hook-form'
 import { checkTypeAndError } from 'helpers'
 import Link from 'next/link'
-import { Genres } from 'types'
+import { AddQuoteUserAndMovieInfo } from '../AddQuoteUserAndMovieInfo'
 
 const AddNewQuote = () => {
   const {
@@ -64,140 +63,13 @@ const AddNewQuote = () => {
         <div
           className={`flex flex-col justify-center items-center w-full mt-8`}
         >
-          <div
-            className={
-              'flex justify-start items-center w-r19 nm:w-[22.375rem] lg:w-r55'
-            }
-          >
-            {currentUserImageUrl && (
-              <Image
-                priority={true}
-                unoptimized={true}
-                className='w-16 h-16 rounded-full object-fill'
-                height={100}
-                width={100}
-                loader={() => currentUserImageUrl}
-                src={currentUserImageUrl}
-                alt={'user image'}
-              />
-            )}
-            <p
-              className={`font-light text-base text-white ml-4 ${
-                locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-              }`}
-            >
-              {userName && userName}
-            </p>
-          </div>
+          <AddQuoteUserAndMovieInfo
+            currentUserImageUrl={currentUserImageUrl}
+            userName={userName}
+            currentMovie={currentMovie}
+            genres={genres}
+          />
 
-          {currentMovie && (
-            <div
-              className={`min-h-r09875 flex justify-center mt-8 w-r19 nm:w-[22.375rem] rounded-lg sm:rounded-0 lg:w-r55 bg-black lg:bg-transparent`}
-            >
-              <div className={`mt-4 sm:mt-0 mb-4 sm:mb-0`}>
-                {currentMovie.thumbnail && (
-                  <Image
-                    priority={true}
-                    unoptimized={true}
-                    className='w-28 lg:w-r18125 min-h-full lg:min-h-full rounded-xl object-fill'
-                    height={100}
-                    width={100}
-                    loader={(() => currentMovie.thumbnail) as ImageLoader}
-                    src={currentMovie.thumbnail}
-                    alt={'movie thumbnail'}
-                  />
-                )}
-              </div>
-
-              <div
-                className={`flex flex-col w-[13rem] lg:w-r36125 ml-r01313 mt-4 lg:mt-0 mb-4 lg:mb-0`}
-              >
-                <div className={`flex items-center justify-between`}>
-                  <p
-                    className={`font-normal text-sm lg:text-xl text-movieTitle break-words ${
-                      locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                    }`}
-                  >
-                    {`${
-                      locale === 'en'
-                        ? currentMovie.title?.en
-                        : currentMovie.title?.ka
-                    } (${currentMovie.release_date?.slice(0, 4)})
-                `}
-                  </p>
-                </div>
-
-                <div className={'flex mt-2 item-center lg:hidden'}>
-                  <p
-                    className={`font-normal text-sm text-white ${
-                      locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                    }`}
-                  >
-                    {`${t('movies:director')}:`}
-                  </p>
-                  {currentMovie.director && (
-                    <p
-                      className={`font-normal text-sm text-white ml-4 ${
-                        locale === 'en'
-                          ? 'font-helveticaEn'
-                          : 'font-helveticaKa'
-                      }`}
-                    >
-                      {`${
-                        locale === 'en'
-                          ? currentMovie?.director.en!
-                          : currentMovie?.director.ka!
-                      }`}
-                    </p>
-                  )}
-                </div>
-
-                {genres && (
-                  <div
-                    className={`flex flex-wrap w-[13rem] lg:w-r36125 gap-2 mt-2 lg:mt-6`}
-                  >
-                    {genres.map((el: Genres, inx) => (
-                      <div
-                        key={el.genre + inx}
-                        className={`h-[1.3rem] lg:h-r01875 min-w-20 flex items-center justify-center bg-borderGraySoft rounded-sm cursor-default`}
-                      >
-                        <p
-                          className={`font-medium text-sm lg:text-lg text-white font-helveticaKa ml-4 mr-4`}
-                        >
-                          {el.genre}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <div className={'hidden lg:flex mt-[1.606rem] item-center'}>
-                  <p
-                    className={`font-normal text-base text-white ${
-                      locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                    }`}
-                  >
-                    {`${t('movies:director')}:`}
-                  </p>
-                  {currentMovie.director && (
-                    <p
-                      className={`font-normal text-base text-white ml-4 ${
-                        locale === 'en'
-                          ? 'font-helveticaEn'
-                          : 'font-helveticaKa'
-                      }`}
-                    >
-                      {`${
-                        locale === 'en'
-                          ? currentMovie?.director.en!
-                          : currentMovie?.director.ka!
-                      }`}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
           <FormProvider {...form}>
             <form
               className={`mt-[1.813rem]`}
