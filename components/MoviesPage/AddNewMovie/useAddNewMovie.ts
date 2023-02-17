@@ -100,6 +100,7 @@ export const useAddNewMovie = () => {
     setIsOpenDropdown(true)
     setUndefinedGenresError(false)
   }
+
   const closeDropdown = () => {
     setIsOpenDropdown(false)
   }
@@ -124,6 +125,7 @@ export const useAddNewMovie = () => {
   const changeTextTypeOnBlur = () => {
     setIsTypeText(true)
   }
+
   const changeTextTypeOnFocus = async () => {
     setIsTypeText(false)
     await form.setFocus('release_date')
