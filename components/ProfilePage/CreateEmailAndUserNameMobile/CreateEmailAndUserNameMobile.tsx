@@ -46,6 +46,7 @@ const CreateEmailAndUserNameMobile: React.FC<
               } ml-8`}
             >
               <Link
+                passHref
                 href={
                   stage === 'updateUsername'
                     ? '/profile'

@@ -47,6 +47,8 @@ const ViewQuote = () => {
                 >
                   <Link
                     href={`/movies/${movie}/quote/${quote}?stage=editQuote`}
+                    passHref
+                    locale={locale}
                   >
                     <EditIcon />
                   </Link>

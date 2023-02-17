@@ -1,4 +1,3 @@
-import { useAddQuoteUserAndMovieInfo } from './useAddQuoteUserAndMovieInfo'
 import Image, { ImageLoader } from 'next/image'
 import React from 'react'
 import { Props } from './types'

@@ -174,7 +174,7 @@ const GoogleProfile = () => {
           <form className='sm:hidden' onSubmit={handleSubmit(editInfo)}>
             {!stage && (
               <div className='mt-r065 ml-8'>
-                <Link href={'/news-feed'}>
+                <Link href={'/news-feed'} passHref locale={locale}>
                   <LeftArrowWhiteIcon />
                 </Link>
               </div>

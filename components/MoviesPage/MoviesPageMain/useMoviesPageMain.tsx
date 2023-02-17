@@ -60,13 +60,13 @@ export const useMoviesPageMain = () => {
 
   useEffect(() => {
     inputReference.current && inputReference.current.focus()
-  }, [inputReference.current])
+  }, [inputReference])
 
   useEffect(() => {
     if (!stage) {
       inputReference.current && inputReference.current.value.replaceAll('', '')
     }
-  }, [stage])
+  }, [stage, inputReference])
 
   return {
     locale,

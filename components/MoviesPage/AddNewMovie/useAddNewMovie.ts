@@ -238,6 +238,7 @@ export const useAddNewMovie = () => {
     currentMovie?.release_date,
     setIsFirstDateAttempt,
     isFirstDateAttempt,
+    t,
   ])
 
   useEffect(() => {
