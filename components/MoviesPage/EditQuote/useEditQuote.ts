@@ -41,10 +41,10 @@ export const useEditQuote = () => {
   const userInformation = useSelector((state: RootState) => state.userData)
 
   useQuery(['quote', quote], () => getQuote(quote as string), {
-    onSuccess: (r) => {
-      setCurrentQuote(r?.data)
-      form.setValue('quote_en', r?.data.quote.en)
-      form.setValue('quote_ka', r?.data.quote.ka)
+    onSuccess: (response) => {
+      setCurrentQuote(response?.data)
+      form.setValue('quote_en', response?.data.quote.en)
+      form.setValue('quote_ka', response?.data.quote.ka)
     },
     refetchOnWindowFocus: false,
     retry: 1,
