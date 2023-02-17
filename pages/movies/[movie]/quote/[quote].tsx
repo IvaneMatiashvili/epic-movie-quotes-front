@@ -1,9 +1,9 @@
-import { MovieDescriptionMain, ViewQuote } from 'components'
+import { ViewQuote } from 'components'
 import { Locale } from 'types'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticPaths } from 'next'
 
-const Index = () => {
+const Quote = () => {
   return (
     <>
       <ViewQuote />
@@ -30,4 +30,4 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   }
 }
 
-export default Index
+export default Quote

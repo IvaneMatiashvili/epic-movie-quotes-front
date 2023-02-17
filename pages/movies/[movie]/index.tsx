@@ -3,7 +3,7 @@ import { Locale } from 'types'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticPaths } from 'next'
 
-const Index = () => {
+const Movie = () => {
   return (
     <>
       <MovieDescriptionMain />
@@ -30,4 +30,4 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   }
 }
 
-export default Index
+export default Movie
