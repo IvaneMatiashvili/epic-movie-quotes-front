@@ -1,10 +1,19 @@
 import { useUserPageMainLayout } from './useUserPageMainLayout'
 import Image from 'next/image'
 import { movieQuotes } from 'public'
-import { DownArrow, HomeSvg, VideoSvg } from 'components'
+import {
+  BlackUpArrowIcon,
+  CommentsAndLikesNotification,
+  DownArrow,
+  HomeSvg,
+  LoadingSpinner,
+  NotificationWhiteIcon,
+  VideoSvg,
+} from 'components'
 import Link from 'next/link'
 import React from 'react'
 import { UserPageProps } from './types'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
   const {
@@ -21,6 +30,17 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
     movie,
     quote,
     edit,
+    notifications,
+    removeNotificationsOnClick,
+    notificationsQuantity,
+    openNotificationsModal,
+    closeNotificationsModal,
+    isNotificationsModalOpen,
+    isNewGlobal,
+    getQuoteNotifications,
+    hasMoreItems,
+    setNotificationsQuantity,
+    loadDataOnlyOnce,
   } = useUserPageMainLayout(props.setIsSetBackground)
   return (
     <>
@@ -119,11 +139,100 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
             <Image src={movieQuotes} alt='movie quotes' />
 
             <div className='flex'>
-              <div
-                className={`flex w-56 sm:justify-between justify-end items-center`}
-              >
+              <div className={`flex w-72 justify-between items-center`}>
+                <div className={`flex justify-center items-center`}>
+                  {notificationsQuantity > 0 && (
+                    <div
+                      onClick={openNotificationsModal}
+                      className={`bg-notification w-[1.563rem] h-[1.563rem] cursor-pointer rounded-full absolute ml-[1.4rem] mb-[1rem] flex justify-center items-center`}
+                    >
+                      <p
+                        className={`text-white font-normal text-sm font-helveticaEn`}
+                      >
+                        {notificationsQuantity}
+                      </p>
+                    </div>
+                  )}
+                  <div
+                    onClick={openNotificationsModal}
+                    className={`cursor-pointer`}
+                  >
+                    <NotificationWhiteIcon />
+                  </div>
+
+                  {isNotificationsModalOpen && (
+                    <>
+                      <div
+                        className={`fixed w-screen h-screen bg-transparent inset-0 mx-auto z-40`}
+                        onClick={closeNotificationsModal}
+                      ></div>
+
+                      <div className={`absolute mt-24 z-40`}>
+                        <BlackUpArrowIcon />
+                      </div>
+
+                      <div
+                        id='scrollableDiv'
+                        className={`absolute z-50 w-[60.063rem] h-[50.75rem] bg-black mr-[32rem] mt-[57rem] rounded-md flex flex-col items-center overflow-y-scroll`}
+                      >
+                        <div
+                          className={'w-[56.063rem] flex justify-between mt-10'}
+                        >
+                          <p
+                            className={`text-white ${
+                              locale === 'en'
+                                ? 'font-helveticaEn'
+                                : 'font-helveticaKa'
+                            } font-normal text-2xl`}
+                          >
+                            {t('common:notifications')}
+                          </p>
+                          <p
+                            onClick={removeNotificationsOnClick}
+                            className={`text-white underline decoration-2 decoration-borderGraySoft cursor-pointer ${
+                              locale === 'en'
+                                ? 'font-helveticaEn'
+                                : 'font-helveticaKa'
+                            } font-normal text-lg`}
+                          >
+                            {t('common:markAsAllRead')}
+                          </p>
+                        </div>
+
+                        <div className={`mt-[0.438rem]`}></div>
+
+                        <InfiniteScroll
+                          dataLength={notifications?.length}
+                          next={getQuoteNotifications}
+                          hasMore={hasMoreItems}
+                          scrollableTarget='scrollableDiv'
+                          loader={
+                            <div className={`mt-4`}>
+                              <LoadingSpinner />
+                            </div>
+                          }
+                          style={{ overflow: 'hidden !important' }}
+                        >
+                          {notifications.length > 0 &&
+                            notifications.map((comment, inx) => (
+                              <CommentsAndLikesNotification
+                                notification={comment}
+                                isNewGlobal={isNewGlobal}
+                                key={`${comment.id} ${inx}`}
+                                setNotificationsQuantity={
+                                  setNotificationsQuantity
+                                }
+                              />
+                            ))}
+                        </InfiniteScroll>
+                        <div className={`h-20 w-1 mt-5`}></div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
                 <div
-                  className={`sm:flex hidden items-center cursor-pointer`}
+                  className={`sm:flex hidden items-center cursor-pointer relative z-50`}
                   onClick={dropdownSwitcher}
                 >
                   <p
@@ -164,7 +273,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 </div>
 
                 <Link
-                  className='bg-transparent h-10 w-32 flex justify-center items-center rounded-md border cursor-pointer'
+                  className='bg-transparent h-10 w-32 flex justify-center items-center rounded-md border cursor-pointer relative z-50'
                   href='?stage=login'
                   passHref
                 >
@@ -183,12 +292,13 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
         </header>
 
         <div className='flex sm:mt-28'>
-          <div className='hidden lg:flex flex-col justify-start items-center w-72 h-96 ml-14 mr-10'>
+          <div className='hidden lgPlus:flex flex-col justify-start items-center fixed z-40 w-72 min-h-10 ml-14 mr-10'>
             <Link
               href='/profile'
               locale={locale}
               passHref={true}
-              className='flex justify-start items-center w-72 h-20 z-10'
+              onLoad={loadDataOnlyOnce}
+              className='flex justify-start items-center w-72 h-20 relative z-50'
             >
               {currentUserImageUrl && (
                 <Image
@@ -225,7 +335,8 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               href='/news-feed'
               locale={locale}
               passHref
-              className='flex justify-start items-center w-72 h-20 z-10'
+              onLoad={loadDataOnlyOnce}
+              className='flex justify-start items-center w-72 h-20 z-40'
             >
               <div className='w-16 h-16 flex justify-center items-center'>
                 <HomeSvg />
@@ -244,8 +355,9 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
             <Link
               href='/movies'
               locale={locale}
+              onLoad={loadDataOnlyOnce}
               passHref
-              className='flex justify-start items-center w-72 h-20 z-10'
+              className='flex justify-start items-center w-72 h-20 z-40'
             >
               <div className='w-16 h-16 flex justify-center items-center'>
                 <VideoSvg />
@@ -262,7 +374,9 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               </div>
             </Link>
           </div>
-          <div>{props.children}</div>
+          <div className={'w-screen flex justify-center items-center'}>
+            {props.children}
+          </div>
         </div>
       </div>
     </>
