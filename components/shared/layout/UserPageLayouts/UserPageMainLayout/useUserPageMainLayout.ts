@@ -77,19 +77,35 @@ export const useUserPageMainLayout = (
       .then((response) => {
         window.echo = new Echo({
           broadcaster: 'pusher',
-          key: 'c183e17a23475f0d5d2b',
-          cluster: 'mt1',
-          forceTLS: true,
-          authEndpoint: `${process.env.NEXT_PUBLIC_API_BASE_URI}/broadcasting/auth`,
-          withCredentials: true,
-
-          auth: {
-            withCredentials: true,
-            headers: response.config.headers,
+          key: process.env.NEXT_PUBLIC_PUSHER_KEY,
+          cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
+          authorizer: (channel: any) => {
+            return {
+              authorize: (socketId: string, callback: Function) => {
+                axios
+                  .post(
+                    `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
+                    {
+                      socket_id: socketId,
+                      channel_name: channel.name,
+                    },
+                    {
+                      withCredentials: true,
+                    }
+                  )
+                  .then((response) => {
+                    callback(false, response.data)
+                  })
+                  .catch((error) => {
+                    callback(true, error)
+                  })
+              },
+            }
           },
         })
+
         window.echo
-          .channel(`notifications.` + userInformation.id)
+          .private(`notifications.` + userInformation.id)
           .listen(`NotificationStored`, (e) => {
             setNotifications((prev) => [e.notification, ...prev])
             setNotificationsQuantity((prev) => prev + 1)
