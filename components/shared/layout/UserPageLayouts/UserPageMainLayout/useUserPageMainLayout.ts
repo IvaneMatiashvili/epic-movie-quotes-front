@@ -64,61 +64,54 @@ export const useUserPageMainLayout = (
 
   const loadDataOnlyOnce = useCallback(async () => {
     if (window.pusher !== undefined && typeof window !== 'undefined') {
-      console.log('wers')
       return
     }
 
     window.pusher = require('pusher-js')
 
-    await axios
-      .get(`${process.env.NEXT_PUBLIC_API_BASE_URI}/sanctum/csrf-cookie`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        window.echo = new Echo({
-          broadcaster: 'pusher',
-          key: process.env.NEXT_PUBLIC_PUSHER_KEY,
-          cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
-          authorizer: (channel: any) => {
-            return {
-              authorize: (socketId: string, callback: Function) => {
-                axios
-                  .post(
-                    `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
-                    {
-                      socket_id: socketId,
-                      channel_name: channel.name,
-                    },
-                    {
-                      withCredentials: true,
-                    }
-                  )
-                  .then((response) => {
-                    callback(false, response.data)
-                  })
-                  .catch((error) => {
-                    callback(true, error)
-                  })
-              },
-            }
+    window.echo = new Echo({
+      broadcaster: 'pusher',
+      key: process.env.NEXT_PUBLIC_PUSHER_KEY,
+      cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
+      authorizer: (channel: any) => {
+        return {
+          authorize: (socketId: string, callback: Function) => {
+            axios
+              .post(
+                `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
+                {
+                  socket_id: socketId,
+                  channel_name: channel.name,
+                },
+                {
+                  withCredentials: true,
+                }
+              )
+              .then((response) => {
+                callback(false, response.data)
+              })
+              .catch((error) => {
+                callback(true, error)
+              })
           },
-        })
+        }
+      },
+    })
 
-        window.echo
-          .private(`notifications.` + userInformation.id)
-          .listen(`NotificationStored`, (e) => {
-            setNotifications((prev) => [e.notification, ...prev])
-            setNotificationsQuantity((prev) => prev + 1)
-            setIsNewGlobal(true)
-            console.log(
-              notifications.filter((el) => el.id === e.notification.id)
-            )
-          })
+    window.echo
+      .private(`notifications.` + userInformation.id)
+      .listen(`NotificationStored`, (e) => {
+        console.log(e)
+        setNotifications((prev) => [e.notification, ...prev])
+        setNotificationsQuantity((prev) => prev + 1)
+        setIsNewGlobal(true)
       })
-  }, [userInformation.id, notifications])
+  }, [userInformation.id])
 
   useEffect(() => {
     loadDataOnlyOnce()
+
+    console.log('useEffect');
   }, [loadDataOnlyOnce])
 
   useQuery(['notifications', page], () => getNotifications(page), {
