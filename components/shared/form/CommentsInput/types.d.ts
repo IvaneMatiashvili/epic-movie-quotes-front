@@ -4,4 +4,5 @@ export type Props = {
   userQuoteId?: string
   page?: number
   setUpdatedUserComments?: SetState<Comments[]>
+  quoteUserId?: number
 }

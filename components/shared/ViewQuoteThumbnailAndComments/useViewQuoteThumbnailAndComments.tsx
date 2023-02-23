@@ -9,7 +9,8 @@ import { gandalfProfile } from 'public'
 export const useViewQuoteThumbnailAndComments = (
   likes: Likes[],
   quoteId: string,
-  currentQuote: Quote
+  currentQuote: Quote,
+  quoteUserId: number
 ) => {
   const userInformation = useSelector((state: RootState) => state.userData)
 
@@ -46,9 +47,11 @@ export const useViewQuoteThumbnailAndComments = (
     }
     const data: FormObj = {}
     data['quote_id'] = quoteId
+    data['user_id'] = quoteUserId.toString()
 
     if (newLikeId) {
       data['like_id'] = newLikeId
+      console.log(quoteUserId)
     }
     submitForm(data, {
       onSuccess: async (response) => {

@@ -24,6 +24,7 @@ export const useNewsFeedMain = () => {
   const [isNewQuoteCreated, setIsNewQuoteCreated] = useState(false)
 
   const [inputValue, setInputValue] = useState('')
+  const [isSearchMobileOpen, setIsSearchMobileOpen] = useState(false)
 
   const { mutate: submitForm } = useMutation(searchQuotes)
 
@@ -72,7 +73,11 @@ export const useNewsFeedMain = () => {
   const getUserQuotes = async () => {
     setTimeout(() => {
       setPage((prev) => prev + 3)
-    }, 100)
+    }, 400)
+  }
+
+  const closeSearchMobile = () => {
+    setIsSearchMobileOpen(false)
   }
 
   const openSearch = () => {
@@ -126,5 +131,8 @@ export const useNewsFeedMain = () => {
     closeWriteNewQuoteModal,
     isWriteNewQuoteModalOpen,
     setIsNewQuoteCreated,
+    isSearchMobileOpen,
+    setIsSearchMobileOpen,
+    closeSearchMobile,
   }
 }

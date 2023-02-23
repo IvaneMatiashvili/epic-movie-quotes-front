@@ -4,4 +4,6 @@ export type UserPageProps = {
   children: JSX.Element
   openEditOrDelete?: boolean[]
   setIsSetBackground?: SetState<boolean>
+  setIsSearchMobileOpen?: SetState<boolean>
+  isSearchMobileOpen?: boolean
 }

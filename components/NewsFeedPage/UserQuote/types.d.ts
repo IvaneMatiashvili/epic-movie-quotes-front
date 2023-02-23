@@ -4,4 +4,5 @@ export type Props = {
   userQuote: Quote
   page: number
   movie: Movies
+  quoteUserId: number
 }

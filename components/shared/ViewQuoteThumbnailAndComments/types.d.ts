@@ -4,4 +4,5 @@ export type Props = {
   currentQuote: Quote
   fromNewsFeed?: boolean
   updatedUserComments: Comments[]
+  quoteUserId: number
 }

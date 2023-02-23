@@ -134,6 +134,10 @@ module.exports = {
         smoothGreenColor: 'rgba(25, 135, 84, 1)',
         commented: 'rgba(206, 212, 218, 1)',
         ago: 'rgba(217, 217, 217, 1)',
+        darkBlueCreate: '#201424',
+        imageBorder: 'rgba(25, 135, 84, 1)',
+        searchMobileBg: 'rgba(18, 16, 26, 1)',
+        inputLineGray: 'rgba(239, 239, 239, 0.3)'
       },
       backgroundImage: {
         theRoyalTenenbaums:

@@ -42,7 +42,7 @@ const WriteNewPost: React.FC<Props> = (props) => {
   return (
     <div
       className={
-        'fixed w-[60.063rem] h-[48.5rem] inset-x-0 mx-auto top-24 bg-blackBlueSoft lgPlus:z-30 lgPlus:rounded-xl flex flex-col items-center'
+        'fixed w-screen lg:w-[60.063rem] h-[48.5rem] inset-x-0 mx-auto top-0 lg:top-24 bg-blackBlueSoft z-50 lg:z-30 lgPlus:rounded-xl flex flex-col items-center'
       }
     >
       {isOpenDropdown && (
@@ -101,7 +101,7 @@ const WriteNewPost: React.FC<Props> = (props) => {
       <div className={`flex flex-col justify-center items-center w-full`}>
         <FormProvider {...form}>
           <form className={`mt-4`} onSubmit={handleSubmit(storeNewQuote)}>
-            <div className={`flex flex-col-reverse lg:flex-col`}>
+            <div className={`flex flex-col`}>
               <MoviesTextarea
                 id={'quote_en'}
                 errors={{

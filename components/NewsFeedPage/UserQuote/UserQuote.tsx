@@ -81,12 +81,14 @@ const UserQuote: React.FC<Props> = (props) => {
                 currentQuote={props.userQuote && props.userQuote}
                 fromNewsFeed={true}
                 updatedUserComments={updatedUserComments}
+                quoteUserId={props.quoteUserId}
               />
 
               <CommentsInput
                 userQuoteId={props?.userQuote?.id && props.userQuote.id}
                 page={props.page && props.page}
                 setUpdatedUserComments={setUpdatedUserComments}
+                quoteUserId={props.quoteUserId}
               />
             </div>
           </div>

@@ -1,10 +1,13 @@
 {
   "movie": "movie",
   "writeNewQuote": "Write new quote",
+  "search": "Search",
   "searchBy": "Search by",
   "searchMovieQuote": "Enter @ to search movies, Enter # to search quotes",
   "chooseMovie": "Choose movie",
   "post": "Post",
   "moviesListEmpty": "Movies list is empty",
   "createMovie": "Create movie",
+  "enter@": "Enter @ to search movies",
+  "enter#": "Enter # to search movies"
 }

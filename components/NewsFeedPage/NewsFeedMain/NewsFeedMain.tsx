@@ -1,5 +1,6 @@
 import { useNewsFeedMain } from './useNewsFeedMain'
 import {
+  LeftArrowWhiteIcon,
   LoadingSpinner,
   SearchIcon,
   UserPageMainLayout,
@@ -29,16 +30,69 @@ const NewsFeedMain = () => {
     openWriteNewQuoteModal,
     closeWriteNewQuoteModal,
     setIsNewQuoteCreated,
+    isSearchMobileOpen,
+    setIsSearchMobileOpen,
+    closeSearchMobile,
   } = useNewsFeedMain()
 
   return (
-    <UserPageMainLayout>
+    <UserPageMainLayout
+      setIsSearchMobileOpen={setIsSearchMobileOpen}
+      isSearchMobileOpen={isSearchMobileOpen}
+    >
       <div
         id={'newsFeedMainScrollBar'}
         className={
-          'min-h-[120vh] overflow-hidden w-screen flex flex-col items-center'
+          'min-h-[120vh] overflow-hidden w-screen flex flex-col items-center mt-28 sm:mt-0'
         }
       >
+        {isSearchMobileOpen && (
+          <div
+            className={`w-screen h-[48.375rem] fixed z-50 top-0  bg-searchMobileBg lg:hidden `}
+          >
+            <div className={'flex items-center mt-6'}>
+              <div
+                onClick={closeSearchMobile}
+                className={`ml-8 cursor-pointer`}
+              >
+                <LeftArrowWhiteIcon />
+              </div>
+
+              <input
+                id={'search-movies'}
+                placeholder={t('newsFeed:search')!}
+                name={'search'}
+                onChange={searchMovieOnChange}
+                ref={inputReference}
+                defaultValue={inputValue}
+                className={`
+                        font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base movies-input border-0 ml-8
+                        font-normal rounded-md text-lg bg-transparent min-w-2 h-8 outline-none pr-8 xlPlus:pr-1
+                    `}
+              />
+            </div>
+
+            <div
+              className={`w-screen h-0.1 bg-inputLineGray mt-[1.188rem]`}
+            ></div>
+
+            <p
+              className={`font-normal text-base text-borderGraySoft mt-[1.625rem] ml-20 ${
+                locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+              }`}
+            >
+              {t('newsFeed:enter@')}
+            </p>
+
+            <p
+              className={`font-normal text-base text-borderGraySoft mt-[1.375rem] ml-20 ${
+                locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+              }`}
+            >
+              {t('newsFeed:enter#')}
+            </p>
+          </div>
+        )}
         <div className={`w-[58.625rem] flex justify-between items-center mt-4`}>
           {isWriteNewQuoteModalOpen && (
             <div
@@ -62,7 +116,7 @@ const NewsFeedMain = () => {
                       ? 'w-screen lgPlus:w-[13.625rem]'
                       : 'w-screen lgPlus-[14.5rem]'
                   }`
-            } h-[6.8rem] lgPlus:h-[3.25rem] mt-3 lgPlus:mt-0 rounded-md bg-deleteOrEdit flex items-center cursor-pointer absolute inset-x-0 mx-auto lgPlus:relative z-20 `}
+            } h-[6.8rem] lgPlus:h-[3.25rem] mt-3 lgPlus:mt-0 rounded-md bg-darkBlueCreate flex items-center cursor-pointer absolute inset-x-0 mx-auto lgPlus:inset-x-auto lgPlus:mx-0 lgPlus:relative z-20 `}
           >
             <div className={`ml-4`}>
               <WriteNewQuoteIcon />
@@ -153,6 +207,7 @@ const NewsFeedMain = () => {
               <LoadingSpinner />
             </div>
           }
+          className={`mt-7 lgPlus:mt-0`}
           style={{ overflow: 'hidden !important' }}
         >
           {userQuotes?.length > 0 &&
@@ -164,6 +219,9 @@ const NewsFeedMain = () => {
                     userQuote={quote}
                     page={page}
                     movie={movies.filter((el) => el.id === quote.movie_id)[0]}
+                    quoteUserId={
+                      movies.filter((el) => el.id === quote.movie_id)[0].user_id
+                    }
                   />
                 )
             )}

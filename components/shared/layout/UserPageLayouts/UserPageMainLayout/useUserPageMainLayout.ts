@@ -19,7 +19,8 @@ import { getNotifications, removeNotifications } from 'services'
 import axios from 'axios'
 
 export const useUserPageMainLayout = (
-  setIsSetBackground: SetState<boolean> | undefined
+  setIsSetBackground: SetState<boolean> | undefined,
+  setIsSearchMobileOpen: SetState<boolean>
 ) => {
   const { t } = useTranslation()
   const { locale, query, push, asPath, pathname } = useRouter()
@@ -62,31 +63,24 @@ export const useUserPageMainLayout = (
   })
 
   const loadDataOnlyOnce = useCallback(async () => {
-    if (window.pusher !== undefined) {
+    if (window.pusher !== undefined && typeof window !== 'undefined') {
+      console.log('wers')
       return
     }
+
     window.pusher = require('pusher-js')
 
-    const token = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_BASE_URI}/sanctum/csrf-cookie`,
-      {
-        withCredentials: true,
-      }
-    )
-
-    console.log(token.config.headers)
     await axios
       .get(`${process.env.NEXT_PUBLIC_API_BASE_URI}/sanctum/csrf-cookie`, {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response)
-        const echo = new Echo({
+        window.echo = new Echo({
           broadcaster: 'pusher',
           key: 'c183e17a23475f0d5d2b',
           cluster: 'mt1',
           forceTLS: true,
-          authEndpoint: `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
+          authEndpoint: `${process.env.NEXT_PUBLIC_API_BASE_URI}/broadcasting/auth`,
           withCredentials: true,
 
           auth: {
@@ -94,15 +88,18 @@ export const useUserPageMainLayout = (
             headers: response.config.headers,
           },
         })
-        echo
-          .private(`notifications` + userInformation.id)
+        window.echo
+          .channel(`notifications.` + userInformation.id)
           .listen(`NotificationStored`, (e) => {
-            setNotifications((prev) => [e.comment, ...prev])
+            setNotifications((prev) => [e.notification, ...prev])
             setNotificationsQuantity((prev) => prev + 1)
             setIsNewGlobal(true)
+            console.log(
+              notifications.filter((el) => el.id === e.notification.id)
+            )
           })
       })
-  }, [])
+  }, [userInformation.id, notifications])
 
   useEffect(() => {
     loadDataOnlyOnce()
@@ -121,8 +118,15 @@ export const useUserPageMainLayout = (
         setHasMoreItems(false)
       }
     },
-    retry: 0,
+    refetchOnWindowFocus: false,
   })
+
+  const openMobileSearch = () => {
+    setIsSearchMobileOpen(true)
+  }
+  const closeMobileSearch = () => {
+    setIsSearchMobileOpen(false)
+  }
 
   const getQuoteNotifications = async () => {
     setTimeout(() => {
@@ -210,5 +214,7 @@ export const useUserPageMainLayout = (
     getQuoteNotifications,
     setNotificationsQuantity,
     loadDataOnlyOnce,
+    openMobileSearch,
+    closeMobileSearch,
   }
 }

@@ -12,32 +12,50 @@ const CommentsAndLikesNotification: React.FC<Props> = (props) => {
     calcDifBetweenTwoDates,
     removeNotificationOnClick,
     isNew,
-  } = useCommentsAndLikesNotification(props?.notification, props.isNewGlobal, props.setNotificationsQuantity)
+  } = useCommentsAndLikesNotification(
+    props?.notification,
+    props.isNewGlobal,
+    props.setNotificationsQuantity
+  )
 
   return (
     <div
       onClick={removeNotificationOnClick}
-      className={`w-[56.063rem] min-h-[7.313rem] bg-transparent border border-borderGraySoftHalfTransparent rounded-md mt-4 flex justify-between cursor-pointer`}
+      className={`w-[20rem] nm:w-[22.375rem] lg:w-[56.063rem] min-h-[7.313rem] bg-transparent border border-borderGraySoftHalfTransparent rounded-md mt-4 flex justify-between cursor-pointer`}
     >
       <div className={`flex items-center ml-6`}>
-        {props?.notification?.notificatable?.user?.name && (
-          <Image
-            priority={true}
-            unoptimized={true}
-            className='w-20 h-20 rounded-full object-fill'
-            height={100}
-            width={100}
-            loader={() =>
-              props?.notification?.notificatable?.user?.user_image ||
-              gandalfProfile.src
-            }
-            src={
-              props?.notification?.notificatable?.user?.user_image ||
-              gandalfProfile.src
-            }
-            alt={'user image'}
-          />
-        )}
+        <div className={`flex flex-col items-center`}>
+          {props?.notification?.notificatable?.user?.name && (
+            <Image
+              priority={true}
+              unoptimized={true}
+              className={`w-[3.75rem] lg:w-20 h-[3.75rem] lg:h-20 rounded-full object-fill ${
+                isNew && 'border border-2 border-imageBorder'
+              }`}
+              height={100}
+              width={100}
+              loader={() =>
+                props?.notification?.notificatable?.user?.user_image ||
+                gandalfProfile.src
+              }
+              src={
+                props?.notification?.notificatable?.user?.user_image ||
+                gandalfProfile.src
+              }
+              alt={'user image'}
+            />
+          )}
+
+          <p
+            className={`text-smoothGreenColor mt-[0.438rem] cursor-default lg:hidden ${
+              isNew ? 'opacity-1' : 'opacity-0'
+            } ${
+              locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+            } font-normal text-xs`}
+          >
+            New
+          </p>
+        </div>
 
         <div className={`flex flex-col ml-6`}>
           {props?.notification?.notificatable?.user?.name && (
@@ -57,16 +75,34 @@ const CommentsAndLikesNotification: React.FC<Props> = (props) => {
             <p
               className={`text-commented ml-3 ${
                 locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-              } font-normal text-base`}
+              } font-normal text-base hidden lg:block`}
             >
               {props?.notification?.notificatable?.like && t('common:reacted')}
               {props?.notification?.notificatable?.comment &&
                 t('common:commented')}
             </p>
+
+            <p
+              className={`text-commented ml-3 ${
+                locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+              } font-normal text-xs lg:hidden`}
+            >
+              {props?.notification?.notificatable?.like && t('common:reacted')}
+              {props?.notification?.notificatable?.comment &&
+                t('common:commentedMobile')}
+            </p>
           </div>
+
+          <p
+            className={`text-ago mt-2 lg:hidden ${
+              locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+            } font-normal text-xs`}
+          >
+            {calcDifBetweenTwoDates(props?.notification?.created_at!)}
+          </p>
         </div>
       </div>
-      <div className={`flex flex-col items-end justify-center`}>
+      <div className={`hidden lg:flex flex-col items-end justify-center`}>
         <p
           className={`text-ago mr-5 ${
             locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'

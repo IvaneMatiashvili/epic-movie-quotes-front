@@ -9,7 +9,8 @@ const CommentsInput: React.FC<Props> = (props) => {
     useCommentsInput(
       props.userQuoteId,
       props.page,
-      props.setUpdatedUserComments
+      props.setUpdatedUserComments,
+      props.quoteUserId
     )
 
   return (

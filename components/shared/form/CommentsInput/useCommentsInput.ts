@@ -7,11 +7,13 @@ import { gandalfProfile } from 'public'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { storeUserComment } from 'services'
+import { number } from 'prop-types'
 
 export const useCommentsInput = (
   userQuoteId?: string,
   page?: number,
-  setUpdatedUserComments?: SetState<Comments[]>
+  setUpdatedUserComments?: SetState<Comments[]>,
+  quoteUserId?: number
 ) => {
   const { locale, query, pathname } = useRouter()
   const { movie, stage, quote } = query
@@ -39,6 +41,10 @@ export const useCommentsInput = (
       : (data['quote_id'] = quote as string)
 
     form.resetField('comment')
+
+    data['user_id'] = quoteUserId
+
+    console.log(quoteUserId)
 
     submitForm(data, {
       onSuccess: async (response) => {

@@ -7,7 +7,10 @@ import {
   DownArrow,
   HomeSvg,
   LoadingSpinner,
+  NotificationIconSmall,
   NotificationWhiteIcon,
+  SearchIcon,
+  SearchMobileIcon,
   VideoSvg,
 } from 'components'
 import Link from 'next/link'
@@ -41,7 +44,13 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
     hasMoreItems,
     setNotificationsQuantity,
     loadDataOnlyOnce,
-  } = useUserPageMainLayout(props.setIsSetBackground)
+    closeMobileSearch,
+    openMobileSearch,
+  } = useUserPageMainLayout(
+    props.setIsSetBackground,
+    props.setIsSearchMobileOpen!
+  )
+
   return (
     <>
       <div
@@ -49,6 +58,12 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
           !isActiveDropdown && 'hidden'
         } `}
         onClick={closeDropdownOnBlur}
+      ></div>
+      <div
+        className={`min-h-screen w-full fixed z-40 bg-transparent lg:hidden ${
+          !props.isSearchMobileOpen && 'hidden'
+        } `}
+        onClick={closeMobileSearch}
       ></div>
 
       <Link
@@ -132,14 +147,32 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
 
       <div className='min-h-screen w-screen bg-layoutBackground overflow-x-hidden'>
         <header
-          className='w-full fixed h-20 z-40 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
+          className='w-full fixed  h-[5.375rem] z-40 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
           onClick={closeDropdownOnBlur}
         >
           <div className='flex justify-between items-center w-sw93 h-20'>
-            <Image src={movieQuotes} alt='movie quotes' />
+            <div className={`opacity-0 sm:opacity-100`}>
+              <Image src={movieQuotes} alt='movie quotes' />
+            </div>
 
             <div className='flex'>
-              <div className={`flex w-72 justify-between items-center`}>
+              <div
+                className={`flex w-[4.5rem] lgPlus:w-72 justify-between items-center mr-[2.906rem]`}
+              >
+                {pathname.split('/')[1] === 'news-feed' && (
+                  <div
+                    onClick={openMobileSearch}
+                    className={`lgPlus:hidden cursor-pointer`}
+                  >
+                    <SearchMobileIcon />
+                  </div>
+                )}
+
+                {pathname.split('/')[1] !== 'news-feed' && (
+                  <div className={`lgPlus:hidden opacity-0`}>
+                    <SearchMobileIcon />
+                  </div>
+                )}
                 <div className={`flex justify-center items-center`}>
                   {notificationsQuantity > 0 && (
                     <div
@@ -157,7 +190,13 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                     onClick={openNotificationsModal}
                     className={`cursor-pointer`}
                   >
-                    <NotificationWhiteIcon />
+                    <div className={`hidden lgPlus:block`}>
+                      <NotificationWhiteIcon />
+                    </div>
+
+                    <div className={`lgPlus:hidden`}>
+                      <NotificationIconSmall />
+                    </div>
                   </div>
 
                   {isNotificationsModalOpen && (
@@ -167,23 +206,25 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                         onClick={closeNotificationsModal}
                       ></div>
 
-                      <div className={`absolute mt-24 z-40`}>
+                      <div className={`absolute mt-20 lg:mt-24 z-40`}>
                         <BlackUpArrowIcon />
                       </div>
 
                       <div
                         id='scrollableDiv'
-                        className={`absolute z-50 w-[60.063rem] h-[50.75rem] bg-black mr-[32rem] mt-[57rem] rounded-md flex flex-col items-center overflow-y-scroll`}
+                        className={`absolute z-50 w-screen overflow-hidden lg:w-[60.063rem] h-[50.75rem] bg-black inset-x-0 mx-auto lg:mx-0 lg:inset-x-auto lg:mr-[50rem] lgPlus:mr-[32rem] mt-[56.1rem] lg:mt-[57rem] rounded-md flex flex-col items-center overflow-y-scroll`}
                       >
                         <div
-                          className={'w-[56.063rem] flex justify-between mt-10'}
+                          className={
+                            'w-[20rem] nm:w-[22.375rem] lg:w-[56.063rem] flex justify-between mt-10'
+                          }
                         >
                           <p
                             className={`text-white ${
                               locale === 'en'
                                 ? 'font-helveticaEn'
                                 : 'font-helveticaKa'
-                            } font-normal text-2xl`}
+                            } font-normal text-lg lg:text-2xl`}
                           >
                             {t('common:notifications')}
                           </p>
@@ -193,7 +234,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                               locale === 'en'
                                 ? 'font-helveticaEn'
                                 : 'font-helveticaKa'
-                            } font-normal text-lg`}
+                            } font-normal text-sm lg:text-lg`}
                           >
                             {t('common:markAsAllRead')}
                           </p>
@@ -232,7 +273,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 </div>
 
                 <div
-                  className={`sm:flex hidden items-center cursor-pointer relative z-50`}
+                  className={`lgPlus:flex hidden items-center cursor-pointer relative z-50`}
                   onClick={dropdownSwitcher}
                 >
                   <p
@@ -273,7 +314,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 </div>
 
                 <Link
-                  className='bg-transparent h-10 w-32 flex justify-center items-center rounded-md border cursor-pointer relative z-50'
+                  className='bg-transparent h-10 w-32 hidden lgPlus:flex justify-center items-center rounded-md border cursor-pointer relative z-50'
                   href='?stage=login'
                   passHref
                 >
