@@ -53,7 +53,7 @@ export const useAddNewQuote = () => {
 
     if (e.target.files) {
       let imageValue = e?.target?.files[0]?.name
-      if (imageValue?.length > 40) imageValue = imageValue?.slice(0, 40) + '...'
+      if (imageValue?.length > 31) imageValue = imageValue?.slice(0, 31) + '...'
       setImageName(imageValue)
       setImageValue(e?.target?.files[0] as File)
     }
@@ -63,13 +63,15 @@ export const useAddNewQuote = () => {
     const formData = new FormData()
     formData.append('quote_en', data['quote_en'])
     formData.append('quote_ka', data['quote_ka'])
+    formData.append('movie_title_en', currentMovie?.title?.en!)
+    formData.append('movie_title_ka', currentMovie?.title?.ka!)
     formData.append('movie_id', movie as string)
     formData.append('thumbnail', imageValue)
 
     submitForm(formData, {
       onSuccess: async (response) => {
-        push(`/movies/${movie}/quote/${response?.data?.id}`)
         await queryClient.invalidateQueries('movie')
+        push(`/movies/${movie}/quote/${response?.data?.id}`)
       },
     })
   }

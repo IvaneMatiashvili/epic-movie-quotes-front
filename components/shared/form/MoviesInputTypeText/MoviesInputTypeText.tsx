@@ -43,6 +43,7 @@ const MoviesInputTypeText: React.FC<MoviesInputTypeTextProps> = (props) => {
           ${checkTypeAndError({
             error: props.error,
             isUndefinedError,
+            forMovieOrNewsFeedPage: true,
           })}
            border border-borderGraySoft
           font-normal rounded-md text-lg bg-transparent pl-4 w-r19 nm:w-[22.375rem] lg:w-r55 h-r027 outline-none pr-16`}

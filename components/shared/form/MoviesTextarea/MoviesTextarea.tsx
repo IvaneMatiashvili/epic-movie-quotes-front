@@ -34,6 +34,7 @@ const MoviesTextarea: React.FC<MoviesTextarea> = (props) => {
           ${checkTypeAndError({
             error: props.error,
             isUndefinedError,
+            forMovieOrNewsFeedPage: true,
           })}
             border border-borderGraySoft rounded-md bg-transparent w-[19rem] nm:w-[22.375rem] lg:w-r55 h-r055
             `}
@@ -54,6 +55,7 @@ const MoviesTextarea: React.FC<MoviesTextarea> = (props) => {
           ${checkTypeAndError({
             error: props.error,
             isUndefinedError,
+            forMovieOrNewsFeedPage: true,
           })}
            
           font-normal rounded-md text-lg bg-transparent pl-4 uploadImage nm:w-[22.375rem] sm:w-r55 h-16 outline-none pr-16 `}

@@ -1,0 +1,10 @@
+{
+  "movie": "movie",
+  "writeNewQuote": "Write new quote",
+  "searchBy": "Search by",
+  "searchMovieQuote": "Enter @ to search movies, Enter # to search quotes",
+  "chooseMovie": "Choose movie",
+  "post": "Post",
+  "moviesListEmpty": "Movies list is empty",
+  "createMovie": "Create movie",
+}

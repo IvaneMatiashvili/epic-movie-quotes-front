@@ -34,10 +34,14 @@ const EditQuote = () => {
   } = useEditQuote()
 
   return (
-    <div className={'min-h-screen bg-layoutBackground w-screen'}>
+    <div
+      className={
+        'min-h-screen bg-layoutBackground w-screen flex flex-col items-center justify-center sm:ml-0 lg:ml-40 lgPlus:ml-0'
+      }
+    >
       <div
         className={
-          'absolute w-screen top-0 left-0 lgPlus:w-r60 min-h-r57 bg-blackBlueSoft lgPlus:relative z-50 lgPlus:z-30 lgPlus:rounded-xl lgPlus:ml-r045 flex flex-col items-center'
+          'absolute w-screen top-0 left-0 lgPlus:w-r60 min-h-r57 bg-blackBlueSoft sm:ml-0 lgPlus:ml-40 xlPlus:ml-0 lgPlus:relative z-50 lgPlus:z-30 lgPlus:rounded-xl flex flex-col items-center'
         }
       >
         <div className={`flex w-full justify-center items-center`}>
@@ -164,7 +168,12 @@ const EditQuote = () => {
               {currentQuote.thumbnail && (
                 <div
                   className={`
-                border border-borderGraySoft 
+                 ${checkTypeAndError({
+                   error: errors.image,
+                   isUndefinedError: isUndefinedImageError,
+                   forImage: true,
+                   forMovieOrNewsFeedPage: true,
+                 })}
                 font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] lg:w-r55 h-[18.875rem] lg:h-[32.063rem] outline-none mt-[1.313rem] flex flex-col justify-center items-center
                 `}
                 >
@@ -195,11 +204,13 @@ const EditQuote = () => {
                     accept='image/*'
                     title=' '
                     className={` absolute
-                border border-borderGraySoft 
+                
                 font-normal rounded-md text-lg bg-white/10 w-r19 nm:w-[22.375rem] lg:w-r55 h-[18.875rem] lg:h-[32.063rem] outline-none cursor-pointer z-10
                  ${checkTypeAndError({
                    error: errors.image,
                    isUndefinedError: isUndefinedImageError,
+                   forImage: true,
+                   forMovieOrNewsFeedPage: true,
                  })}
                 `}
                   ></input>

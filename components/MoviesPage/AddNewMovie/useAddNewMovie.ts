@@ -164,7 +164,7 @@ export const useAddNewMovie = () => {
   const getImageValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.files) {
       let imageValue = e?.target?.files[0]?.name
-      if (imageValue?.length > 40) imageValue = imageValue?.slice(0, 40) + '...'
+      if (imageValue?.length > 30) imageValue = imageValue?.slice(0, 30) + '...'
       setImageName(imageValue)
       setImageValue(e?.target?.files[0] as File)
     }

@@ -13,6 +13,8 @@ export type TypeAndError = {
   isTypePassword?: boolean
   error?: FieldError | undefined
   isUndefinedError?: boolean
+  forImage?: boolean
+  forMovieOrNewsFeedPage?: boolean
 }
 export type ReactToastify = {
   content: string

@@ -2,14 +2,18 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { FormObj, RootState } from 'types'
+import { Comments, FormObj, RootState, SetState } from 'types'
 import { gandalfProfile } from 'public'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { storeUserComment } from 'services'
 
-export const useAddNewQuote = () => {
-  const { locale, query } = useRouter()
+export const useCommentsInput = (
+  userQuoteId?: string,
+  page?: number,
+  setUpdatedUserComments?: SetState<Comments[]>
+) => {
+  const { locale, query, pathname } = useRouter()
   const { movie, stage, quote } = query
   const { t } = useTranslation()
 
@@ -29,13 +33,21 @@ export const useAddNewQuote = () => {
   const { errors, isDirty } = form.formState
 
   const storeComment = (data: FormObj) => {
-    data['quote_id'] = quote as string
+    const isCurrentPathNameNewsFeed = pathname.split('/')[1] === 'news-feed'
+    isCurrentPathNameNewsFeed
+      ? (data['quote_id'] = userQuoteId as string)
+      : (data['quote_id'] = quote as string)
 
     form.resetField('comment')
 
     submitForm(data, {
-      onSuccess: async () => {
-        await queryClient.invalidateQueries('quote')
+      onSuccess: async (response) => {
+        if (isCurrentPathNameNewsFeed) {
+          setUpdatedUserComments &&
+            setUpdatedUserComments((prev) => [...prev, response.data])
+        } else {
+          await queryClient.invalidateQueries('quote')
+        }
       },
     })
   }

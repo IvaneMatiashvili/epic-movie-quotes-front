@@ -21,6 +21,8 @@ export const useMoviesPageMain = () => {
   const [moviesQuantity, setMoviesQuantity] = useState(0)
   const [movies, setMovies] = useState([])
 
+  const [inputValue, setInputValue] = useState('')
+
   const inputReference = useRef<HTMLInputElement>(null)
 
   const form = useForm({
@@ -35,13 +37,13 @@ export const useMoviesPageMain = () => {
       setMoviesQuantity(response?.data?.length)
       setMovies(response?.data)
     },
-    refetchOnWindowFocus: true,
-    retry: 5,
-    enabled: !stage,
+    refetchOnWindowFocus: false,
+    retry: 0,
   })
 
   const searchMovieOnChange = useDebouncedCallback((e) => {
     const data: FormObj = { search: e.target.value.trim() }
+    setInputValue(e.target.value.trim())
     submitForm(data, {
       onSuccess: async (response) => {
         setMovies(response.data)
@@ -58,16 +60,6 @@ export const useMoviesPageMain = () => {
     }
   }, [stage, setIsAddMoviesFormOpen, isAddMoviesFormOpen])
 
-  useEffect(() => {
-    inputReference.current && inputReference.current.focus()
-  }, [inputReference])
-
-  useEffect(() => {
-    if (!stage) {
-      inputReference.current && inputReference.current.value.replaceAll('', '')
-    }
-  }, [stage, inputReference])
-
   return {
     locale,
     t,
@@ -81,5 +73,6 @@ export const useMoviesPageMain = () => {
     searchMovieOnChange,
     inputReference,
     edit,
+    inputValue,
   }
 }

@@ -1,1 +1,13 @@
-{ "returnHome": "Return home", "logOut": "Log out" }
+{
+  "returnHome": "Return home",
+  "logOut": "Log out",
+  "notifications": "Notifications",
+  "markAsAllRead": "Mark  as all read",
+  "commented": "Commented to your movie quote",
+  "new": "new",
+  "minAgo": "min ago",
+  "hourAgo": "hours ago",
+  "dayAgo": "day ago",
+  "yearAgo": "year ago",
+  "reacted": "Reacted to your quote"
+}

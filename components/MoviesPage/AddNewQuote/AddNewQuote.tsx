@@ -34,7 +34,7 @@ const AddNewQuote = () => {
     <>
       <div
         className={
-          'absolute w-screen lgPlus:w-r60 min-h-full lg:min-h-r57 left-0 lgPlus:left-auto top-0 lgPlus:top-24 bg-blackBlueSoft z-50 lgPlus:z-30 lgPlus:rounded-xl lgPlus:ml-r045'
+          'absolute w-screen lgPlus:w-r60 min-h-full lg:min-h-r57 inset-x-0 mx-auto top-0 lgPlus:top-24 bg-blackBlueSoft z-50 lgPlus:z-30 lgPlus:rounded-xl'
         }
       >
         <div className={`flex w-full justify-center items-center mt-8`}>
@@ -130,7 +130,6 @@ const AddNewQuote = () => {
 
                 <div
                   className={`
-                border border-borderGraySoft 
                 font-normal rounded-md text-lg bg-transparent  w-r19 nm:w-[22.375rem] lg:w-r55 h-r055 outline-none mt-[2.875rem] flex justify-start items-center
                 `}
                 >
@@ -150,6 +149,7 @@ const AddNewQuote = () => {
                  ${checkTypeAndError({
                    error: errors.image,
                    isUndefinedError: isUndefinedImageError,
+                   forMovieOrNewsFeedPage: true,
                  })}
                 `}
                   ></input>
