@@ -1,4 +1,5 @@
 import axios from './axios'
+import { Broadcast } from './types'
 export const getQuotes = async (start: number) => {
   return await axios.get(`/api/get-quotes?start=${start}`)
 }
@@ -20,4 +21,24 @@ export const removeNotification = async (data: object) => {
 
 export const logOut = async (logout: boolean) => {
   return await axios.post('/api/logout', logout)
+}
+
+export const getBroadcast = async (data: Broadcast) => {
+  axios
+    .post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
+      {
+        socket_id: data.socketId,
+        channel_name: data.channelName,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((response) => {
+      data.callback(false, response.data)
+    })
+    .catch((error) => {
+      data.callback(true, error)
+    })
 }

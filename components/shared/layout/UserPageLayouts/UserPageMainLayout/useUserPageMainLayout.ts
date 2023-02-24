@@ -13,7 +13,12 @@ import { useAuth } from 'hooks'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 import { useMutation, useQuery } from 'react-query'
-import { getNotifications, removeNotifications, logOut } from 'services'
+import {
+  getNotifications,
+  removeNotifications,
+  logOut,
+  getBroadcast,
+} from 'services'
 import axios from 'axios'
 import { deleteCookie, getCookie } from 'cookies-next'
 
@@ -28,6 +33,7 @@ export const useUserPageMainLayout = (
   useAuth()
 
   const { mutate: submitForm } = useMutation(logOut)
+  const { mutate: authorizeBroadcast } = useMutation(getBroadcast)
 
   const [currentUserImageUrl, setCurrentImageUrl] = useState('')
   const [userName, setUserName] = useState('')
@@ -83,23 +89,11 @@ export const useUserPageMainLayout = (
         authorizer: (channel: any) => {
           return {
             authorize: (socketId: string, callback: Function) => {
-              axios
-                .post(
-                  `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
-                  {
-                    socket_id: socketId,
-                    channel_name: channel.name,
-                  },
-                  {
-                    withCredentials: true,
-                  }
-                )
-                .then((response) => {
-                  callback(false, response.data)
-                })
-                .catch((error) => {
-                  callback(true, error)
-                })
+              authorizeBroadcast({
+                socketId,
+                channelName: channel.name,
+                callback,
+              })
             },
           }
         },
