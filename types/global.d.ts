@@ -13,7 +13,7 @@ export type Locale = { locale: string }
 export type SetError = UseFormSetError
 
 export interface FormObj {
-  [key: string]: string
+  [key: string]: string | Function
 }
 
 export interface RemovedNotificationIdsObj {

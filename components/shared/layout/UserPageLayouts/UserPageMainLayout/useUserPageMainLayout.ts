@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useSelector } from 'react-redux'
 import {
+  FormObj,
   NewsFeedNotification,
   ReactDivMouseEvent,
   RootState,
@@ -89,10 +90,17 @@ export const useUserPageMainLayout = (
         authorizer: (channel: any) => {
           return {
             authorize: (socketId: string, callback: Function) => {
-              authorizeBroadcast({
-                socketId,
-                channelName: channel.name,
-                callback,
+              const data: FormObj = {}
+              data['socket_id'] = socketId
+              data['channel_name'] = channel.name
+              data['callback'] = callback
+              authorizeBroadcast(data, {
+                onSuccess: (response) => {
+                  callback(false, response?.data)
+                },
+                onError: (error) => {
+                  callback(true, error)
+                },
               })
             },
           }
