@@ -13,7 +13,11 @@ export type Locale = { locale: string }
 export type SetError = UseFormSetError
 
 export interface FormObj {
-  [key: string]: string
+  [key: string]: string | Function
+}
+
+export interface RemovedNotificationIdsObj {
+  [key: string]: (string | undefined)[][]
 }
 
 export type RootState = ReturnType<typeof store.getState>
@@ -43,17 +47,34 @@ export type CreateNewEmail = {
 
 export type ReactDivMouseEvent = React.MouseEvent<HTMLDivElement, MouseEvent>
 
-export type Transition = {
-  en: string
-  ka: string
+export interface Transition {
+  [key: string]: string
 }
 export type Comments = {
-  comment: string
-  user: UserInformation
+  comment?: string
+  user?: UserInformation
+  created_at?: string
+  id?: string
 }
 
 export type Likes = {
-  like: string
+  like?: string
+  user?: UserInformation
+  id?: string
+}
+
+export type Notificatable = {
+  like?: string
+  user?: UserInformation
+  comment?: string
+  quote_id?: string
+}
+
+export type NewsFeedNotification = {
+  notificatable?: Notificatable
+  created_at?: string
+  id?: string
+  is_notification_on?: boolean
 }
 
 export type Quote = {
@@ -62,6 +83,7 @@ export type Quote = {
   thumbnail?: string
   comments?: Comments[]
   likes?: Likes[]
+  movie_id?: string
 }
 
 export type Genres = {
@@ -72,9 +94,11 @@ export type Movies = {
   title?: Transition
   director?: Transition
   description?: Transition
-  id?: number
+  id?: string
   thumbnail?: string
   release_date?: string
   budget?: string
   quotes?: Quote[]
+  user?: UserInformation
+  user_id?: number
 }

@@ -51,7 +51,7 @@ const AddNewMovie = () => {
     <>
       <div
         className={
-          'absolute w-screen lgPlus:w-r60 min-h-r69 left-0 lgPlus:left-auto top-0 lgPlus:top-24 bg-blackBlueSoft z-50 lgPlus:z-30 lgPlus:rounded-xl lgPlus:ml-r045'
+          'absolute w-screen lgPlus:w-r60 min-h-r69 top-0 lgPlus:top-24 inset-x-0 mx-auto bg-blackBlueSoft z-50 lgPlus:z-30 lgPlus:rounded-xl'
         }
       >
         {isOpenDropdown && (
@@ -177,6 +177,7 @@ const AddNewMovie = () => {
                   ${checkTypeAndError({
                     error: errors.genres,
                     isUndefinedError: isUndefinedGenresError,
+                    forMovieOrNewsFeedPage: true,
                   })}
             font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] lg:w-r55 min-h-[2.7rem] mt-5 flex items-center cursor-pointer flex-wrap
             `}
@@ -388,6 +389,7 @@ const AddNewMovie = () => {
                  ${checkTypeAndError({
                    error: errors.release_date,
                    isUndefinedError,
+                   forMovieOrNewsFeedPage: true,
                  })}
                 font-normal rounded-md text-lg bg-transparent pl-4 w-r19 nm:w-[22.375rem] lg:w-r55 h-r027 outline-none pr-11 cursor-pointer`}
                 />
@@ -414,8 +416,7 @@ const AddNewMovie = () => {
                 <MoviesInputError errors={errors} name='budget' />
 
                 <div
-                  className={`
-                border border-borderGraySoft 
+                  className={` 
                 font-normal rounded-md text-lg bg-transparent w-r19 nm:w-[22.375rem] lg:w-r55 h-r055 outline-none mt-8 flex justify-start items-center`}
                 >
                   <input
@@ -435,6 +436,7 @@ const AddNewMovie = () => {
                  ${checkTypeAndError({
                    error: errors.image,
                    isUndefinedError: isUndefinedImageError,
+                   forMovieOrNewsFeedPage: true,
                  })}
                 `}
                   ></input>

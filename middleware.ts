@@ -20,5 +20,13 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/profile', '/verify-user', '/movies', '/403', '/404'],
+  matcher: [
+    '/',
+    '/profile',
+    '/verify-user',
+    '/movies',
+    '/403',
+    '/404',
+    '/news-feed',
+  ],
 }

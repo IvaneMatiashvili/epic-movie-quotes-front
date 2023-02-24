@@ -62,7 +62,7 @@ export const useStandardProfile = () => {
     onSuccess: async (response) => {
       setDefaultPrimaryEmail(
         response?.data.emails.filter((el: Emails) => el.primary_email === 1)[0]
-          .email
+          ?.email
       )
 
       setDefaultUserEmails(response?.data.emails)
@@ -74,14 +74,14 @@ export const useStandardProfile = () => {
       if (!primaryEmail) {
         setPrimaryEmail(
           response?.data.emails.filter(
-            (el: Emails) => el.primary_email === 1
-          )[0].email
+            (el: Emails) => el?.primary_email === 1
+          )[0]?.email
         )
         form.setValue(
           'email',
           response?.data.emails.filter(
-            (el: Emails) => el.primary_email === 1
-          )[0].email
+            (el: Emails) => el?.primary_email === 1
+          )[0]?.email
         )
       }
 
@@ -89,7 +89,7 @@ export const useStandardProfile = () => {
       dispatch(setUserData(response?.data))
     },
     refetchOnWindowFocus: false,
-    retry: 0,
+    retry: 5,
   })
 
   const watchPassword = useWatch({

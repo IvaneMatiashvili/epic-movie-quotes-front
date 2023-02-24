@@ -1,10 +1,25 @@
 import { useUserPageMainLayout } from './useUserPageMainLayout'
 import Image from 'next/image'
 import { movieQuotes } from 'public'
-import { DownArrow, HomeSvg, VideoSvg } from 'components'
+import {
+  BlackUpArrowIcon,
+  CommentsAndLikesNotification,
+  DownArrow,
+  HomeIconSmall,
+  HomeSvg,
+  LoadingSpinner,
+  NavigationMenu,
+  NotificationIconSmall,
+  NotificationWhiteIcon,
+  SearchIcon,
+  SearchMobileIcon,
+  VideoIconSmall,
+  VideoSvg,
+} from 'components'
 import Link from 'next/link'
 import React from 'react'
 import { UserPageProps } from './types'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
   const {
@@ -21,7 +36,27 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
     movie,
     quote,
     edit,
-  } = useUserPageMainLayout(props.setIsSetBackground)
+    notifications,
+    removeNotificationsOnClick,
+    notificationsQuantity,
+    openNotificationsModal,
+    closeNotificationsModal,
+    isNotificationsModalOpen,
+    isNewGlobal,
+    getQuoteNotifications,
+    hasMoreItems,
+    setNotificationsQuantity,
+    closeMobileSearch,
+    openMobileSearch,
+    openMobileMenu,
+    isOpenMobileMenu,
+    closeMobileMenu,
+    logOutUser,
+  } = useUserPageMainLayout(
+    props.setIsSetBackground,
+    props.setIsSearchMobileOpen
+  )
+
   return (
     <>
       <div
@@ -29,6 +64,18 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
           !isActiveDropdown && 'hidden'
         } `}
         onClick={closeDropdownOnBlur}
+      ></div>
+      <div
+        className={`min-h-screen w-full fixed z-40 bg-transparent lg:hidden ${
+          !props.isSearchMobileOpen && 'hidden'
+        } `}
+        onClick={closeMobileSearch}
+      ></div>
+      <div
+        className={`min-h-screen w-full fixed z-40 bg-transparent lgPlus:hidden ${
+          !isOpenMobileMenu && 'hidden'
+        } `}
+        onClick={closeMobileMenu}
       ></div>
 
       <Link
@@ -112,18 +159,139 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
 
       <div className='min-h-screen w-screen bg-layoutBackground overflow-x-hidden'>
         <header
-          className='w-full fixed h-20 z-40 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
+          className='w-full fixed  h-[5.375rem] z-40 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
           onClick={closeDropdownOnBlur}
         >
           <div className='flex justify-between items-center w-sw93 h-20'>
-            <Image src={movieQuotes} alt='movie quotes' />
+            <div className={`hidden lgPlus:block`}>
+              <Image src={movieQuotes} alt='movie quotes' />
+            </div>
+            <div
+              onClick={openMobileMenu}
+              className={`lgPlus:hidden cursor-pointer`}
+            >
+              <NavigationMenu />
+            </div>
 
             <div className='flex'>
               <div
-                className={`flex w-56 sm:justify-between justify-end items-center`}
+                className={`flex w-[4.5rem] lgPlus:w-72 justify-between items-center mr-[2.906rem]`}
               >
+                {pathname.split('/')[1] === 'news-feed' && (
+                  <div
+                    onClick={openMobileSearch}
+                    className={`lgPlus:hidden cursor-pointer`}
+                  >
+                    <SearchMobileIcon />
+                  </div>
+                )}
+
+                {pathname.split('/')[1] !== 'news-feed' && (
+                  <div className={`lgPlus:hidden opacity-0`}>
+                    <SearchMobileIcon />
+                  </div>
+                )}
+                <div className={`flex justify-center items-center`}>
+                  {notificationsQuantity > 0 && (
+                    <div
+                      onClick={openNotificationsModal}
+                      className={`bg-notification w-[1.563rem] h-[1.563rem] cursor-pointer rounded-full absolute ml-[1.4rem] mb-[1rem] flex justify-center items-center`}
+                    >
+                      <p
+                        className={`text-white font-normal text-sm font-helveticaEn`}
+                      >
+                        {notificationsQuantity}
+                      </p>
+                    </div>
+                  )}
+                  <div
+                    onClick={openNotificationsModal}
+                    className={`cursor-pointer`}
+                  >
+                    <div className={`hidden lgPlus:block`}>
+                      <NotificationWhiteIcon />
+                    </div>
+
+                    <div className={`lgPlus:hidden`}>
+                      <NotificationIconSmall />
+                    </div>
+                  </div>
+
+                  {isNotificationsModalOpen && (
+                    <>
+                      <div
+                        className={`fixed w-screen h-screen bg-transparent inset-0 mx-auto z-40`}
+                        onClick={closeNotificationsModal}
+                      ></div>
+
+                      <div className={`absolute mt-20 lg:mt-24 z-40`}>
+                        <BlackUpArrowIcon />
+                      </div>
+
+                      <div
+                        id='scrollableDiv'
+                        className={`absolute z-50 w-screen overflow-hidden lg:w-[60.063rem] h-[50.75rem] bg-black inset-x-0 mx-auto lg:mx-0 lg:inset-x-auto lg:mr-[50rem] lgPlus:mr-[32rem] mt-[56.1rem] lg:mt-[57rem] rounded-md flex flex-col items-center overflow-y-scroll`}
+                      >
+                        <div
+                          className={
+                            'w-[20rem] nm:w-[22.375rem] lg:w-[56.063rem] flex justify-between mt-10'
+                          }
+                        >
+                          <p
+                            className={`text-white ${
+                              locale === 'en'
+                                ? 'font-helveticaEn'
+                                : 'font-helveticaKa'
+                            } font-normal text-lg lg:text-2xl`}
+                          >
+                            {t('common:notifications')}
+                          </p>
+                          <p
+                            onClick={removeNotificationsOnClick}
+                            className={`text-white underline decoration-2 decoration-borderGraySoft cursor-pointer ${
+                              locale === 'en'
+                                ? 'font-helveticaEn'
+                                : 'font-helveticaKa'
+                            } font-normal text-sm lg:text-lg`}
+                          >
+                            {t('common:markAsAllRead')}
+                          </p>
+                        </div>
+
+                        <div className={`mt-[0.438rem]`}></div>
+
+                        <InfiniteScroll
+                          dataLength={notifications?.length}
+                          next={getQuoteNotifications}
+                          hasMore={hasMoreItems}
+                          scrollableTarget='scrollableDiv'
+                          loader={
+                            <div className={`mt-4`}>
+                              <LoadingSpinner />
+                            </div>
+                          }
+                          style={{ overflow: 'hidden !important' }}
+                        >
+                          {notifications.length > 0 &&
+                            notifications.map((comment, inx) => (
+                              <CommentsAndLikesNotification
+                                notification={comment}
+                                isNewGlobal={isNewGlobal}
+                                key={`${comment.id} ${inx}`}
+                                setNotificationsQuantity={
+                                  setNotificationsQuantity
+                                }
+                              />
+                            ))}
+                        </InfiniteScroll>
+                        <div className={`h-20 w-1 mt-5`}></div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
                 <div
-                  className={`sm:flex hidden items-center cursor-pointer`}
+                  className={`lgPlus:flex hidden items-center cursor-pointer relative z-50`}
                   onClick={dropdownSwitcher}
                 >
                   <p
@@ -163,10 +331,9 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   </div>
                 </div>
 
-                <Link
-                  className='bg-transparent h-10 w-32 flex justify-center items-center rounded-md border cursor-pointer'
-                  href='?stage=login'
-                  passHref
+                <div
+                  onClick={logOutUser}
+                  className='bg-transparent h-10 w-32 hidden lgPlus:flex justify-center items-center rounded-md border cursor-pointer relative z-50'
                 >
                   <p
                     className={`
@@ -176,19 +343,19 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   >
                     {t('common:logOut')}
                   </p>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
         </header>
 
         <div className='flex sm:mt-28'>
-          <div className='hidden lg:flex flex-col justify-start items-center w-72 h-96 ml-14 mr-10'>
+          <div className='hidden lgPlus:flex flex-col justify-start items-center fixed z-40 w-72 min-h-10 ml-14 mr-10'>
             <Link
               href='/profile'
               locale={locale}
               passHref={true}
-              className='flex justify-start items-center w-72 h-20 z-10'
+              className='flex justify-start items-center w-72 h-20 relative z-50'
             >
               {currentUserImageUrl && (
                 <Image
@@ -225,7 +392,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               href='/news-feed'
               locale={locale}
               passHref
-              className='flex justify-start items-center w-72 h-20 z-10'
+              className='flex justify-start items-center w-72 h-20 z-40'
             >
               <div className='w-16 h-16 flex justify-center items-center'>
                 <HomeSvg />
@@ -245,7 +412,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               href='/movies'
               locale={locale}
               passHref
-              className='flex justify-start items-center w-72 h-20 z-10'
+              className='flex justify-start items-center w-72 h-20 z-40'
             >
               <div className='w-16 h-16 flex justify-center items-center'>
                 <VideoSvg />
@@ -262,7 +429,107 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               </div>
             </Link>
           </div>
-          <div>{props.children}</div>
+
+          {isOpenMobileMenu && (
+            <div className='flex flex-col justify-start items-center fixed z-40 w-[23.875rem] h-[41.125rem] top-0 lgPlus:hidden bg-passwordWarningBg'>
+              <div className={`mt-[3.125rem]`}></div>
+              <Link
+                href='/profile'
+                locale={locale}
+                passHref={true}
+                className='flex justify-start items-center w-72 h-20 relative z-50 '
+              >
+                {currentUserImageUrl && (
+                  <Image
+                    priority={true}
+                    unoptimized={true}
+                    className='w-14 h-14 rounded-full object-fill border border-2 border-profileImageBorderRed'
+                    height={100}
+                    width={100}
+                    loader={() => currentUserImageUrl}
+                    src={currentUserImageUrl}
+                    alt={'user image'}
+                  />
+                )}
+                <div className='ml-6'>
+                  <p
+                    className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-lg text-white`}
+                  >
+                    {userName && userName}
+                  </p>
+                  <p
+                    className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-sm text-smoothGray mt-2`}
+                  >
+                    {t('profile:editProfile')}
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href='/news-feed'
+                locale={locale}
+                passHref
+                className='flex justify-start items-center w-72 h-20 z-40'
+              >
+                <div className='w-14 h-14 flex justify-center items-center'>
+                  <HomeIconSmall />
+                </div>
+                <div className='ml-6'>
+                  <p
+                    className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-base text-white`}
+                  >
+                    {t('profile:newsFeed')}
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href='/movies'
+                locale={locale}
+                passHref
+                className='flex justify-start items-center w-72 h-20 z-40'
+              >
+                <div className='w-14 h-14 flex justify-center items-center'>
+                  <VideoIconSmall />
+                </div>
+                <div className='ml-6'>
+                  <p
+                    className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-base text-white`}
+                  >
+                    {t('profile:listOfMovies')}
+                  </p>
+                </div>
+              </Link>
+
+              <div
+                onClick={logOutUser}
+                className='bg-transparent h-10 w-32 flex justify-center items-center mt-72 rounded-md border cursor-pointer relative z-50'
+              >
+                <p
+                  className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-base text-white`}
+                >
+                  {t('common:logOut')}
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className={'w-screen flex justify-center items-center'}>
+            {props.children}
+          </div>
         </div>
       </div>
     </>

@@ -129,6 +129,15 @@ module.exports = {
         chooseFile: 'rgba(151, 71, 255, 0.4)',
         movieTitle: 'rgba(221, 204, 170, 1)',
         deleteOrEdit: 'rgba(36, 34, 47, 1)',
+        notification: '#E33812',
+        borderGraySoftHalfTransparent: 'rgba(108, 117, 125, 0.5)',
+        smoothGreenColor: 'rgba(25, 135, 84, 1)',
+        commented: 'rgba(206, 212, 218, 1)',
+        ago: 'rgba(217, 217, 217, 1)',
+        darkBlueCreate: '#201424',
+        imageBorder: 'rgba(25, 135, 84, 1)',
+        searchMobileBg: 'rgba(18, 16, 26, 1)',
+        inputLineGray: 'rgba(239, 239, 239, 0.3)'
       },
       backgroundImage: {
         theRoyalTenenbaums:
@@ -146,7 +155,7 @@ module.exports = {
         blackBlue:
           'linear-gradient(187.16deg, rgba(36,34,47,255) 0.07%, rgba(36,34,47,255) 51.65%, rgba(36,34,47,255) 98.75%)',
         layoutBackground:
-          'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
+          'linear-gradient(187.16deg, #181623 0.07%, #181623 51.65%, #181623 98.75%)',
         blackDarkLinear:
           'linear-gradient(187.16deg, rgba(24, 22, 35, 0.7) 0.07%, rgba(25, 23, 37, 0.7) 51.65%, rgba(13, 11, 20, 0.7) 98.75%)',
         blackDarkGrayLinear:

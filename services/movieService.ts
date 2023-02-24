@@ -35,6 +35,10 @@ export const storeUserComment = async (data: object) => {
   return await axios.post('/api/store-comment', data)
 }
 
+export const storeLikes = async (data: object) => {
+  return await axios.post('/api/store-likes', data)
+}
+
 export const getGenres = async () => {
   return await axios.get('/api/get-genres')
 }

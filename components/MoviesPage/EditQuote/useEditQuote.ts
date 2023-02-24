@@ -2,10 +2,10 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { FormObj, Quote, RootState } from 'types'
+import { FormObj, Movies, Quote, RootState } from 'types'
 import { gandalfProfile } from 'public'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { editQuote, getQuote } from 'services'
+import { editQuote, getQuote, getMovie } from 'services'
 import { useForm } from 'react-hook-form'
 import { useDeleteQuote } from 'hooks'
 
@@ -23,6 +23,7 @@ export const useEditQuote = () => {
   const [userName, setUserName] = useState('')
 
   const [currentQuote, setCurrentQuote] = useState<Quote>({})
+  const [currentMovie, setCurrentMovie] = useState<Movies>({})
 
   const [isUndefinedImageError, setUndefinedImageError] = useState(true)
   const [imageValue, setImageValue] = useState<string | Blob>('')
@@ -50,6 +51,14 @@ export const useEditQuote = () => {
     retry: 1,
   })
 
+  useQuery(['movie', movie], () => getMovie(movie as string), {
+    onSuccess: async (response) => {
+      setCurrentMovie(response?.data[0])
+    },
+    refetchOnWindowFocus: false,
+    retry: 0,
+  })
+
   const getImageValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.files) {
       setImageValue(e?.target?.files[0] as File)
@@ -61,6 +70,8 @@ export const useEditQuote = () => {
     const formData = new FormData()
     formData.append('quote_en', data['quote_en'])
     formData.append('quote_ka', data['quote_ka'])
+    formData.append('movie_title_en', currentMovie?.title?.en!)
+    formData.append('movie_title_ka', currentMovie?.title?.ka!)
     formData.append('quote_id', quote as string)
     data['image'] && formData.append('thumbnail', imageValue)
 

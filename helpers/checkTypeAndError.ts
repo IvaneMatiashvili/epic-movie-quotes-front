@@ -5,17 +5,22 @@ export const checkTypeAndError = ({
   isTypePassword,
   error,
   isUndefinedError,
+  forImage,
+  forMovieOrNewsFeedPage,
 }: TypeAndError) => {
   if (!name) {
-    if (typeof window !== 'undefined' && !error && isUndefinedError) {
-      const pathname = window.location.pathname.split('/')
-      if (pathname[1] !== 'movies' && pathname[2] !== 'movies') {
+    if (!error && isUndefinedError) {
+      if (!forMovieOrNewsFeedPage) {
         return 'border-borderGray'
       }
     } else if ((error && !isUndefinedError) || (error && isUndefinedError)) {
       return 'border-borderRed'
     } else {
-      return 'border-borderGreen'
+      if (forImage) {
+        return 'border border-borderGreen'
+      } else {
+        return 'border-borderGreen'
+      }
     }
   } else {
     if (

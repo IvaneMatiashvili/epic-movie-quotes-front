@@ -1,20 +1,18 @@
 import { useViewQuote } from './useViewQuote'
 import React from 'react'
 import {
-  CommentsIcon,
   CommentsInput,
   DeleteIcon,
   EditIcon,
-  LikesIcon,
   MoviesTextarea,
   UserPageMainLayout,
   WhiteCloseIcon,
+  ViewQuoteThumbnailAndComments,
 } from 'components'
 import Image from 'next/image'
 import Link from 'next/link'
 import { EditQuote } from '../EditQuote'
 import { FormProvider } from 'react-hook-form'
-import { ViewQuoteThumbnailAndComments } from '../ViewQuoteThumbnailAndComments'
 
 const ViewQuote = () => {
   const {
@@ -34,10 +32,14 @@ const ViewQuote = () => {
     <UserPageMainLayout>
       <>
         {!stage && (
-          <div className={'min-h-screen bg-layoutBackground w-screen'}>
+          <div
+            className={
+              'min-h-screen bg-layoutBackground w-screen flex flex-col items-center justify-center'
+            }
+          >
             <div
               className={
-                'absolute w-screen lgPlus:w-r60 min-h-r57 top-0 left-0 bg-blackBlueSoft lgPlus:relative z-50 lgPlus:z-30 lgPlus:rounded-xl lgPlus:ml-r045'
+                'absolute w-screen lgPlus:w-r60 min-h-r57 top-0 left-0 bg-blackBlueSoft lgPlus:relative z-50 lgPlus:z-30 lgPlus:rounded-xl sm:ml-0 lgPlus:ml-40 xlPlus:ml-0'
               }
             >
               <div
@@ -167,7 +169,7 @@ const ViewQuote = () => {
 
                 <ViewQuoteThumbnailAndComments
                   currentQuote={currentQuote}
-                  currentUserImageUrl={currentUserImageUrl}
+                  updatedUserComments={[]}
                 />
 
                 <CommentsInput />

@@ -19,22 +19,22 @@ const MoviesPageMain = () => {
     stage,
     moviesQuantity,
     movies,
-    register,
     searchMovieOnChange,
     inputReference,
     edit,
+    inputValue,
   } = useMoviesPageMain()
 
   return (
     <UserPageMainLayout>
       <div
-        className={`w-screen xlPlus:w-[92rem] ${
+        className={`w-screen ${
           stage === 'addMovie' && 'min-h-r75'
-        } mt-28 sm:mt-0 flex flex-col items-center justify-center sm:block`}
+        } mt-28 sm:mt-0 flex flex-col items-center justify-center lg:ml-[20rem]`}
       >
         <div
           className={
-            'w-[19rem] nm:w-[22.375rem] sm:w-screen lg:w-[40rem] mdLg:w-[60rem] xlPlus:w-full flex justify-between sm:justify-around mdLg:justify-between items-center'
+            'w-[19rem] nm:w-[22.375rem] sm:w-screen lg:w-[40rem] mdLg:w-[60rem] xlPlus:w-[92rem] flex justify-between sm:justify-around mdLg:justify-between items-center'
           }
         >
           <p
@@ -53,7 +53,6 @@ const MoviesPageMain = () => {
                 <Link
                   href={'/movies?stage=search'}
                   locale={locale}
-                  passHref
                   className={'flex items-center'}
                 >
                   <SearchIcon />
@@ -80,9 +79,10 @@ const MoviesPageMain = () => {
                     <input
                       id={'search-movies'}
                       placeholder={t('movies:searchMovies')!}
-                      {...register('search')}
+                      name={'search'}
                       onChange={searchMovieOnChange}
                       ref={inputReference}
+                      defaultValue={inputValue}
                       className={`
                         font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base movies-input border-0 ml-4
                         font-normal rounded-md text-lg bg-transparent w-[40.5rem] h-8 outline-none pr-8 xlPlus:pr-1
@@ -91,7 +91,7 @@ const MoviesPageMain = () => {
                   </div>
                   <div
                     className={
-                      'w-64 ml-52 xlPlus:w-[43rem] h-0.1 bg-whiteGraySoftLine mt-4'
+                      'w-64 xlPlus:w-[43rem] h-0.1 bg-whiteGraySoftLine mt-4'
                     }
                   ></div>
                 </div>
@@ -120,7 +120,7 @@ const MoviesPageMain = () => {
         {isAddMoviesFormOpen && <AddNewMovie />}
         {movies.length > 0 && (
           <div
-            className={`w-[19rem] nm:w-[22.375rem] sm:w-screen lg:w-[40rem] mdLg:w-[62rem] xlPlus:w-[92rem] min-h-screen flex sm:justify-center mdLg:justify-start mt-16 flex-wrap gap-[5rem] xlPlus:gap-[4.75rem] ${
+            className={`w-[19rem] nm:w-[22.375rem] sm:w-screen lg:w-[40rem] mdLg:w-[62rem] xlPlus:w-[92rem] min-h-2 flex sm:justify-center mdLg:justify-start mt-16 flex-wrap gap-[5rem] xlPlus:gap-[4.75rem] ${
               (stage === 'addMovie' || edit) && 'hidden lgPlus:flex'
             }`}
           >
@@ -171,6 +171,7 @@ const MoviesPageMain = () => {
         )}
 
         <div className={'w-2 h-2 mb-10'}></div>
+        <div className={` ${stage === 'addMovie' && 'h-r75'}`}></div>
       </div>
     </UserPageMainLayout>
   )

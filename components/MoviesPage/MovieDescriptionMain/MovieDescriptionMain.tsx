@@ -41,10 +41,10 @@ const MovieDescriptionMain = () => {
         <div
           className={`${
             edit === 'editMovie' && 'min-h-[120vh]'
-          } mt-28 sm:mt-0 sm:ml-14 lgPlus:ml-0`}
+          } mt-28 sm:mt-0 sm:ml-14 lgPlus:ml-0 w-screen flex flex-col justify-center lgPlus:justify-start`}
         >
           <div
-            className={`w-screen sm:w-[92rem] flex flex-col items-center sm:block ${
+            className={`w-screen sm:w-[92rem] flex flex-col items-center sm:items-start lg:ml-96 ${
               stage === 'addQuote' && 'min-h-screen'
             } `}
           >
@@ -52,7 +52,7 @@ const MovieDescriptionMain = () => {
               <>
                 <div
                   className={
-                    'w-r19 nm:w-[22.375rem] sm:w-full flex justify-between items-center h-12'
+                    'w-r19 nm:w-[22.375rem] sm:w-[92rem] flex justify-between items-center h-12'
                   }
                 >
                   <p
@@ -298,7 +298,7 @@ const MovieDescriptionMain = () => {
           </div>
 
           {quotes && !stage && (
-            <div className={`w-screen sm:w-[92rem] mt-10`}>
+            <div className={`w-screen sm:w-[92rem] mt-10 lg:ml-96`}>
               {quotes.map((el: Quote, inx) => (
                 <div
                   key={`${el} ${Math.random()}`}
