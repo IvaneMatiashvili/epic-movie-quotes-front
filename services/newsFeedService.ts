@@ -24,11 +24,7 @@ export const logOut = async (logout: boolean) => {
 }
 
 export const getBroadcast = async (data: object) => {
-  return await axios.post(
-    `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
-    data,
-    {
-      withCredentials: true,
-    }
-  )
+  return await axios.post(`/api/broadcasting/auth`, data, {
+    withCredentials: true,
+  })
 }
