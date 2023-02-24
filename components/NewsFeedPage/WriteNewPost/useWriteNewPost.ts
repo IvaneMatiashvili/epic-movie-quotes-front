@@ -42,6 +42,18 @@ export const useWriteNewPost = (
   })
   const { errors, isDirty, isSubmitting } = form.formState
 
+  const movieTextareaValidation = {
+    required: t('errors:fieldIsRequired')!,
+    minLength: {
+      value: 10,
+      message: t('errors:minTextarea'),
+    },
+    maxLength: {
+      value: 600,
+      message: t('errors:maxTextarea'),
+    },
+  }
+
   const getImageValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setUndefinedImageError(false)
 
@@ -146,5 +158,6 @@ export const useWriteNewPost = (
     movies,
     selectedMovie,
     hasBorder,
+    movieTextareaValidation,
   }
 }

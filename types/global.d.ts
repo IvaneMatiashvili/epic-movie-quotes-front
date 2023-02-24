@@ -101,5 +101,5 @@ export type Movies = {
   budget?: string
   quotes?: Quote[]
   user?: UserInformation
-  user_id: number
+  user_id?: number
 }

@@ -6,7 +6,6 @@ import {
   MoviesTextarea,
   VideoSvg,
   OpenMovieListIcon,
-  CloseIconSmall,
 } from 'components'
 import { FormProvider } from 'react-hook-form'
 import { checkTypeAndError } from 'helpers'
@@ -37,6 +36,7 @@ const WriteNewPost: React.FC<Props> = (props) => {
     isOpenDropdown,
     selectedMovie,
     hasBorder,
+    movieTextareaValidation,
   } = useWriteNewPost(props.setIsNewQuoteCreated, props.closeWriteNewQuoteModal)
 
   return (
@@ -105,15 +105,7 @@ const WriteNewPost: React.FC<Props> = (props) => {
               <MoviesTextarea
                 id={'quote_en'}
                 errors={{
-                  required: t('errors:fieldIsRequired')!,
-                  minLength: {
-                    value: 10,
-                    message: t('errors:minTextarea'),
-                  },
-                  maxLength: {
-                    value: 600,
-                    message: t('errors:maxTextarea'),
-                  },
+                  ...movieTextareaValidation,
                   pattern: {
                     value: /^[a-zA-Z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
                     message: t('errors:onlyEnglishLetters'),
@@ -131,15 +123,7 @@ const WriteNewPost: React.FC<Props> = (props) => {
               <MoviesTextarea
                 id={'quote_ka'}
                 errors={{
-                  required: t('errors:fieldIsRequired')!,
-                  minLength: {
-                    value: 10,
-                    message: t('errors:minTextarea'),
-                  },
-                  maxLength: {
-                    value: 600,
-                    message: t('errors:maxTextarea'),
-                  },
+                  ...movieTextareaValidation,
                   pattern: {
                     value: /^[ა-ჰ0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
                     message: t('errors:onlyGeorgianLetters'),
