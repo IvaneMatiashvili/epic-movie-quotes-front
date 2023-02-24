@@ -29,6 +29,7 @@ export const useNewsFeedMain = () => {
   const { mutate: submitForm } = useMutation(searchQuotes)
 
   const inputReference = useRef<HTMLInputElement>(null)
+
   useQuery([`userQuotes`, page], () => getQuotes(page), {
     onSuccess: (response) => {
       const newArr = [...userQuotes, ...response?.data[0]]
@@ -83,13 +84,16 @@ export const useNewsFeedMain = () => {
   const openSearch = () => {
     setIsSearchOpen(true)
   }
+
   const closeSearch = () => {
     setIsSearchOpen(false)
   }
+
   const openWriteNewQuoteModal = () => {
     setIsWriteNewQuoteModalOpen(true)
     setIsSearchOpen(false)
   }
+
   const closeWriteNewQuoteModal = () => {
     setIsWriteNewQuoteModalOpen(false)
   }
@@ -111,10 +115,6 @@ export const useNewsFeedMain = () => {
     setIsInputEmpty,
     getUserQuotes,
   ])
-
-  useEffect(() => {
-    console.log(isSearchOpen)
-  }, [isSearchOpen])
 
   return {
     locale,
