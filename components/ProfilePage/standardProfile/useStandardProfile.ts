@@ -71,8 +71,6 @@ export const useStandardProfile = () => {
         setUserEmails(response?.data.emails)
       }
 
-      console.log(response.data.emails)
-
       if (!primaryEmail) {
         setPrimaryEmail(
           response?.data.emails.filter(

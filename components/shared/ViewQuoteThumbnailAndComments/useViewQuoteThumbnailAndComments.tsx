@@ -51,7 +51,6 @@ export const useViewQuoteThumbnailAndComments = (
 
     if (newLikeId) {
       data['like_id'] = newLikeId
-      console.log(quoteUserId)
     }
     submitForm(data, {
       onSuccess: async (response) => {
