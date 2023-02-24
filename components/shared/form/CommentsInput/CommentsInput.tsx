@@ -2,9 +2,9 @@ import { useCommentsInput } from './useCommentsInput'
 import React from 'react'
 import Image from 'next/image'
 import { FormProvider } from 'react-hook-form'
-import { Props } from './types'
+import { CommentsInputProps } from './types'
 
-const CommentsInput: React.FC<Props> = (props) => {
+const CommentsInput: React.FC<CommentsInputProps> = (props) => {
   const { t, currentUserImageUrl, form, register, handleSubmit, storeComment } =
     useCommentsInput(
       props.userQuoteId,

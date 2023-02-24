@@ -1,6 +1,6 @@
 import { Comments, SetState } from 'types'
 
-export type Props = {
+export type CommentsInputProps = {
   userQuoteId?: string
   page?: number
   setUpdatedUserComments?: SetState<Comments[]>

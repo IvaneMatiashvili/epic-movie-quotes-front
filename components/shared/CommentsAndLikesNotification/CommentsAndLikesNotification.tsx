@@ -1,11 +1,13 @@
 import React from 'react'
-import { Props } from './types'
+import { CommentsAndLikesNotificationProps } from './types'
 import Image from 'next/image'
 import { gandalfProfile } from 'public'
 import { useCommentsAndLikesNotification } from './useCommentsAndLikesNotification'
 import { CommentsIconSmall, HeartIconSmall } from 'components'
 
-const CommentsAndLikesNotification: React.FC<Props> = (props) => {
+const CommentsAndLikesNotification: React.FC<
+  CommentsAndLikesNotificationProps
+> = (props) => {
   const {
     locale,
     t,

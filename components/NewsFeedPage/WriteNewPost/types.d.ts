@@ -1,6 +1,6 @@
 import { SetState } from 'types'
 
-export type Props = {
+export type WriteNewProps = {
   closeWriteNewQuoteModal: () => Void
   setIsNewQuoteCreated: SetState<boolean>
 }

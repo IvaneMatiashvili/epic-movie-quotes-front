@@ -2,10 +2,10 @@ import { useUserQuote } from './useUserQuote'
 import React from 'react'
 import { CommentsInput, ViewQuoteThumbnailAndComments } from 'components'
 import Image from 'next/image'
-import { Props } from './types'
+import { UserQuoteProps } from './types'
 import { gandalfProfile } from 'public'
 
-const UserQuote: React.FC<Props> = (props) => {
+const UserQuote: React.FC<UserQuoteProps> = (props) => {
   const { locale, t, updatedUserComments, setUpdatedUserComments } =
     useUserQuote()
 

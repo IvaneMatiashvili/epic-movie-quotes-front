@@ -11,10 +11,10 @@ import { FormProvider } from 'react-hook-form'
 import { checkTypeAndError } from 'helpers'
 import React from 'react'
 import Image from 'next/image'
-import { Props } from './types'
+import { WriteNewProps } from './types'
 import Link from 'next/link'
 
-const WriteNewPost: React.FC<Props> = (props) => {
+const WriteNewPost: React.FC<WriteNewProps> = (props) => {
   const {
     locale,
     t,

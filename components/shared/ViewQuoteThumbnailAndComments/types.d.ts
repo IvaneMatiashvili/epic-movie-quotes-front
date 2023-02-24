@@ -1,6 +1,6 @@
 import { Comments, Quote } from 'types'
 
-export type Props = {
+export type ViewQuoteThumbnailAndCommentsProps = {
   currentQuote: Quote
   fromNewsFeed?: boolean
   updatedUserComments: Comments[]

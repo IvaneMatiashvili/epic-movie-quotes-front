@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import { CommentsIcon, LikesIcon } from 'components'
 import React from 'react'
-import { Props } from './types'
+import { ViewQuoteThumbnailAndCommentsProps } from './types'
 import { useViewQuoteThumbnailAndComments } from './useViewQuoteThumbnailAndComments'
 
-const ViewQuoteThumbnailAndComments: React.FC<Props> = (props) => {
+const ViewQuoteThumbnailAndComments: React.FC<
+  ViewQuoteThumbnailAndCommentsProps
+> = (props) => {
   const { hasLike, setLikeOrRemove, likesCounter, locale, defaultUserImage } =
     useViewQuoteThumbnailAndComments(
       props?.currentQuote?.likes!,

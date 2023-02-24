@@ -1,6 +1,6 @@
 import { NewsFeedNotification, SetState } from 'types'
 
-export type Props = {
+export type CommentsAndLikesNotificationProps = {
   notification: NewsFeedNotification
   isNewGlobal: boolean
   setNotificationsQuantity: SetState<number>
