@@ -47,9 +47,8 @@ export type CreateNewEmail = {
 
 export type ReactDivMouseEvent = React.MouseEvent<HTMLDivElement, MouseEvent>
 
-export type Transition = {
-  en: string
-  ka: string
+export interface Transition {
+  [key: string]: string
 }
 export type Comments = {
   comment?: string

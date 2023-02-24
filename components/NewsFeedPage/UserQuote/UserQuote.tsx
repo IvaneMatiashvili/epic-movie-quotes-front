@@ -59,18 +59,10 @@ const UserQuote: React.FC<Props> = (props) => {
                       locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                     }`}
                   >
-                    {`"${
-                      locale === 'en'
-                        ? props?.userQuote?.quote?.en
-                        : props?.userQuote?.quote?.ka
-                    }"
+                    {`"${props?.userQuote?.quote[locale as string]}"
                     ${t('newsFeed:movie')}-`}
                     <span className={'text-movieTitle'}>
-                      {`${
-                        locale === 'en'
-                          ? props?.movie?.title?.en
-                          : props?.movie?.title?.ka
-                      }.`}
+                      {`${props?.userQuote?.quote[locale as string]}.`}
                     </span>
                     {` (${props?.movie?.release_date?.slice(0, 4)})`}
                   </p>
