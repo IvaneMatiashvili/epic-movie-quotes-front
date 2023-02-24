@@ -5,12 +5,15 @@ import {
   BlackUpArrowIcon,
   CommentsAndLikesNotification,
   DownArrow,
+  HomeIconSmall,
   HomeSvg,
   LoadingSpinner,
+  NavigationMenu,
   NotificationIconSmall,
   NotificationWhiteIcon,
   SearchIcon,
   SearchMobileIcon,
+  VideoIconSmall,
   VideoSvg,
 } from 'components'
 import Link from 'next/link'
@@ -43,12 +46,15 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
     getQuoteNotifications,
     hasMoreItems,
     setNotificationsQuantity,
-    loadDataOnlyOnce,
     closeMobileSearch,
     openMobileSearch,
+    openMobileMenu,
+    isOpenMobileMenu,
+    closeMobileMenu,
+    logOutUser,
   } = useUserPageMainLayout(
     props.setIsSetBackground,
-    props.setIsSearchMobileOpen!
+    props.setIsSearchMobileOpen
   )
 
   return (
@@ -64,6 +70,12 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
           !props.isSearchMobileOpen && 'hidden'
         } `}
         onClick={closeMobileSearch}
+      ></div>
+      <div
+        className={`min-h-screen w-full fixed z-40 bg-transparent lgPlus:hidden ${
+          !isOpenMobileMenu && 'hidden'
+        } `}
+        onClick={closeMobileMenu}
       ></div>
 
       <Link
@@ -151,8 +163,14 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
           onClick={closeDropdownOnBlur}
         >
           <div className='flex justify-between items-center w-sw93 h-20'>
-            <div className={`opacity-0 sm:opacity-100`}>
+            <div className={`hidden lgPlus:block`}>
               <Image src={movieQuotes} alt='movie quotes' />
+            </div>
+            <div
+              onClick={openMobileMenu}
+              className={`lgPlus:hidden cursor-pointer`}
+            >
+              <NavigationMenu />
             </div>
 
             <div className='flex'>
@@ -313,10 +331,9 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   </div>
                 </div>
 
-                <Link
+                <div
+                  onClick={logOutUser}
                   className='bg-transparent h-10 w-32 hidden lgPlus:flex justify-center items-center rounded-md border cursor-pointer relative z-50'
-                  href='?stage=login'
-                  passHref
                 >
                   <p
                     className={`
@@ -326,7 +343,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   >
                     {t('common:logOut')}
                   </p>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -338,7 +355,6 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               href='/profile'
               locale={locale}
               passHref={true}
-              onLoad={loadDataOnlyOnce}
               className='flex justify-start items-center w-72 h-20 relative z-50'
             >
               {currentUserImageUrl && (
@@ -376,7 +392,6 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               href='/news-feed'
               locale={locale}
               passHref
-              onLoad={loadDataOnlyOnce}
               className='flex justify-start items-center w-72 h-20 z-40'
             >
               <div className='w-16 h-16 flex justify-center items-center'>
@@ -396,7 +411,6 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
             <Link
               href='/movies'
               locale={locale}
-              onLoad={loadDataOnlyOnce}
               passHref
               className='flex justify-start items-center w-72 h-20 z-40'
             >
@@ -415,6 +429,104 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               </div>
             </Link>
           </div>
+
+          {isOpenMobileMenu && (
+            <div className='flex flex-col justify-start items-center fixed z-40 w-[23.875rem] h-[41.125rem] top-0 lgPlus:hidden bg-passwordWarningBg'>
+              <div className={`mt-[3.125rem]`}></div>
+              <Link
+                href='/profile'
+                locale={locale}
+                passHref={true}
+                className='flex justify-start items-center w-72 h-20 relative z-50 '
+              >
+                {currentUserImageUrl && (
+                  <Image
+                    priority={true}
+                    unoptimized={true}
+                    className='w-14 h-14 rounded-full object-fill border border-2 border-profileImageBorderRed'
+                    height={100}
+                    width={100}
+                    loader={() => currentUserImageUrl}
+                    src={currentUserImageUrl}
+                    alt={'user image'}
+                  />
+                )}
+                <div className='ml-6'>
+                  <p
+                    className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-lg text-white`}
+                  >
+                    {userName && userName}
+                  </p>
+                  <p
+                    className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-sm text-smoothGray mt-2`}
+                  >
+                    {t('profile:editProfile')}
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href='/news-feed'
+                locale={locale}
+                passHref
+                className='flex justify-start items-center w-72 h-20 z-40'
+              >
+                <div className='w-14 h-14 flex justify-center items-center'>
+                  <HomeIconSmall />
+                </div>
+                <div className='ml-6'>
+                  <p
+                    className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-base text-white`}
+                  >
+                    {t('profile:newsFeed')}
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href='/movies'
+                locale={locale}
+                passHref
+                className='flex justify-start items-center w-72 h-20 z-40'
+              >
+                <div className='w-14 h-14 flex justify-center items-center'>
+                  <VideoIconSmall />
+                </div>
+                <div className='ml-6'>
+                  <p
+                    className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-base text-white`}
+                  >
+                    {t('profile:listOfMovies')}
+                  </p>
+                </div>
+              </Link>
+
+              <div
+                onClick={logOutUser}
+                className='bg-transparent h-10 w-32 flex justify-center items-center mt-72 rounded-md border cursor-pointer relative z-50'
+              >
+                <p
+                  className={`
+                  ${
+                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                  } font-normal text-base text-white`}
+                >
+                  {t('common:logOut')}
+                </p>
+              </div>
+            </div>
+          )}
+
           <div className={'w-screen flex justify-center items-center'}>
             {props.children}
           </div>

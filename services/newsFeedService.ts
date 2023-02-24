@@ -17,3 +17,7 @@ export const removeNotifications = async () => {
 export const removeNotification = async (data: object) => {
   return await axios.post('/api/remove-notification', data)
 }
+
+export const logOut = async (logout: boolean) => {
+  return await axios.post('/api/logout', logout)
+}

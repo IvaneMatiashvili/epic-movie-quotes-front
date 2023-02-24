@@ -84,7 +84,7 @@ const ViewQuoteThumbnailAndComments: React.FC<Props> = (props) => {
                   unoptimized={true}
                   className='w-[3.25rem] h-[3.25rem] rounded-full object-fill'
                   height={100}
-                  width={100}
+                  width={100} //comment->user_image
                   loader={() => el?.user?.user_image || defaultUserImage}
                   src={el?.user?.user_image || defaultUserImage}
                   alt={'user image'}

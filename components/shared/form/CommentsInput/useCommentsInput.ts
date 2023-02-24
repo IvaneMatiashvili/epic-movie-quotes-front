@@ -42,9 +42,7 @@ export const useCommentsInput = (
 
     form.resetField('comment')
 
-    data['user_id'] = quoteUserId
-
-    console.log(quoteUserId)
+    quoteUserId && (data['user_id'] = quoteUserId.toString())
 
     submitForm(data, {
       onSuccess: async (response) => {

@@ -134,7 +134,7 @@ const NewsFeedMain = () => {
           {isSearchOpen && (
             <div
               onClick={closeSearch}
-              className={`fixed w-screen h-screen z-10 bg-transparent inset-0 mx-auto hidden lgPlus:block`}
+              className={`fixed w-screen h-screen z-10 bg-white/10 inset-0 mx-auto hidden lgPlus:block`}
             ></div>
           )}
 
@@ -161,7 +161,7 @@ const NewsFeedMain = () => {
 
             {isSearchOpen && (
               <div
-                className={`hidden lgPLus:flex flex-col items-center w-60 xlPlus:w-[43rem] justify-center ml-[-45rem] search-animation z-20`}
+                className={`flex flex-col items-center w-60 lg:w-[43rem] justify-center ml-[-45rem] search-animation z-20`}
               >
                 <div
                   className={`flex items-center justify-between ${
@@ -189,8 +189,8 @@ const NewsFeedMain = () => {
                 <div
                   className={`${
                     locale === 'en'
-                      ? 'w-64 xlPlus:w-[43rem] ml-6'
-                      : 'w-64 xlPlus:w-[42rem] ml-10'
+                      ? 'w-64 lgPlus:w-[43rem] ml-6'
+                      : 'w-64 lgPlus:w-[42rem] ml-10'
                   } h-0.1 absolute bg-whiteGraySoftLine mt-16`}
                 ></div>
               </div>

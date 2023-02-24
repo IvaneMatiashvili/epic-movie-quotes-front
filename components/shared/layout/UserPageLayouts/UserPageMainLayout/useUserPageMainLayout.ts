@@ -11,24 +11,23 @@ import {
 import { gandalfProfile } from 'public'
 import { useAuth } from 'hooks'
 import Echo from 'laravel-echo'
-/*
 import Pusher from 'pusher-js'
-*/
-import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { getNotifications, removeNotifications } from 'services'
+import { useMutation, useQuery } from 'react-query'
+import { getNotifications, removeNotifications, logOut } from 'services'
 import axios from 'axios'
+import { deleteCookie, getCookie } from 'cookies-next'
 
 export const useUserPageMainLayout = (
-  setIsSetBackground: SetState<boolean> | undefined,
-  setIsSearchMobileOpen: SetState<boolean>
+  setIsSetBackground?: SetState<boolean>,
+  setIsPageFirstLoad?: SetState<boolean>,
+  setIsSearchMobileOpen?: SetState<boolean>
 ) => {
   const { t } = useTranslation()
   const { locale, query, push, asPath, pathname } = useRouter()
   const { stage, movie, quote, edit } = query
   useAuth()
 
-  const { mutate: submitForm } = useMutation(removeNotifications)
-  const queryClient = useQueryClient()
+  const { mutate: submitForm } = useMutation(logOut)
 
   const [currentUserImageUrl, setCurrentImageUrl] = useState('')
   const [userName, setUserName] = useState('')
@@ -39,10 +38,10 @@ export const useUserPageMainLayout = (
     useState(false)
 
   const [isNewGlobal, setIsNewGlobal] = useState(true)
+  const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
 
   const [page, setPage] = useState(0)
 
-  const [newNotification, setNewNotification] = useState<NewsFeedNotification>()
   const [hasMoreItems, setHasMoreItems] = useState(true)
 
   const [isNotificationsRemoved, setIsNotificationsRemoved] = useState(false)
@@ -50,10 +49,9 @@ export const useUserPageMainLayout = (
   const userInformation = useSelector((state: RootState) => state.userData)
 
   useQuery('removedNotifications', removeNotifications, {
-    onSuccess: (r) => {
+    onSuccess: () => {
       setIsNotificationsRemoved(false)
       setNotificationsQuantity(0)
-      queryClient.invalidateQueries('notifications')
       setIsNewGlobal(false)
     },
     refetchOnWindowFocus: false,
@@ -62,57 +60,63 @@ export const useUserPageMainLayout = (
     enabled: isNotificationsRemoved,
   })
 
-  const loadDataOnlyOnce = useCallback(async () => {
-    if (window.pusher !== undefined && typeof window !== 'undefined') {
-      return
-    }
-
-    window.pusher = require('pusher-js')
-
-    window.echo = new Echo({
-      broadcaster: 'pusher',
-      key: process.env.NEXT_PUBLIC_PUSHER_KEY,
-      cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
-      authorizer: (channel: any) => {
-        return {
-          authorize: (socketId: string, callback: Function) => {
-            axios
-              .post(
-                `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
-                {
-                  socket_id: socketId,
-                  channel_name: channel.name,
-                },
-                {
-                  withCredentials: true,
-                }
-              )
-              .then((response) => {
-                callback(false, response.data)
-              })
-              .catch((error) => {
-                callback(true, error)
-              })
-          },
-        }
+  const logOutUser = () => {
+    submitForm(true, {
+      onSuccess: () => {
+        getCookie('userInfo') && deleteCookie('userInfo')
+        getCookie('XSRF-TOKEN') && deleteCookie('XSRF-TOKEN')
+        localStorage.removeItem('userInfo')
+        push(`/`)
       },
     })
-
-    window.echo
-      .private(`notifications.` + userInformation.id)
-      .listen(`NotificationStored`, (e) => {
-        console.log(e)
-        setNotifications((prev) => [e.notification, ...prev])
-        setNotificationsQuantity((prev) => prev + 1)
-        setIsNewGlobal(true)
-      })
-  }, [userInformation.id])
+  }
 
   useEffect(() => {
-    loadDataOnlyOnce()
+    let echo: Echo
+    ;(() => {
+      window.pusher = Pusher
 
-    console.log('useEffect');
-  }, [loadDataOnlyOnce])
+      echo = new Echo({
+        broadcaster: 'pusher',
+        key: process.env.NEXT_PUBLIC_PUSHER_KEY,
+        cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
+        authorizer: (channel: any) => {
+          return {
+            authorize: (socketId: string, callback: Function) => {
+              axios
+                .post(
+                  `${process.env.NEXT_PUBLIC_API_BASE_URI}/api/broadcasting/auth`,
+                  {
+                    socket_id: socketId,
+                    channel_name: channel.name,
+                  },
+                  {
+                    withCredentials: true,
+                  }
+                )
+                .then((response) => {
+                  callback(false, response.data)
+                })
+                .catch((error) => {
+                  callback(true, error)
+                })
+            },
+          }
+        },
+      })
+
+      echo
+        .private(`notifications.` + userInformation.id)
+        .listen(`NotificationStored`, (e) => {
+          setNotifications((prev) => [e.notification, ...prev])
+          setNotificationsQuantity((prev) => prev + 1)
+          setIsNewGlobal(true)
+        })
+    })()
+    return () => {
+      echo?.disconnect()
+    }
+  }, [userInformation])
 
   useQuery(['notifications', page], () => getNotifications(page), {
     onSuccess: (response) => {
@@ -130,11 +134,18 @@ export const useUserPageMainLayout = (
     refetchOnWindowFocus: false,
   })
 
+  const openMobileMenu = () => {
+    setIsOpenMobileMenu(true)
+  }
+  const closeMobileMenu = () => {
+    setIsOpenMobileMenu(false)
+  }
+
   const openMobileSearch = () => {
-    setIsSearchMobileOpen(true)
+    setIsSearchMobileOpen && setIsSearchMobileOpen(true)
   }
   const closeMobileSearch = () => {
-    setIsSearchMobileOpen(false)
+    setIsSearchMobileOpen && setIsSearchMobileOpen(false)
   }
 
   const getQuoteNotifications = async () => {
@@ -172,6 +183,7 @@ export const useUserPageMainLayout = (
       setIsActiveDropdown(false)
     }
     setIsSetBackground && setIsSetBackground(false)
+    setIsOpenMobileMenu(false)
 
     switch (pathname.split('/')[1]) {
       case 'profile':
@@ -222,8 +234,11 @@ export const useUserPageMainLayout = (
     hasMoreItems,
     getQuoteNotifications,
     setNotificationsQuantity,
-    loadDataOnlyOnce,
     openMobileSearch,
     closeMobileSearch,
+    openMobileMenu,
+    closeMobileMenu,
+    isOpenMobileMenu,
+    logOutUser,
   }
 }

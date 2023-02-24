@@ -112,6 +112,10 @@ export const useNewsFeedMain = () => {
     getUserQuotes,
   ])
 
+  useEffect(() => {
+    console.log(isSearchOpen)
+  }, [isSearchOpen])
+
   return {
     locale,
     t,
