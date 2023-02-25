@@ -128,13 +128,13 @@ const MovieDescriptionMain = () => {
                         >
                           {genres.map((el: Genres, inx) => (
                             <div
-                              key={el.genre + inx}
+                              key={el.genre && el?.genre[locale!] + inx}
                               className={`h-r01875 min-w-20 flex items-center justify-center bg-borderGraySoft rounded-sm cursor-default`}
                             >
                               <p
                                 className={`font-medium text-lg text-white font-helveticaKa ml-4 mr-4`}
                               >
-                                {el.genre}
+                                {el.genre && el?.genre[locale!]}
                               </p>
                             </div>
                           ))}

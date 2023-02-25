@@ -4,5 +4,5 @@ export type CommentsInputProps = {
   userQuoteId?: string
   page?: number
   setUpdatedUserComments?: SetState<Comments[]>
-  quoteUserId?: number
+  quoteUserId?: string
 }

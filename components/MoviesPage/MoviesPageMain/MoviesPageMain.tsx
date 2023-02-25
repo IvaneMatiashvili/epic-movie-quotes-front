@@ -53,6 +53,7 @@ const MoviesPageMain = () => {
                 <Link
                   href={'/movies?stage=search'}
                   locale={locale}
+                  passHref
                   className={'flex items-center'}
                 >
                   <SearchIcon />
@@ -68,7 +69,7 @@ const MoviesPageMain = () => {
 
               {stage === 'search' && (
                 <div
-                  className={`hidden sm:flex flex-col items-center sm:w-60 xlPlus:w-[43rem] justify-center absolute ml-[-45rem] search-animation z-40`}
+                  className={`hidden sm:flex flex-col items-center sm:w-60 xlPlus:w-[43rem] justify-center absolute ml-[-45rem] search-animation z-30`}
                 >
                   <div
                     className={`flex items-center  justify-between sm:w-16 xlPlus:w-[43rem]`}
@@ -84,7 +85,7 @@ const MoviesPageMain = () => {
                       ref={inputReference}
                       defaultValue={inputValue}
                       className={`
-                        font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base movies-input border-0 ml-4
+                        font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base search-movies-input border-0 ml-4
                         font-normal rounded-md text-lg bg-transparent w-[40.5rem] h-8 outline-none pr-8 xlPlus:pr-1
                     `}
                     />
@@ -127,7 +128,7 @@ const MoviesPageMain = () => {
             {movies.map((el: Movies, inx) => (
               <Link
                 key={el.title?.en! + el.id + inx}
-                className={`flex flex-col justify-center cursor-pointer`}
+                className={`flex flex-col justify-center cursor-pointer relative z-30`}
                 href={`/movies/${el.id}`}
                 passHref
                 locale={locale}

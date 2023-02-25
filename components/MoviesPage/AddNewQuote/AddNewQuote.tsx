@@ -28,6 +28,7 @@ const AddNewQuote = () => {
     genres,
     movie,
     storeNewQuote,
+    textareaValidation,
   } = useAddNewQuote()
 
   return (
@@ -76,74 +77,62 @@ const AddNewQuote = () => {
               onSubmit={handleSubmit(storeNewQuote)}
             >
               <div className={`flex flex-col-reverse lg:flex-col`}>
-                <MoviesTextarea
-                  id={'quote_en'}
-                  errors={{
-                    required: t('errors:fieldIsRequired')!,
-                    minLength: {
-                      value: 10,
-                      message: t('errors:minTextarea'),
-                    },
-                    maxLength: {
-                      value: 600,
-                      message: t('errors:maxTextarea'),
-                    },
-                    pattern: {
-                      value: /^[a-zA-Z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
-                      message: t('errors:onlyEnglishLetters'),
-                    },
-                  }}
-                  name={'quote_en'}
-                  placeholder={'"Quote in English."'}
-                  key={'quote_en'}
-                  isEnglish={true}
-                  error={errors.quote_en}
-                />
+                <div>
+                  <MoviesTextarea
+                    id={'quote_en'}
+                    errors={{
+                      ...textareaValidation,
+                      pattern: {
+                        value: /^[a-zA-Z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
+                        message: t('errors:onlyEnglishLetters'),
+                      },
+                    }}
+                    name={'quote_en'}
+                    placeholder={'"Quote in English."'}
+                    key={'quote_en'}
+                    isEnglish={true}
+                    error={errors.quote_en}
+                  />
 
-                <MoviesInputError errors={errors} name='quote_en' />
+                  <MoviesInputError errors={errors} name='quote_en' />
+                </div>
 
-                <MoviesTextarea
-                  id={'quote_ka'}
-                  errors={{
-                    required: t('errors:fieldIsRequired')!,
-                    minLength: {
-                      value: 10,
-                      message: t('errors:minTextarea'),
-                    },
-                    maxLength: {
-                      value: 600,
-                      message: t('errors:maxTextarea'),
-                    },
-                    pattern: {
-                      value: /^[ა-ჰ0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
-                      message: t('errors:onlyGeorgianLetters'),
-                    },
-                  }}
-                  name={'quote_ka'}
-                  placeholder={'“ციტატა ქართულ ენაზე”'}
-                  key={'quote_ka'}
-                  isEnglish={false}
-                  error={errors.quote_ka}
-                />
+                <div>
+                  <MoviesTextarea
+                    id={'quote_ka'}
+                    errors={{
+                      ...textareaValidation,
+                      pattern: {
+                        value: /^[ა-ჰ0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
+                        message: t('errors:onlyGeorgianLetters'),
+                      },
+                    }}
+                    name={'quote_ka'}
+                    placeholder={'“ციტატა ქართულ ენაზე”'}
+                    key={'quote_ka'}
+                    isEnglish={false}
+                    error={errors.quote_ka}
+                  />
 
-                <MoviesInputError errors={errors} name='quote_ka' />
-
-                <div
-                  className={`
+                  <MoviesInputError errors={errors} name='quote_ka' />
+                </div>
+                <div>
+                  <div
+                    className={`
                 font-normal rounded-md text-lg bg-transparent  w-r19 nm:w-[22.375rem] lg:w-r55 h-r055 outline-none mt-[2.875rem] flex justify-start items-center
                 `}
-                >
-                  <input
-                    type='file'
-                    id='uploadImage'
-                    {...register('image', {
-                      required: t('errors:fieldIsRequired')!,
-                    })}
-                    multiple
-                    onChange={getImageValue}
-                    accept='image/*'
-                    title=' '
-                    className={` absolute
+                  >
+                    <input
+                      type='file'
+                      id='uploadImage'
+                      {...register('image', {
+                        required: t('errors:fieldIsRequired')!,
+                      })}
+                      multiple
+                      onChange={getImageValue}
+                      accept='image/*'
+                      title=' '
+                      className={` absolute
                 border border-borderGraySoft 
                 font-normal rounded-md text-lg bg-transparent  w-r19 nm:w-[22.375rem] lg:w-r55 h-r055 outline-none cursor-pointer z-10
                  ${checkTypeAndError({
@@ -152,48 +141,66 @@ const AddNewQuote = () => {
                    forMovieOrNewsFeedPage: true,
                  })}
                 `}
-                  ></input>
+                    ></input>
 
-                  <div className='ml-4'>
-                    <PhotoIcon />
-                  </div>
+                    <div className='ml-4'>
+                      <PhotoIcon />
+                    </div>
 
-                  <p
-                    className={`font-light text-base text-white ml-4 hidden lg:block ${
-                      locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                    }`}
-                  >
-                    {t('movies:dragAndDrop')}
-                  </p>
-
-                  <p
-                    className={`font-light text-xs nm:text-base text-white w-40 ml-4 lg:hidden ${
-                      locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                    }`}
-                  >
-                    {t('movies:uploadImage')}
-                  </p>
-
-                  <div className='flex bg-chooseFile items-center justify-center w-36 h-10 rounded-sm ml-4'>
                     <p
-                      className={`font-light text-xs nm:text-sm lg:text-base text-white ${
+                      className={`font-light text-base text-white ml-4 hidden lg:block ${
                         locale === 'en'
                           ? 'font-helveticaEn'
                           : 'font-helveticaKa'
                       }`}
                     >
-                      {t('movies:chooseFile')}
+                      {t('movies:dragAndDrop')}
+                    </p>
+
+                    <p
+                      className={`font-light text-xs nm:text-base text-white w-40 ml-4 lg:hidden ${
+                        locale === 'en'
+                          ? 'font-helveticaEn'
+                          : 'font-helveticaKa'
+                      }`}
+                    >
+                      {t('movies:uploadImage')}
+                    </p>
+
+                    <div className='flex bg-chooseFile items-center justify-center w-36 h-10 rounded-sm ml-4'>
+                      <p
+                        className={`font-light text-xs nm:text-sm lg:text-base text-white ${
+                          locale === 'en'
+                            ? 'font-helveticaEn'
+                            : 'font-helveticaKa'
+                        }`}
+                      >
+                        {t('movies:chooseFile')}
+                      </p>
+                    </div>
+                    <p
+                      className={`font-light text-base text-white font-helveticaKa ml-4 hidden lg:block
+                  `}
+                    >
+                      {imageName}
+                    </p>
+                    <p
+                      className={`font-light text-base text-white font-helveticaKa ml-4 lg:hidden
+                  `}
+                    >
+                      {''}
                     </p>
                   </div>
+
                   <p
-                    className={`font-light text-base text-white font-helveticaKa ml-4
+                    className={`font-light text-sm text-white font-helveticaKa absolute lg:hidden
                   `}
                   >
                     {imageName}
                   </p>
-                </div>
 
-                <MoviesInputError errors={errors} name='image' />
+                  <MoviesInputError errors={errors} name='image' />
+                </div>
               </div>
 
               <button

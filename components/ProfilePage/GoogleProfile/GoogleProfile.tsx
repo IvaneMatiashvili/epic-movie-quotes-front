@@ -35,7 +35,7 @@ const GoogleProfile = () => {
   } = useGoogleProfile()
 
   return (
-    <div className='mt-16'>
+    <div className='mt-16  ml-0 lg:ml-40 xlPlus:ml-0'>
       <FormProvider {...form}>
         <form
           onSubmit={handleSubmit(editInfo)}

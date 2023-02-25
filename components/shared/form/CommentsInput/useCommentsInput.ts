@@ -7,13 +7,12 @@ import { gandalfProfile } from 'public'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { storeUserComment } from 'services'
-import { number } from 'prop-types'
 
 export const useCommentsInput = (
   userQuoteId?: string,
   page?: number,
   setUpdatedUserComments?: SetState<Comments[]>,
-  quoteUserId?: number
+  quoteUserId?: string
 ) => {
   const { locale, query, pathname } = useRouter()
   const { movie, stage, quote } = query

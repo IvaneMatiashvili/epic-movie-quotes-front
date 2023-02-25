@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useMutation, useQuery } from 'react-query'
 import { getQuotes, searchQuotes } from 'services'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { FormObj, Movies, Quote } from 'types'
 import { useDebouncedCallback } from 'use-debounce'
 
@@ -71,11 +71,11 @@ export const useNewsFeedMain = () => {
     }
   }, 400)
 
-  const getUserQuotes = async () => {
+  const getUserQuotes = useCallback(async () => {
     setTimeout(() => {
       setPage((prev) => prev + 3)
     }, 400)
-  }
+  }, [])
 
   const closeSearchMobile = () => {
     setIsSearchMobileOpen(false)
@@ -138,5 +138,7 @@ export const useNewsFeedMain = () => {
     isSearchMobileOpen,
     setIsSearchMobileOpen,
     closeSearchMobile,
+    setIsSearchOpen,
+    setIsWriteNewQuoteModalOpen,
   }
 }

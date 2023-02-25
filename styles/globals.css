@@ -33,6 +33,16 @@
     caret-color: white !important;
   }
 
+  .search-movies-input:-webkit-autofill,
+  .search-movies-input:-webkit-autofill:hover,
+  .search-movies-input:-webkit-autofill:focus,
+  select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #181623 inset;
+    transition: background-color 5000s;
+    -webkit-text-fill-color: white !important;
+    caret-color: white !important;
+  }
+
   :root input {
     filter: unset;
   }
@@ -110,6 +120,4 @@
       opacity: 1;
     }
   }
-
-
 }

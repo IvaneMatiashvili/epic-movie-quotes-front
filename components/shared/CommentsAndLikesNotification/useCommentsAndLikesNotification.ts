@@ -9,7 +9,8 @@ import { useCalcDifBetweenTwoDates } from 'hooks'
 export const useCommentsAndLikesNotification = (
   notification: NewsFeedNotification,
   isNewGlobal: boolean,
-  setNotificationsQuantity: SetState<number>
+  setNotificationsQuantity: SetState<number>,
+  newNotifications: NewsFeedNotification[]
 ) => {
   const { locale, push } = useRouter()
   const { t } = useTranslation()
@@ -52,12 +53,16 @@ export const useCommentsAndLikesNotification = (
   }
 
   useEffect(() => {
-    if (notification?.is_notification_on && isNewGlobal) {
+    if (
+      (notification?.is_notification_on && isNewGlobal) ||
+      (newNotifications &&
+        newNotifications.filter((el) => el?.id === notification?.id).length > 0)
+    ) {
       setIsNew(true)
     } else {
       setIsNew(false)
     }
-  }, [setIsNew, notification, isNew, isNewGlobal])
+  }, [setIsNew, notification, isNew, isNewGlobal, newNotifications])
 
   return {
     locale,

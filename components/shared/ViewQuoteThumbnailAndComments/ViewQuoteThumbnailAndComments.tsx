@@ -11,8 +11,7 @@ const ViewQuoteThumbnailAndComments: React.FC<
     useViewQuoteThumbnailAndComments(
       props?.currentQuote?.likes!,
       props?.currentQuote?.id!,
-      props?.currentQuote,
-      props?.quoteUserId
+      props?.currentQuote
     )
 
   return (
@@ -72,64 +71,63 @@ const ViewQuoteThumbnailAndComments: React.FC<
       ></div>
 
       <>
-        {[...props.currentQuote?.comments!, ...props.updatedUserComments].map(
-          (el, inx) => (
+        {(props.currentQuote.comments
+          ? [...props.currentQuote?.comments, ...props.updatedUserComments]
+          : props.updatedUserComments
+        ).map((el, inx) => (
+          <div
+            key={`${el}${inx + Math.random()}`}
+            className={`w-r19 nm:w-[22.375rem] lg:w-r55`}
+          >
             <div
-              key={`${el}${inx + Math.random()}`}
-              className={`w-r19 nm:w-[22.375rem] lg:w-r55`}
+              className={`w-r19 nm:w-[22.375rem] lg:w-r55 flex items-center mt-6 justify-start`}
             >
-              <div
-                className={`w-r19 nm:w-[22.375rem] lg:w-r55 flex items-center mt-6 justify-start`}
+              <Image
+                priority={true}
+                unoptimized={true}
+                className='w-[3.25rem] h-[3.25rem] rounded-full object-fill'
+                height={100}
+                width={100}
+                loader={() => el?.user?.user_image || defaultUserImage}
+                src={el?.user?.user_image || defaultUserImage}
+                alt={'user image'}
+              />
+
+              <p
+                className={`font-normal text-sm sm:text-base text-white ml-4 lg:ml-6 ${
+                  locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                }`}
               >
-                <Image
-                  priority={true}
-                  unoptimized={true}
-                  className='w-[3.25rem] h-[3.25rem] rounded-full object-fill'
-                  height={100}
-                  width={100} //comment->user_image
-                  loader={() => el?.user?.user_image || defaultUserImage}
-                  src={el?.user?.user_image || defaultUserImage}
-                  alt={'user image'}
-                />
-
-                <p
-                  className={`font-normal text-sm sm:text-base text-white ml-4 lg:ml-6 ${
-                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  }`}
-                >
-                  {el?.user?.name && el?.user?.name}
-                </p>
-              </div>
-
-              <div
-                className={`w-r19 nm:w-[22.375rem] lg:w-r55 flex justify-start`}
-              >
-                <div className='w-[3.25rem] h-[3.25rem] rounded-full hidden lg:block'>
-                  {' '}
-                </div>
-                <p
-                  className={`font-normal text-sm lg:text-base text-white lg:ml-6 break-all w-r19 nm:w-[18.5rem] lg:w-r52 mt-3 lg:mt-0 ${
-                    locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  }`}
-                >
-                  {el.comment}
-                </p>
-              </div>
-
-              <div
-                className={`w-r19 nm:w-[22.375rem] lg:w-r55 flex justify-start`}
-              >
-                <div className='w-[3.25rem] rounded-full hidden lg:block'>
-                  {' '}
-                </div>
-
-                <div
-                  className={`w-r19 nm:w-[22.375rem] lg:w-r55 h-0.1 bg-whiteGraySoftLine mt-6 lg:ml-7`}
-                ></div>
-              </div>
+                {el?.user?.name && el?.user?.name}
+              </p>
             </div>
-          )
-        )}
+
+            <div
+              className={`w-r19 nm:w-[22.375rem] lg:w-r55 flex justify-start`}
+            >
+              <div className='w-[3.25rem] h-[3.25rem] rounded-full hidden lg:block'>
+                {' '}
+              </div>
+              <p
+                className={`font-normal text-sm lg:text-base text-white lg:ml-6 break-all w-r19 nm:w-[18.5rem] lg:w-r52 mt-3 lg:mt-0 ${
+                  locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
+                }`}
+              >
+                {el.comment}
+              </p>
+            </div>
+
+            <div
+              className={`w-r19 nm:w-[22.375rem] lg:w-r55 flex justify-start`}
+            >
+              <div className='w-[3.25rem] rounded-full hidden lg:block'> </div>
+
+              <div
+                className={`w-r19 nm:w-[22.375rem] lg:w-r55 h-0.1 bg-whiteGraySoftLine mt-6 lg:ml-7`}
+              ></div>
+            </div>
+          </div>
+        ))}
       </>
     </>
   )

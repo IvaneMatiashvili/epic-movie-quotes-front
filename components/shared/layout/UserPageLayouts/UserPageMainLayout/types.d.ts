@@ -6,4 +6,6 @@ export type UserPageProps = {
   setIsSetBackground?: SetState<boolean>
   setIsSearchMobileOpen?: SetState<boolean>
   isSearchMobileOpen?: boolean
+  setIsSearchOpen?: SetState<boolean>
+  setIsWriteNewQuoteModalOpen?: SetState<boolean>
 }

@@ -59,7 +59,7 @@ const StandardProfile = () => {
   } = useStandardProfile()
 
   return (
-    <div className={' mt-10 sm:mt-0'}>
+    <div className={' mt-10 sm:mt-0 ml-0 lg:ml-40 xlPlus:ml-0'}>
       <FormProvider {...form}>
         <div className='sm:w-r40 lgPlus:w-r65 min-h-r45'>
           <div className='flex flex-col items-center justify-start'>
@@ -414,7 +414,7 @@ const StandardProfile = () => {
           <form className='sm:hidden' onSubmit={handleSubmit(editInfo)}>
             {!stage && (
               <div className='mt-16 ml-8'>
-                <Link href={'/news-feed'}>
+                <Link locale={locale} passHref href={'/news-feed'}>
                   <LeftArrowWhiteIcon />
                 </Link>
               </div>
@@ -530,7 +530,7 @@ const StandardProfile = () => {
 
           <div className={'sm:hidden'}>
             <div className={`mt-16 ml-8 ${stage !== 'showEmails' && 'hidden'}`}>
-              <Link href={'/profile'} locale={locale}>
+              <Link href={'/profile'} locale={locale} passHref>
                 <LeftArrowWhiteIcon />
               </Link>
             </div>
