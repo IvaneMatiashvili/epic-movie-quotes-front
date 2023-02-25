@@ -28,6 +28,7 @@ const AddNewQuote = () => {
     genres,
     movie,
     storeNewQuote,
+    textareaValidation,
   } = useAddNewQuote()
 
   return (
@@ -80,15 +81,7 @@ const AddNewQuote = () => {
                   <MoviesTextarea
                     id={'quote_en'}
                     errors={{
-                      required: t('errors:fieldIsRequired')!,
-                      minLength: {
-                        value: 10,
-                        message: t('errors:minTextarea'),
-                      },
-                      maxLength: {
-                        value: 600,
-                        message: t('errors:maxTextarea'),
-                      },
+                      ...textareaValidation,
                       pattern: {
                         value: /^[a-zA-Z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
                         message: t('errors:onlyEnglishLetters'),
@@ -108,15 +101,7 @@ const AddNewQuote = () => {
                   <MoviesTextarea
                     id={'quote_ka'}
                     errors={{
-                      required: t('errors:fieldIsRequired')!,
-                      minLength: {
-                        value: 10,
-                        message: t('errors:minTextarea'),
-                      },
-                      maxLength: {
-                        value: 600,
-                        message: t('errors:maxTextarea'),
-                      },
+                      ...textareaValidation,
                       pattern: {
                         value: /^[ა-ჰ0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
                         message: t('errors:onlyGeorgianLetters'),

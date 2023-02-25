@@ -26,6 +26,18 @@ export const useAddNewQuote = () => {
   const [currentMovie, setCurrentMovie] = useState<Movies>({})
   const [genres, setGenres] = useState([])
 
+  const textareaValidation = {
+    required: t('errors:fieldIsRequired')!,
+    minLength: {
+      value: 10,
+      message: t('errors:minTextarea'),
+    },
+    maxLength: {
+      value: 600,
+      message: t('errors:maxTextarea'),
+    },
+  }
+
   const userInformation = useSelector((state: RootState) => state.userData)
 
   const form = useForm({
@@ -101,5 +113,6 @@ export const useAddNewQuote = () => {
     genres,
     stage,
     movie,
+    textareaValidation,
   }
 }
