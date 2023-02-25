@@ -13,6 +13,10 @@ export type Locale = { locale: string }
 export type SetError = UseFormSetError
 
 export interface FormObj {
+  [key: string]: string
+}
+
+export interface BroadcastData {
   [key: string]: string | Function
 }
 
@@ -47,7 +51,7 @@ export type CreateNewEmail = {
 
 export type ReactDivMouseEvent = React.MouseEvent<HTMLDivElement, MouseEvent>
 
-export interface Transition {
+export interface Translation {
   [key: string]: string
 }
 export type Comments = {
@@ -78,22 +82,24 @@ export type NewsFeedNotification = {
 }
 
 export type Quote = {
-  quote?: Transition
+  quote?: Translation
   id?: string
   thumbnail?: string
   comments?: Comments[]
   likes?: Likes[]
   movie_id?: string
+  user_id?: string
 }
 
 export type Genres = {
-  genre: string
+  genre?: Translation
+  [key: string]: string
 }
 
 export type Movies = {
-  title?: Transition
-  director?: Transition
-  description?: Transition
+  title?: Translation
+  director?: Translation
+  description?: Translation
   id?: string
   thumbnail?: string
   release_date?: string

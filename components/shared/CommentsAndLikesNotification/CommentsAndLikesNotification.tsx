@@ -17,7 +17,8 @@ const CommentsAndLikesNotification: React.FC<
   } = useCommentsAndLikesNotification(
     props?.notification,
     props.isNewGlobal,
-    props.setNotificationsQuantity
+    props.setNotificationsQuantity,
+    props.newNotifications
   )
 
   return (

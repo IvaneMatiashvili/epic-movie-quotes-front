@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useSelector } from 'react-redux'
 import {
-  FormObj,
+  BroadcastData,
   NewsFeedNotification,
   ReactDivMouseEvent,
   RootState,
@@ -15,18 +15,18 @@ import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 import { useMutation, useQuery } from 'react-query'
 import {
-  getNotifications,
-  removeNotifications,
-  logOut,
   getBroadcast,
+  getNotifications,
+  logOut,
+  removeNotifications,
 } from 'services'
-import axios from 'axios'
 import { deleteCookie, getCookie } from 'cookies-next'
 
 export const useUserPageMainLayout = (
   setIsSetBackground?: SetState<boolean>,
-  setIsPageFirstLoad?: SetState<boolean>,
-  setIsSearchMobileOpen?: SetState<boolean>
+  setIsSearchMobileOpen?: SetState<boolean>,
+  setIsSearchOpen?: SetState<boolean>,
+  setIsWriteNewQuoteModalOpen?: SetState<boolean>
 ) => {
   const { t } = useTranslation()
   const { locale, query, push, asPath, pathname } = useRouter()
@@ -43,6 +43,9 @@ export const useUserPageMainLayout = (
   const [notificationsQuantity, setNotificationsQuantity] = useState(0)
   const [isNotificationsModalOpen, setIsNotificationsModalOpen] =
     useState(false)
+  const [newNotifications, setNewNotifications] = useState<
+    NewsFeedNotification[]
+  >([])
 
   const [isNewGlobal, setIsNewGlobal] = useState(true)
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
@@ -60,6 +63,7 @@ export const useUserPageMainLayout = (
       setIsNotificationsRemoved(false)
       setNotificationsQuantity(0)
       setIsNewGlobal(false)
+      setNewNotifications([])
     },
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -78,6 +82,7 @@ export const useUserPageMainLayout = (
     })
   }
 
+  /*
   useEffect(() => {
     let echo: Echo
     ;(() => {
@@ -90,7 +95,7 @@ export const useUserPageMainLayout = (
         authorizer: (channel: any) => {
           return {
             authorize: (socketId: string, callback: Function) => {
-              const data: FormObj = {}
+              const data: BroadcastData = {}
               data['socket_id'] = socketId
               data['channel_name'] = channel.name
               data['callback'] = callback
@@ -109,16 +114,17 @@ export const useUserPageMainLayout = (
 
       echo
         .private(`notifications.` + userInformation.id)
-        .listen(`NotificationStored`, (e) => {
+        .listen(`NotificationStored`, async (e: any) => {
           setNotifications((prev) => [e.notification, ...prev])
+          setNewNotifications((prev) => [e.notification, ...prev])
           setNotificationsQuantity((prev) => prev + 1)
-          setIsNewGlobal(true)
         })
     })()
     return () => {
       echo?.disconnect()
     }
   }, [userInformation])
+*/
 
   useQuery(['notifications', page], () => getNotifications(page), {
     onSuccess: (response) => {
@@ -136,7 +142,8 @@ export const useUserPageMainLayout = (
     refetchOnWindowFocus: false,
   })
 
-  const openMobileMenu = () => {
+  const openMobileMenu = (e: ReactDivMouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
     setIsOpenMobileMenu(true)
   }
   const closeMobileMenu = () => {
@@ -185,6 +192,8 @@ export const useUserPageMainLayout = (
       setIsActiveDropdown(false)
     }
     setIsSetBackground && setIsSetBackground(false)
+    setIsSearchOpen && setIsSearchOpen(false)
+    setIsWriteNewQuoteModalOpen && setIsWriteNewQuoteModalOpen(false)
     setIsOpenMobileMenu(false)
 
     switch (pathname.split('/')[1]) {
@@ -242,5 +251,6 @@ export const useUserPageMainLayout = (
     closeMobileMenu,
     isOpenMobileMenu,
     logOutUser,
+    newNotifications,
   }
 }

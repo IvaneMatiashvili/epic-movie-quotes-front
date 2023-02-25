@@ -12,7 +12,7 @@ const MoviesInputError: React.FC<MoviesErrorProps> = (props) => {
       name={props.name}
       render={({ message }) => (
         <div className='flex justify-start'>
-          <div className='w-r19 nm:w-r22 sm:w-r24'>
+          <div>
             <p
               className={`absolute mt-0.2 text-xs font-light text-redStar ${
                 locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'

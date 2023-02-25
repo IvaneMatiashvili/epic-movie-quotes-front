@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { deleteMovie, getMovie } from 'services'
-import { Movies } from 'types'
+import { Movies, Quote } from 'types'
 import { useState } from 'react'
 import { useDeleteQuote } from 'hooks'
 
@@ -11,7 +11,7 @@ export const useMovieDescriptionMain = () => {
   const { movie, stage, open, edit } = query
   const { t } = useTranslation()
   const [currentMovie, setCurrentMovie] = useState<Movies>({})
-  const [quotes, setQuotes] = useState([])
+  const [quotes, setQuotes] = useState<Quote[]>([])
   const { deleteQuoteAndRedirect } = useDeleteQuote()
 
   const queryClient = useQueryClient()
@@ -25,7 +25,11 @@ export const useMovieDescriptionMain = () => {
   useQuery(['movie', movie], () => getMovie(movie as string), {
     onSuccess: (response) => {
       setCurrentMovie(response?.data[0])
-      setQuotes(response?.data[0]?.quotes)
+      setQuotes(
+        response?.data[0]?.quotes.sort(
+          (a: Quote, b: Quote) => b.id && a.id && +b.id - +a.id
+        )
+      )
 
       setGenres(response?.data[1])
       setOpenEditOrDelete(new Array(quotes.length).fill(false))

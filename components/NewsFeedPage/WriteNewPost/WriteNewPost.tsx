@@ -194,12 +194,25 @@ const WriteNewPost: React.FC<WriteNewProps> = (props) => {
                   </p>
                 </div>
                 <p
-                  className={`font-light text-base text-white font-helveticaKa ml-4
+                  className={`font-light text-base text-white font-helveticaKa ml-4 hidden lg:block
                   `}
                 >
                   {imageName}
                 </p>
+                <p
+                  className={`font-light text-base text-white font-helveticaKa ml-4 lg:hidden
+                  `}
+                >
+                  {''}
+                </p>
               </div>
+
+              <p
+                className={`font-light text-sm text-white font-helveticaKa lg:hidden
+                  `}
+              >
+                {imageName}
+              </p>
 
               <MoviesInputError errors={errors} name='image' />
             </div>
@@ -274,7 +287,7 @@ const WriteNewPost: React.FC<WriteNewProps> = (props) => {
                   className={`absolute bg-dropdownBackground w-r19 nm:w-[22.375rem] lg:w-r55 h-28 overflow-y-scroll rounded-md z-40`}
                 ></div>
                 <div
-                  className={`absolute bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] sm:w-r55 h-28 overflow-y-scroll rounded-md z-40`}
+                  className={`absolute bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] lg:w-r55 h-28 overflow-y-scroll rounded-md z-40`}
                 >
                   {movies.map((el, inx) => (
                     <div

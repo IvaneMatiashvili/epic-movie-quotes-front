@@ -168,11 +168,12 @@ const ViewQuote = () => {
                 </FormProvider>
 
                 <ViewQuoteThumbnailAndComments
+                  quoteUserId={currentQuote.user_id!}
                   currentQuote={currentQuote}
                   updatedUserComments={[]}
                 />
 
-                <CommentsInput />
+                <CommentsInput quoteUserId={currentQuote.user_id!} />
               </div>
             </div>
             <div className={'w-10 h-20 hidden lg:block'}></div>

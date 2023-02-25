@@ -51,7 +51,7 @@ const AddNewMovie = () => {
     <>
       <div
         className={
-          'absolute w-screen lgPlus:w-r60 min-h-r69 top-0 lgPlus:top-24 inset-x-0 mx-auto bg-blackBlueSoft z-50 lgPlus:z-30 lgPlus:rounded-xl'
+          'fixed lgPlus:absolute w-screen lgPlus:w-r60 min-h-r69 top-0 lgPlus:top-24 inset-x-0 mx-auto bg-blackBlueSoft z-50 lgPlus:z-40 lgPlus:rounded-xl'
         }
       >
         {isOpenDropdown && (
@@ -193,7 +193,7 @@ const AddNewMovie = () => {
                   {selectedGenres &&
                     selectedGenres.map((el, inx) => (
                       <div
-                        key={el + 'Selected' + inx}
+                        key={el[locale!] + 'Selected' + inx}
                         onClick={(e) => stopEventPropagation(e)}
                         className={`h-6 flex items-center bg-borderGraySoft ml-4 rounded-sm cursor-default mt-1 mb-1`}
                       >
@@ -201,7 +201,7 @@ const AddNewMovie = () => {
                         <p
                           className={`font-normal text-sm text-white font-helveticaKa`}
                         >
-                          {el}
+                          {el[locale!]}
                         </p>
 
                         <div
@@ -224,11 +224,11 @@ const AddNewMovie = () => {
                       className={`absolute bg-dropdownBackground w-r19 nm:w-[22.375rem] lg:w-r55 h-40 overflow-y-scroll rounded-md z-40`}
                     ></div>
                     <div
-                      className={`absolute bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] sm:w-r55 h-40 overflow-y-scroll rounded-md z-40`}
+                      className={`absolute bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] lg:w-r55 h-40 overflow-y-scroll rounded-md z-40`}
                     >
                       {genres.map((el, inx) => (
                         <div
-                          key={el + inx}
+                          key={el[locale!] + inx}
                           onClick={() => chooseGenres(el)}
                           className={`h-8 flex items-center cursor-pointer z-40 hover:bg-dropdownHover`}
                         >
@@ -236,7 +236,7 @@ const AddNewMovie = () => {
                             <p
                               className={`font-normal text-base text-white font-helveticaKa ml-4`}
                             >
-                              {el}
+                              {el[locale!]}
                             </p>
                           }
                         </div>
@@ -367,8 +367,6 @@ const AddNewMovie = () => {
                     currentMovie.release_date &&
                     currentMovie.release_date
                   }
-                  min='1899-01-01'
-                  max={new Date().toISOString().split('T')[0]}
                   id={'date'}
                   type={isTypeText ? 'text' : 'date'}
                   placeholder={

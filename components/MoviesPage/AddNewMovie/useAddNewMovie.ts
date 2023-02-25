@@ -23,9 +23,9 @@ export const useAddNewMovie = () => {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
   const [currentMovie, setCurrentMovie] = useState<Movies>({})
 
-  const [genres, setGenres] = useState<string[]>([])
+  const [genres, setGenres] = useState<Genres[]>([])
   const [genresIds, setGenresIds] = useState<number[]>([])
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([])
+  const [selectedGenres, setSelectedGenres] = useState<Genres[]>([])
   const [isTypeText, setIsTypeText] = useState(true)
   const [datePlaceholder, setDatePlaceholder] = useState(
     t('movies:releaseDate')
@@ -71,8 +71,8 @@ export const useAddNewMovie = () => {
   useQuery(['movie', movie], () => getMovie(movie as string), {
     onSuccess: async (response) => {
       setCurrentMovie(response?.data[0])
-      const genresArr: string[] = []
-      response?.data[1]?.forEach((el: Genres) => genresArr.push(el.genre))
+      const genresArr: Genres[] = []
+      response?.data[1]?.forEach((el: Genres) => genresArr.push(el))
 
       if (genresArr.length > 0) {
         setSelectedGenres(genresArr)
@@ -105,7 +105,7 @@ export const useAddNewMovie = () => {
     setIsOpenDropdown(false)
   }
 
-  const chooseGenres = (genre: string) => {
+  const chooseGenres = (genre: Genres) => {
     if (!selectedGenres.includes(genre)) {
       setSelectedGenres((prevState) => [...prevState, genre])
       setGenresIds((prevState) => [...prevState, genres.indexOf(genre)])
@@ -117,7 +117,7 @@ export const useAddNewMovie = () => {
     if (e && e.stopPropagation) e.stopPropagation()
   }
 
-  const removeSelectedGenres = (genre: string) => {
+  const removeSelectedGenres = (genre: Genres) => {
     setSelectedGenres(selectedGenres.filter((el) => el !== genre))
     setGenresIds(genresIds.filter((el) => el !== genres.indexOf(genre)))
   }
@@ -129,6 +129,7 @@ export const useAddNewMovie = () => {
   const changeTextTypeOnFocus = async () => {
     setIsTypeText(false)
     await form.setFocus('release_date')
+    await form.trigger('release_date')
     setUndefinedError(false)
     setIsFirstDateAttempt(false)
   }

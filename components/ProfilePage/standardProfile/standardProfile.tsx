@@ -59,7 +59,7 @@ const StandardProfile = () => {
   } = useStandardProfile()
 
   return (
-    <div className={' mt-10 sm:mt-0'}>
+    <div className={' mt-10 sm:mt-0 ml-0 lg:ml-40 xlPlus:ml-0'}>
       <FormProvider {...form}>
         <div className='sm:w-r40 lgPlus:w-r65 min-h-r45'>
           <div className='flex flex-col items-center justify-start'>

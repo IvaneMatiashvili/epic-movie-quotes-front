@@ -138,5 +138,7 @@ export const useNewsFeedMain = () => {
     isSearchMobileOpen,
     setIsSearchMobileOpen,
     closeSearchMobile,
+    setIsSearchOpen,
+    setIsWriteNewQuoteModalOpen,
   }
 }

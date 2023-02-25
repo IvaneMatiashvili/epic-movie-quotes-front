@@ -101,13 +101,13 @@ const AddQuoteUserAndMovieInfo: React.FC<Props> = (props) => {
               >
                 {props.genres.map((el: Genres, inx) => (
                   <div
-                    key={el.genre + inx}
+                    key={el.genre && el.genre[locale!] + inx}
                     className={`h-[1.3rem] lg:h-r01875 min-w-20 flex items-center justify-center bg-borderGraySoft rounded-sm cursor-default`}
                   >
                     <p
                       className={`font-medium text-sm lg:text-lg text-white font-helveticaKa ml-4 mr-4`}
                     >
-                      {el.genre}
+                      {el.genre && el.genre[locale!]}
                     </p>
                   </div>
                 ))}

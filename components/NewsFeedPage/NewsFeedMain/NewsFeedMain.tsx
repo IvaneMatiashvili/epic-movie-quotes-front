@@ -33,22 +33,26 @@ const NewsFeedMain = () => {
     isSearchMobileOpen,
     setIsSearchMobileOpen,
     closeSearchMobile,
+    setIsSearchOpen,
+    setIsWriteNewQuoteModalOpen,
   } = useNewsFeedMain()
 
   return (
     <UserPageMainLayout
       setIsSearchMobileOpen={setIsSearchMobileOpen}
       isSearchMobileOpen={isSearchMobileOpen}
+      setIsSearchOpen={setIsSearchOpen}
+      setIsWriteNewQuoteModalOpen={setIsWriteNewQuoteModalOpen}
     >
       <div
         id={'newsFeedMainScrollBar'}
         className={
-          'min-h-[120vh] overflow-hidden w-screen flex flex-col items-center mt-28 sm:mt-0'
+          'min-h-[120vh] overflow-hidden w-screen flex flex-col items-center mt-28 sm:mt-0 ml-0 lgPlus:ml-40 xlPlus:ml-0'
         }
       >
         {isSearchMobileOpen && (
           <div
-            className={`w-screen h-[48.375rem] fixed z-50 top-0  bg-searchMobileBg lg:hidden `}
+            className={`w-screen h-[48.375rem] fixed z-50 top-0  bg-searchMobileBg lgPlus:hidden `}
           >
             <div className={'flex items-center mt-6'}>
               <div
@@ -116,7 +120,7 @@ const NewsFeedMain = () => {
                       ? 'w-screen lgPlus:w-[13.625rem]'
                       : 'w-screen lgPlus-[14.5rem]'
                   }`
-            } h-[6.8rem] lgPlus:h-[3.25rem] mt-3 lgPlus:mt-0 rounded-md bg-darkBlueCreate flex items-center cursor-pointer absolute inset-x-0 mx-auto lgPlus:inset-x-auto lgPlus:mx-0 lgPlus:relative z-20 `}
+            } h-[6.8rem] lg:h-[3.25rem] mt-3 lg:mt-0 rounded-md bg-transparent lg:bg-deleteOrEdit flex items-center cursor-pointer absolute inset-x-0 mx-auto lg:inset-x-auto  lg:mx-0 lg:relative z-20 `}
           >
             <div className={`ml-4`}>
               <WriteNewQuoteIcon />
@@ -134,7 +138,7 @@ const NewsFeedMain = () => {
           {isSearchOpen && (
             <div
               onClick={closeSearch}
-              className={`fixed w-screen h-screen z-10 bg-white/10 inset-0 mx-auto hidden lgPlus:block`}
+              className={`fixed w-screen h-screen z-10 bg-transparent inset-0 mx-auto hidden lgPlus:block`}
             ></div>
           )}
 
@@ -161,13 +165,13 @@ const NewsFeedMain = () => {
 
             {isSearchOpen && (
               <div
-                className={`flex flex-col items-center w-60 lg:w-[43rem] justify-center ml-[-45rem] search-animation z-20`}
+                className={`flex flex-col items-center w-60 lgPlus:w-[43rem] justify-center ml-[-45rem] search-animation z-20`}
               >
                 <div
                   className={`flex items-center justify-between ${
                     locale === 'en'
-                      ? 'sm:w-16 xlPlus:w-[41.75rem]'
-                      : 'sm:w-16 xlPlus:w-[39.75rem]'
+                      ? 'sm:w-16 lgPlus:w-[41.75rem]'
+                      : 'sm:w-16 lgPlus:w-[39.75rem]'
                   }`}
                 >
                   <button type='submit'>
@@ -181,7 +185,7 @@ const NewsFeedMain = () => {
                     ref={inputReference}
                     defaultValue={inputValue}
                     className={`
-                        font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base movies-input border-0 ml-4
+                        font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base search-movies-input border-0 ml-4
                         font-normal rounded-md text-lg bg-transparent w-[40.5rem] h-8 outline-none pr-8 xlPlus:pr-1
                     `}
                   />
@@ -197,6 +201,7 @@ const NewsFeedMain = () => {
             )}
           </div>
         </div>
+        <div className={`mt-7 lgPlus:mt-0`}></div>
         <InfiniteScroll
           dataLength={userQuotes?.length}
           next={getUserQuotes}
@@ -207,7 +212,6 @@ const NewsFeedMain = () => {
               <LoadingSpinner />
             </div>
           }
-          className={`mt-7 lgPlus:mt-0`}
           style={{ overflow: 'hidden !important' }}
         >
           {userQuotes?.length > 0 &&
@@ -220,7 +224,8 @@ const NewsFeedMain = () => {
                     page={page}
                     movie={movies.filter((el) => el.id === quote.movie_id)[0]}
                     quoteUserId={
-                      movies.filter((el) => el.id === quote.movie_id)[0].user_id
+                      movies.filter((el) => el.id === quote.movie_id)[0]
+                        .user_id!
                     }
                   />
                 )

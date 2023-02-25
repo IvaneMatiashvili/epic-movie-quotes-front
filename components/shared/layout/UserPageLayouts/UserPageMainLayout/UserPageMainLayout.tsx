@@ -11,7 +11,6 @@ import {
   NavigationMenu,
   NotificationIconSmall,
   NotificationWhiteIcon,
-  SearchIcon,
   SearchMobileIcon,
   VideoIconSmall,
   VideoSvg,
@@ -52,9 +51,12 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
     isOpenMobileMenu,
     closeMobileMenu,
     logOutUser,
+    newNotifications,
   } = useUserPageMainLayout(
     props.setIsSetBackground,
-    props.setIsSearchMobileOpen
+    props.setIsSearchMobileOpen,
+    props.setIsSearchOpen,
+    props.setIsWriteNewQuoteModalOpen
   )
 
   return (
@@ -159,7 +161,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
 
       <div className='min-h-screen w-screen bg-layoutBackground overflow-x-hidden'>
         <header
-          className='w-full fixed  h-[5.375rem] z-40 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
+          className='w-full fixed  h-[5.375rem] z-50 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
           onClick={closeDropdownOnBlur}
         >
           <div className='flex justify-between items-center w-sw93 h-20'>
@@ -173,14 +175,14 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
               <NavigationMenu />
             </div>
 
-            <div className='flex'>
+            <div className='flex justify-end'>
               <div
-                className={`flex w-[4.5rem] lgPlus:w-72 justify-between items-center mr-[2.906rem]`}
+                className={`flex w-[4.5rem] lgPlus:w-72 justify-between items-center mr-[2.906rem] lgPlus:mr-0`}
               >
                 {pathname.split('/')[1] === 'news-feed' && (
                   <div
                     onClick={openMobileSearch}
-                    className={`lgPlus:hidden cursor-pointer`}
+                    className={`lgPlus:hidden cursor-pointer  `}
                   >
                     <SearchMobileIcon />
                   </div>
@@ -275,6 +277,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                           {notifications.length > 0 &&
                             notifications.map((comment, inx) => (
                               <CommentsAndLikesNotification
+                                newNotifications={newNotifications}
                                 notification={comment}
                                 isNewGlobal={isNewGlobal}
                                 key={`${comment.id} ${inx}`}
@@ -361,7 +364,10 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 <Image
                   priority={true}
                   unoptimized={true}
-                  className='w-16 h-16 rounded-full object-fill border border-2 border-profileImageBorderRed'
+                  className={`w-16 h-16 rounded-full object-fill ${
+                    pathname.split('/')[1] === 'profile' &&
+                    'border border-2 border-profileImageBorderRed'
+                  }`}
                   height={100}
                   width={100}
                   loader={() => currentUserImageUrl}
@@ -431,19 +437,24 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
           </div>
 
           {isOpenMobileMenu && (
-            <div className='flex flex-col justify-start items-center fixed z-40 w-[23.875rem] h-[41.125rem] top-0 lgPlus:hidden bg-passwordWarningBg'>
+            <div className='flex flex-col justify-start items-start fixed z-50 w-[18rem] nm:w-[23.875rem] sm:w-[50rem] h-[41.125rem] top-0 lgPlus:hidden bg-passwordWarningBg'>
               <div className={`mt-[3.125rem]`}></div>
               <Link
                 href='/profile'
                 locale={locale}
                 passHref={true}
-                className='flex justify-start items-center w-72 h-20 relative z-50 '
+                className='flex justify-start items-center w-72 h-20 relative z-50 ml-[2.813rem]'
               >
                 {currentUserImageUrl && (
                   <Image
                     priority={true}
                     unoptimized={true}
-                    className='w-14 h-14 rounded-full object-fill border border-2 border-profileImageBorderRed'
+                    className={`w-14 h-14 rounded-full object-fill
+                   ${
+                     pathname.split('/')[1] === 'profile' &&
+                     'border border-2 border-profileImageBorderRed'
+                   } 
+                    `}
                     height={100}
                     width={100}
                     loader={() => currentUserImageUrl}
@@ -474,7 +485,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 href='/news-feed'
                 locale={locale}
                 passHref
-                className='flex justify-start items-center w-72 h-20 z-40'
+                className='flex justify-start items-center w-72 h-20 z-40 ml-[2.813rem]'
               >
                 <div className='w-14 h-14 flex justify-center items-center'>
                   <HomeIconSmall />
@@ -494,7 +505,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 href='/movies'
                 locale={locale}
                 passHref
-                className='flex justify-start items-center w-72 h-20 z-40'
+                className='flex justify-start items-center w-72 h-20 z-40 ml-[2.813rem]'
               >
                 <div className='w-14 h-14 flex justify-center items-center'>
                   <VideoIconSmall />
@@ -513,7 +524,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
 
               <div
                 onClick={logOutUser}
-                className='bg-transparent h-10 w-32 flex justify-center items-center mt-72 rounded-md border cursor-pointer relative z-50'
+                className='bg-transparent h-10 w-32 flex justify-center items-center mt-72 rounded-md border cursor-pointer relative z-50 mx-auto'
               >
                 <p
                   className={`
