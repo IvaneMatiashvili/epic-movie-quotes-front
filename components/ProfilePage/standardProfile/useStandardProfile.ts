@@ -266,7 +266,7 @@ export const useStandardProfile = () => {
       createReactToast(t('profile:emailVerified'))
       push('profile')
     }
-  }, [stage])
+  }, [stage, push, t])
 
   return {
     t,

@@ -11,7 +11,7 @@ const ViewQuoteThumbnailAndComments: React.FC<
     useViewQuoteThumbnailAndComments(
       props?.currentQuote?.likes!,
       props?.currentQuote?.id!,
-      props?.currentQuote,
+      props?.currentQuote
     )
 
   return (

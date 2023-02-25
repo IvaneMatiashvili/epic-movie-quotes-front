@@ -53,6 +53,7 @@ const MoviesPageMain = () => {
                 <Link
                   href={'/movies?stage=search'}
                   locale={locale}
+                  passHref
                   className={'flex items-center'}
                 >
                   <SearchIcon />

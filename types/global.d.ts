@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { UseFormSetError } from 'react-hook-form'
 import { store } from 'store'
+import { type as PusherType } from '@types/pusher-js'
 
 export type SetState<T> = Dispatch<SetStateAction<T>>
 
@@ -89,6 +90,12 @@ export type Quote = {
   likes?: Likes[]
   movie_id?: string
   user_id?: string
+}
+
+declare global {
+  interface Window {
+    pusher: PusherType
+  }
 }
 
 export type Genres = {

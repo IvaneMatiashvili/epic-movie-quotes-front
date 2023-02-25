@@ -414,7 +414,7 @@ const StandardProfile = () => {
           <form className='sm:hidden' onSubmit={handleSubmit(editInfo)}>
             {!stage && (
               <div className='mt-16 ml-8'>
-                <Link href={'/news-feed'}>
+                <Link locale={locale} passHref href={'/news-feed'}>
                   <LeftArrowWhiteIcon />
                 </Link>
               </div>
@@ -530,7 +530,7 @@ const StandardProfile = () => {
 
           <div className={'sm:hidden'}>
             <div className={`mt-16 ml-8 ${stage !== 'showEmails' && 'hidden'}`}>
-              <Link href={'/profile'} locale={locale}>
+              <Link href={'/profile'} locale={locale} passHref>
                 <LeftArrowWhiteIcon />
               </Link>
             </div>

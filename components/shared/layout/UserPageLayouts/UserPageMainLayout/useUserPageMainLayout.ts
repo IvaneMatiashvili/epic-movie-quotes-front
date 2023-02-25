@@ -82,7 +82,6 @@ export const useUserPageMainLayout = (
     })
   }
 
-  /*
   useEffect(() => {
     let echo: Echo
     ;(() => {
@@ -123,8 +122,7 @@ export const useUserPageMainLayout = (
     return () => {
       echo?.disconnect()
     }
-  }, [userInformation])
-*/
+  }, [userInformation, authorizeBroadcast])
 
   useQuery(['notifications', page], () => getNotifications(page), {
     onSuccess: (response) => {
