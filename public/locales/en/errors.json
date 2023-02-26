@@ -11,6 +11,7 @@
   "passwordConfirmation": "password does not match",
   "emailExists": "email already exists",
   "nameExists": "username already exists",
+  "movieNameExists": "movie title already exists",
   "credentialsExist": "credentials exist",
   "userDoesNotExist": "user does not exist",
   "onlyGeorgianLetters": "only georgian letters",

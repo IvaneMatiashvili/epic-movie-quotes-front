@@ -443,7 +443,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 href='/profile'
                 locale={locale}
                 passHref={true}
-                className='flex justify-start items-center w-72 h-20 relative z-50 ml-[2.813rem]'
+                className='flex justify-start items-center w-72 h-20 relative z-50 ml-4 nm:ml-[2.813rem]'
               >
                 {currentUserImageUrl && (
                   <Image
@@ -485,7 +485,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 href='/news-feed'
                 locale={locale}
                 passHref
-                className='flex justify-start items-center w-72 h-20 z-40 ml-[2.813rem]'
+                className='flex justify-start items-center w-72 h-20 z-40 ml-4 nm:ml-[2.813rem]'
               >
                 <div className='w-14 h-14 flex justify-center items-center'>
                   <HomeIconSmall />
@@ -505,7 +505,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 href='/movies'
                 locale={locale}
                 passHref
-                className='flex justify-start items-center w-72 h-20 z-40 ml-[2.813rem]'
+                className='flex justify-start items-center w-72 h-20 z-40 ml-4 nm:ml-[2.813rem]'
               >
                 <div className='w-14 h-14 flex justify-center items-center'>
                   <VideoIconSmall />

@@ -140,7 +140,7 @@ const LoginForm: React.FC<Props> = (props) => {
             locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
           }`}
         >
-          {t('home:alreadyHaveAnAccount')}
+          {t('home:doNotHaveAnAccount')}
         </p>
         <Link
           href='?stage=register'

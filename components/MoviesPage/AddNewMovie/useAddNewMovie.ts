@@ -7,6 +7,7 @@ import { gandalfProfile } from 'public'
 import { useForm, useWatch } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { getGenres, getMovie, storeMovie, editMovie } from 'services'
+import { checkErrorMessage } from 'helpers'
 
 export const useAddNewMovie = () => {
   const { locale, query, push } = useRouter()
@@ -205,6 +206,20 @@ export const useAddNewMovie = () => {
         onSuccess: async (response) => {
           await queryClient.invalidateQueries('movies')
           push(`/movies/${response?.data?.id}`)
+        },
+        onError: async (error: any) => {
+          checkErrorMessage({
+            setError: form.setError,
+            field: 'name_en',
+            message: t('errors:movieNameExists'),
+            error: error?.response?.data?.errors?.title_en,
+          })
+          checkErrorMessage({
+            setError: form.setError,
+            field: 'name_ka',
+            message: t('errors:movieNameExists'),
+            error: error?.response?.data?.errors?.title_ka,
+          })
         },
       })
     }

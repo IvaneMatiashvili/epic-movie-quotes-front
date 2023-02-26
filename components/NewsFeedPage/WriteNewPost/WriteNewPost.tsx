@@ -225,7 +225,7 @@ const WriteNewPost: React.FC<WriteNewProps> = (props) => {
                 className={`w-r19 nm:w-[22.375rem] lg:w-r55 mt-7 flex items-center`}
               >
                 <p
-                  className={`font-normal text-lg text-white ml-4 ${
+                  className={`font-normal text-sm lg:text-lg text-white ml-4 ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   }
                   `}
