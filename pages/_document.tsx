@@ -4,7 +4,6 @@ const Document = () => {
   return (
     <Html lang='en'>
       <Head>
-        <title>Epic-movie-quotes</title>
         <link rel='shortcut icon' href='/assets/video.svg' />
       </Head>
       <body className='overflow-x-hidden'>
