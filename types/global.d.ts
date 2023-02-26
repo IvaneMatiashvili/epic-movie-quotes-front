@@ -33,6 +33,7 @@ export type Emails = {
   email: string
   primary_email: number
   email_verified_at: null | string
+  id: number
 }
 
 export type UserInformation = {

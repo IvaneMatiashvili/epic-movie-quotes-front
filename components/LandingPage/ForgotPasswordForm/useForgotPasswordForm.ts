@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 import { sendEmail } from 'services'
 import { FormObj } from 'types'
+import { checkErrorMessage } from 'helpers'
 
 export const useForgotPasswordForm = () => {
   const { locale, push } = useRouter()
@@ -30,6 +31,13 @@ export const useForgotPasswordForm = () => {
         if (error?.response?.data?.verify_email) {
           push('?stage=checkYourEmail')
         }
+
+        checkErrorMessage({
+          setError: form.setError,
+          field: 'email',
+          message: t('errors:emailValid'),
+          error: error?.response?.data?.errors?.title_ka,
+        })
       },
     })
   }

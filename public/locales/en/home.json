@@ -44,5 +44,6 @@
   "backToLogin": "Back to log in",
   "newPassword": "Create new password",
   "mustBeDifferent": "Your new password must be different from previous used passwords",
-  "resetPassword": "Reset password"
+  "resetPassword": "Reset password",
+  "doNotHaveAnAccount": "Don't have an account?"
 }

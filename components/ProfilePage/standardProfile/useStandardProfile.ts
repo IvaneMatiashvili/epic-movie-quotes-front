@@ -68,7 +68,9 @@ export const useStandardProfile = () => {
       setDefaultUserEmails(response?.data.emails)
 
       if (removedEmails.length === 0) {
-        setUserEmails(response?.data.emails)
+        setUserEmails(
+          response?.data.emails.sort((a: Emails, b: Emails) => b.id - a.id)
+        )
       }
 
       if (!primaryEmail) {

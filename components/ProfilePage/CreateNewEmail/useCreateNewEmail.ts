@@ -43,17 +43,17 @@ export const useCreateNewEmail = (
         localStorage.setItem('userInfo', JSON.stringify(response.data))
 
         setUserEmails((arr: object[]) => [
-          ...arr,
           response.data.emails.filter(
             (email: Emails) => email.email === data['email']
           )[0],
+          ...arr,
         ])
 
         setDefaultUserEmails((arr: object[]) => [
-          ...arr,
           response.data.emails.filter(
             (email: Emails) => email.email === data['email']
           )[0],
+          ...arr,
         ])
 
         reactToastify(t('profile:pleaseCheckEmail'), true)

@@ -51,7 +51,7 @@ const AddNewMovie = () => {
     <>
       <div
         className={
-          'fixed lgPlus:absolute w-screen lgPlus:w-r60 min-h-r69 top-0 lgPlus:top-24 inset-x-0 mx-auto bg-blackBlueSoft z-50 lgPlus:z-40 lgPlus:rounded-xl'
+          'absolute w-screen lgPlus:w-r60 min-h-r69 top-0 lgPlus:top-24 inset-x-0 mx-auto bg-blackBlueSoft z-50 lgPlus:z-40 lgPlus:rounded-xl overflow-x-hidden overflow-y-scroll'
         }
       >
         {isOpenDropdown && (

@@ -44,5 +44,6 @@
   "backToLogin": "ავტორიზაციაზე დაბრუნება",
   "newPassword": "შექმენი ახალი პაროლი",
   "mustBeDifferent": "შენი პაროლი განსხვავებული უნდა იყოს უკვე არსებული პაროლისგან",
-  "resetPassword": "შეცვალე პაროლი"
+  "resetPassword": "შეცვალე პაროლი",
+  "doNotHaveAnAccount": "არ გაქვთ ექაუნთი?"
 }
