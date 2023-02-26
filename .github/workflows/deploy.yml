@@ -2,7 +2,7 @@ name: Deploy on server
 on:
   push:
     branches:
-      - main
+      - [main]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << EOF
             cd apps
             cd ivane-epic-movie-quotes-front
-            git pull
+            git pull origin main
             npm ci
             npm run build
             pm2 restart 0
