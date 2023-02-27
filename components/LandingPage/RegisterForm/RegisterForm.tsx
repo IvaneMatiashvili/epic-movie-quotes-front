@@ -59,6 +59,10 @@ const RegisterForm: React.FC<Props> = (props) => {
                 value: 15,
                 message: t('errors:nameMax'),
               },
+              pattern: {
+                value: /^[a-z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
+                message: t('errors:useLowerCase'),
+              },
             }}
             id='name'
             key='name'
@@ -99,6 +103,10 @@ const RegisterForm: React.FC<Props> = (props) => {
                 value: 15,
                 message: t('errors:passwordMax'),
               },
+              pattern: {
+                value: /^[a-z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
+                message: t('errors:useLowerCase'),
+              },
             }}
             id='password'
             key='password'
@@ -122,6 +130,10 @@ const RegisterForm: React.FC<Props> = (props) => {
               maxLength: {
                 value: 15,
                 message: t('errors:passwordMax'),
+              },
+              pattern: {
+                value: /^[a-z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
+                message: t('errors:useLowerCase'),
               },
               validate: (val: string) => {
                 if (watchPassword !== val && val.length >= 8) {

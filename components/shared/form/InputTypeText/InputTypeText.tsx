@@ -31,7 +31,7 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
         {(props.name === 'password' || props.name === 'confirm_password') &&
           props.isTypePassword && (
             <div
-              className='absolute flex justify-center items-center mt-2 ml-60 nm:ml-r18 sm:ml-0 sm:right-r085 cursor-pointer'
+              className='absolute flex justify-center items-center mt-2 ml-56 nm:ml-[17rem] sm:ml-0 sm:right-r085 cursor-pointer'
               onClick={() =>
                 changePasswordType(
                   props.isTypePassword!,
@@ -45,7 +45,7 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
         {(props.name === 'password' || props.name === 'confirm_password') &&
           !props.isTypePassword && (
             <div
-              className='absolute flex justify-center items-center mt-2 ml-60 nm:ml-r18 sm:ml-0 sm:right-r085 cursor-pointer'
+              className='absolute flex justify-center items-center mt-2 ml-56 nm:ml-[17rem] sm:ml-0 sm:right-r085 cursor-pointer'
               onClick={() =>
                 changePasswordType(
                   props.isTypePassword!,
@@ -58,14 +58,14 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
           )}
 
         {!props.error && !isUndefinedError && (
-          <div className='absolute flex justify-center items-center mt-2 ml-r1705 nm:ml-r2005 sm:ml-0 sm:right-28'>
+          <div className='absolute flex justify-center items-center mt-2 ml-[17rem] nm:ml-[20rem] sm:ml-0 sm:right-28'>
             <Approve />
           </div>
         )}
 
         {((props.error && !isUndefinedError) ||
           (props.error && isUndefinedError)) && (
-          <div className='absolute flex justify-center items-center mt-2 ml-r1705 nm:ml-r2005 sm:ml-0 sm:right-28'>
+          <div className='absolute flex justify-center items-center mt-2 ml-[17rem] nm:ml-[20rem] sm:ml-0 sm:right-28'>
             <ErrorSvg />
           </div>
         )}
@@ -87,7 +87,7 @@ const InputTypeText: React.FC<InputTypeTextProps> = (props) => {
               isUndefinedError,
             }
           )}
-          font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r19 nm:w-r22 sm:w-r24 h-r027 outline-none pr-11 sm:pr-0`}
+          font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r19 nm:w-r22 sm:w-r24 h-r027 outline-none pr-14 sm:pr-0`}
           ref={inputReference}
         />
       </div>

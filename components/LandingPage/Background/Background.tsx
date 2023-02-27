@@ -21,12 +21,12 @@ const Background: React.FC<Props> = (props) => {
             props.itemsPosition
           } ${props.top && 'top-72'} ${props.bottom && 'bottom-60'}`}
         >
-          <div className='flex items-start'>
+          <div className='flex items-start justify-center w-screen sm:w-auto'>
             <div className='sm:w-12 w-4 h-0.2 bg-white sm:mt-r013 mt-r006'></div>
             <div>
               {props.firstLine && (
                 <p
-                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-base text-xs ${
+                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-lg text-base break-words ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-bold text-white sm:ml-6 ml-2`}
                 >
@@ -35,18 +35,18 @@ const Background: React.FC<Props> = (props) => {
               )}
               {props.secondLine && (
                 <p
-                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-base text-xs ${
+                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-lg text-base break-words ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-bold text-white sm:ml-6 ml-2 sm:mt-4 mt-2`}
+                  } font-bold text-white sm:ml-6 ml-2 sm:mt-2 `}
                 >
                   {props.secondLine}
                 </p>
               )}
               {props.thirdLine && (
                 <p
-                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-base text-xs ${
+                  className={`xl:text-5xl sm:text-xl md:text-2xl nm:text-lg text-base break-words ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-bold text-white sm:ml-6 ml-2 sm:mt-4 mt-2`}
+                  } font-bold text-white sm:ml-6 ml-2 sm:mt-2`}
                 >
                   {props.thirdLine}
                 </p>

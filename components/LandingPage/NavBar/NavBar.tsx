@@ -14,6 +14,7 @@ const NavBar: React.FC<Props> = (props) => {
     dropdownSwitcher,
     isActiveDropdown,
     removeScrollbarAndOpenRegisterForm,
+    asPath,
   } = useNavBar()
   return (
     <>
@@ -56,8 +57,9 @@ const NavBar: React.FC<Props> = (props) => {
                 >
                   <div className='w-16 h-10 flex flex-col justify-center items-center'>
                     <Link
-                      href='/'
-                      locale='en'
+                      href={'/'}
+                      scroll={false}
+                      locale={'en'}
                       className={`w-full h-full flex justify-center items-center font-helveticaEn`}
                     >
                       Eng
@@ -66,8 +68,9 @@ const NavBar: React.FC<Props> = (props) => {
 
                   <div className='w-16 h-10 flex border-t justify-center items-center'>
                     <Link
-                      href='/'
-                      locale={`ka`}
+                      href={asPath}
+                      scroll={false}
+                      locale={'ka'}
                       className={`w-full h-full flex justify-center items-center font-helveticaKa`}
                     >
                       ქარ
