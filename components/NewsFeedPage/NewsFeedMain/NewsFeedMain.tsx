@@ -118,7 +118,7 @@ const NewsFeedMain = () => {
                 : `${
                     locale === 'en'
                       ? 'w-screen lgPlus:w-[13.625rem]'
-                      : 'w-screen lgPlus-[14.5rem]'
+                      : 'w-screen lgPlus:w-[14.5rem]'
                   }`
             } h-[6.8rem] lg:h-[3.25rem] mt-3 lg:mt-0 rounded-md bg-transparent lg:bg-deleteOrEdit flex items-center cursor-pointer absolute inset-x-0 mx-auto lg:inset-x-auto  lg:mx-0 lg:relative z-20 `}
           >

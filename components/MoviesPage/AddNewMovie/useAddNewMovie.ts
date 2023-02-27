@@ -73,7 +73,7 @@ export const useAddNewMovie = () => {
     onSuccess: async (response) => {
       setCurrentMovie(response?.data[0])
       const genresArr: Genres[] = []
-      response?.data[1]?.forEach((el: Genres) => genresArr.push(el))
+      response?.data[1]?.forEach((el: Genres) => genresArr.push(el.genre!))
 
       if (genresArr.length > 0) {
         setSelectedGenres(genresArr)

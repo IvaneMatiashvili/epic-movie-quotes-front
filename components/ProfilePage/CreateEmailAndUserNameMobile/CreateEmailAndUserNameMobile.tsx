@@ -115,7 +115,9 @@ const CreateEmailAndUserNameMobile: React.FC<
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-base text-white`}
                 >
-                  {t('profile:add')}
+                  {stage === 'updateUsername'
+                    ? t('profile:change')
+                    : t('profile:add')}
                 </p>
               </button>
             </div>

@@ -51,7 +51,7 @@ const AddNewMovie = () => {
     <>
       <div
         className={
-          'absolute w-screen lgPlus:w-r60 min-h-r69 top-0 lgPlus:top-24 inset-x-0 mx-auto bg-blackBlueSoft z-50 lgPlus:z-40 lgPlus:rounded-xl overflow-x-hidden overflow-y-scroll'
+          'fixed w-screen lgPlus:w-r60 h-full lgPlus:h-[90vh] top-0 lgPlus:top-24 inset-x-0 mx-auto bg-blackBlueSoft z-50 lgPlus:z-40 lgPlus:rounded-xl overflow-x-hidden overflow-y-scroll'
         }
       >
         {isOpenDropdown && (
@@ -224,13 +224,15 @@ const AddNewMovie = () => {
                       className={`absolute bg-dropdownBackground w-r19 nm:w-[22.375rem] lg:w-r55 h-40 overflow-y-scroll rounded-md z-40`}
                     ></div>
                     <div
-                      className={`absolute bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] lg:w-r55 h-40 overflow-y-scroll rounded-md z-40`}
+                      className={`absolute bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] lg:w-r55 h-40 overflow-x-hidden overflow-y-scroll rounded-md z-40`}
                     >
                       {genres.map((el, inx) => (
                         <div
                           key={el[locale!] + inx}
                           onClick={() => chooseGenres(el)}
-                          className={`h-8 flex items-center cursor-pointer z-40 hover:bg-dropdownHover`}
+                          className={`h-8 flex items-center cursor-pointer z-40 hover:bg-dropdownHover ${
+                            selectedGenres.includes(el) && 'hidden'
+                          }`}
                         >
                           {
                             <p
@@ -381,9 +383,11 @@ const AddNewMovie = () => {
                   onChange={checkDate}
                   onBlur={changeTextTypeOnBlur}
                   className={`font-helveticaKa placeholder-borderGraySoft ${
-                    isTypeText ? 'text-borderGraySoft' : 'text-white'
+                    !isTypeText || datePlaceholder
+                      ? 'text-white'
+                      : 'text-borderGraySoft'
                   } placeholder-4 placeholder-base mt-5
-                border border-borderGraySoft
+                border border-borderGraySoft 
                  ${checkTypeAndError({
                    error: errors.release_date,
                    isUndefinedError,

@@ -216,10 +216,6 @@ export const useStandardProfile = () => {
 
         await push('profile')
 
-        if (stage === 'updatePassword') {
-          await push('profile?stage=updatePassword')
-        }
-
         if (stage === 'showEmails') {
           await push('profile?stage=showEmails')
         }

@@ -62,7 +62,7 @@ const UserQuote: React.FC<UserQuoteProps> = (props) => {
                     {`"${props?.userQuote?.quote[locale as string]}"
                     ${t('newsFeed:movie')}-`}
                     <span className={'text-movieTitle'}>
-                      {`${props?.userQuote?.quote[locale as string]}.`}
+                      {`${props?.movie?.title[locale as string]}.`}
                     </span>
                     {` (${props?.movie?.release_date?.slice(0, 4)})`}
                   </p>
