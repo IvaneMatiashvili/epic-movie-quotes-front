@@ -83,6 +83,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
       <Link
         href={'/profile'}
         locale={locale}
+        scroll={false}
         className={`h-screen w-full fixed z-10 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
           (stage !== 'addEmail' || pathname !== '/profile') && 'hidden'
         }
@@ -95,6 +96,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
       <Link
         href={'/movies'}
         locale={locale}
+        scroll={false}
         className={`h-screen w-full fixed z-10 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
           (stage !== 'addMovie' || pathname !== '/movies') && 'hidden'
         }
@@ -105,6 +107,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
       <Link
         href={`/movies/${movie}`}
         locale={locale}
+        scroll={false}
         className={`h-screen w-full fixed z-10 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
           (stage !== 'addQuote' ||
             pathname.split('/')[1] !== 'movies' ||
@@ -122,6 +125,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
       <Link
         href={'/movies'}
         locale={locale}
+        scroll={false}
         className={`h-screen w-full fixed z-10 bg-transparent blur opacity-70 cursor-default
                 ${(stage !== 'search' || pathname !== '/movies') && 'hidden'}
         ${stage === 'search' && pathname === '/movies' && 'hidden sm:block'} 
@@ -132,6 +136,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
       <Link
         href={`/movies/${movie}`}
         locale={locale}
+        scroll={false}
         className={`h-screen w-full fixed z-10 bg-transparent blur opacity-70 cursor-default
                 ${(!quote || pathname.split('/')[1] === 'movies') && 'hidden'}
         ${quote && pathname.split('/')[1] === 'movies' && 'hidden sm:block'} 
@@ -142,6 +147,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
       <Link
         href={`/movies/${movie}/quote/${quote}`}
         locale={locale}
+        scroll={false}
         className={`h-screen w-full fixed z-10 bg-transparent blur opacity-70 cursor-default
                 ${
                   (!quote ||
@@ -384,14 +390,16 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                 >
                   {userName && userName}
                 </p>
-                <p
-                  className={`
+                {currentUserImageUrl && (
+                  <p
+                    className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-sm text-smoothGray mt-2`}
-                >
-                  {t('profile:editProfile')}
-                </p>
+                  >
+                    {t('profile:editProfile')}
+                  </p>
+                )}
               </div>
             </Link>
             <Link
@@ -437,7 +445,9 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
           </div>
 
           {isOpenMobileMenu && (
-            <div className='flex flex-col justify-start items-start fixed z-50 w-[18rem] nm:w-[23.875rem] sm:w-[50rem] h-[41.125rem] top-0 lgPlus:hidden bg-passwordWarningBg'>
+            <div
+              className={`flex flex-col  justify-start items-start fixed z-50 w-[18rem] nm:w-[23.875rem] lg:w-[50rem] h-screen top-0 lgPlus:hidden bg-passwordWarningBg`}
+            >
               <div className={`mt-[3.125rem]`}></div>
               <Link
                 href='/profile'
@@ -471,14 +481,16 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                   >
                     {userName && userName}
                   </p>
-                  <p
-                    className={`
+                  {currentUserImageUrl && (
+                    <p
+                      className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-sm text-smoothGray mt-2`}
-                  >
-                    {t('profile:editProfile')}
-                  </p>
+                    >
+                      {t('profile:editProfile')}
+                    </p>
+                  )}
                 </div>
               </Link>
               <Link
@@ -524,7 +536,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
 
               <div
                 onClick={logOutUser}
-                className='bg-transparent h-10 w-32 flex justify-center items-center mt-72 rounded-md border cursor-pointer relative z-50 mx-auto'
+                className='bg-transparent h-10 w-32 flex justify-center items-center mt-10 rounded-md border cursor-pointer relative z-50 ml-16'
               >
                 <p
                   className={`

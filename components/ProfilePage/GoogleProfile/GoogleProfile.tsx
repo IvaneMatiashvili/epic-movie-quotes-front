@@ -32,6 +32,10 @@ const GoogleProfile = () => {
     name,
     email,
     isDataUpdated,
+    inputReference,
+    inputReferenceMobile,
+    isUndefinedNamesError,
+    setIsUndefinedNamesError,
   } = useGoogleProfile()
 
   return (
@@ -39,7 +43,7 @@ const GoogleProfile = () => {
       <FormProvider {...form}>
         <form
           onSubmit={handleSubmit(editInfo)}
-          className='w-r40 lgPlus:w-r65 h-r45 sm:ml-2 md:ml-32 lg:ml-0 hidden sm:block'
+          className='w-r40 lgPlus:w-r65 h-r45 hidden sm:block'
         >
           <div className='w-96 h-20 flex flex-col justify-center'>
             <p
@@ -74,9 +78,11 @@ const GoogleProfile = () => {
               <input
                 type='file'
                 id='uploadImage'
+                name={'user_image'}
                 multiple
                 accept='image/*'
                 className='hidden'
+                ref={inputReference}
                 onChange={(event) => {
                   if (event.target.files)
                     changeInputImage(event?.target?.files[0])
@@ -113,6 +119,8 @@ const GoogleProfile = () => {
                     error={errors.name}
                     setIsEditModeOn={setIsUserNameEditModeOn}
                     isEditModeOn={isUserNameEditModeOn}
+                    isUndefinedNamesError={isUndefinedNamesError}
+                    setIsUndefinedNamesError={setIsUndefinedNamesError}
                   />
 
                   <ProfileInputError errors={errors} name='name' />
@@ -204,10 +212,12 @@ const GoogleProfile = () => {
 
                 <input
                   type='file'
-                  id='uploadImage'
+                  id='uploadImageMobile'
+                  name={'user_image_mobile'}
                   multiple
                   accept='image/*'
                   className='hidden'
+                  ref={inputReferenceMobile}
                   onChange={(event) => {
                     if (event.target.files)
                       changeInputImage(event?.target?.files[0])
@@ -230,7 +240,7 @@ const GoogleProfile = () => {
                   label={t('profile:username')}
                 />
 
-                <div className='w-r18 nm:w-r21 flex justify-between items-center mt-8'>
+                <div className='w-[85%] flex justify-between items-center mt-8'>
                   <p
                     className={`
                   ${
@@ -243,7 +253,7 @@ const GoogleProfile = () => {
                   <p className={'opacity-0'}>.</p>
                 </div>
 
-                <div className='w-r18 nm:w-r21 flex justify-between items-center mt-2'>
+                <div className='w-[85%] flex justify-between items-center mt-2'>
                   <p
                     className={`
                   ${
@@ -256,7 +266,7 @@ const GoogleProfile = () => {
                   <p className={'opacity-0'}>.</p>
                 </div>
 
-                <div className='w-r18 nm:w-r21 h-0.1 bg-grayLine mt-4'></div>
+                <div className='w-[85%] h-0.1 bg-grayLine mt-4'></div>
               </div>
             </div>
             <div

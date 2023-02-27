@@ -9,7 +9,7 @@ const UserNameAndPasswordMobile: React.FC<UserNameAndPasswordProps> = (
   const { t, locale } = useTranslationAndLocale()
   return (
     <>
-      <div className='flex flex-col w-r18 nm:w-r21 mt-10'>
+      <div className='flex flex-col w-[85%] mt-10'>
         <div>
           <div className='w-full flex justify-between'>
             <p
@@ -67,7 +67,7 @@ const UserNameAndPasswordMobile: React.FC<UserNameAndPasswordProps> = (
         </div>
       </div>
 
-      <div className='w-r18 nm:w-r21 h-0.1 bg-grayLine mt-4'></div>
+      <div className='w-[85%] h-0.1 bg-grayLine mt-4'></div>
     </>
   )
 }

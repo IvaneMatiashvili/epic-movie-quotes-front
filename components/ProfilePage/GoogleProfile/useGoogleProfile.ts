@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useForm, useWatch } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useRouter } from 'next/router'
 import { FormObj, RootState, SetStateFileOrNull } from 'types'
@@ -29,6 +29,9 @@ export const useGoogleProfile = () => {
   const [defaultUserName, setDefaultUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
   const [isDataUpdated, setIsDataUpdated] = useState(false)
+  const inputReference = useRef<HTMLInputElement>(null)
+  const inputReferenceMobile = useRef<HTMLInputElement>(null)
+  const [isUndefinedNamesError, setIsUndefinedNamesError] = useState(true)
 
   const form = useForm({
     defaultValues: {
@@ -62,6 +65,11 @@ export const useGoogleProfile = () => {
     setIsEditModeOn(false)
     setIsUserNameEditModeOn(false)
     setSelectedImage(null)
+    inputReference?.current?.form && inputReference?.current?.form.reset()
+    inputReferenceMobile?.current?.form &&
+      inputReferenceMobile?.current?.form.reset()
+
+    setIsUndefinedNamesError(true)
     await form.setValue('name', userInformation?.name)
     form.setValue('email', userInformation?.emails[0]?.email)
   }
@@ -99,6 +107,7 @@ export const useGoogleProfile = () => {
         selectedImage && createReactToast(t('profile:userImageChanged'))
         setSelectedImage(null)
 
+        setIsUndefinedNamesError(true)
         defaultUserName !== data['name'] &&
           createReactToast(t('profile:userNameChanged'))
 
@@ -118,6 +127,19 @@ export const useGoogleProfile = () => {
 
     userInformation.name && setUserName(userInformation?.name)
   }, [userInformation, form, userName, setUserName])
+
+  useEffect(() => {
+    if (currentUserImageUrl !== gandalfProfile.src) {
+      if (userInformation.user_image) {
+        setCurrentImageUrl(userInformation.user_image)
+      }
+      return
+    } else {
+      userInformation.user_image
+        ? setCurrentImageUrl(userInformation.user_image)
+        : setCurrentImageUrl(gandalfProfile.src)
+    }
+  }, [userInformation, currentUserImageUrl])
 
   useEffect(() => {
     if (
@@ -152,5 +174,9 @@ export const useGoogleProfile = () => {
     name: userName,
     email: userEmail,
     isDataUpdated,
+    inputReference,
+    inputReferenceMobile,
+    isUndefinedNamesError,
+    setIsUndefinedNamesError,
   }
 }

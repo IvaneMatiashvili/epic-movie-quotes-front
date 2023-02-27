@@ -161,8 +161,9 @@ export const useUserPageMainLayout = (
     }, 100)
   }
 
-  const removeNotificationsOnClick = () => {
+  const removeNotificationsOnClick = (e: ReactDivMouseEvent) => {
     setIsNotificationsRemoved(true)
+    if (e && e.stopPropagation) e.stopPropagation()
   }
 
   const openNotificationsModal = (e: ReactDivMouseEvent) => {
@@ -196,15 +197,15 @@ export const useUserPageMainLayout = (
 
     switch (pathname.split('/')[1]) {
       case 'profile':
-        push('profile')
+        push('profile', '', { scroll: false })
         break
       case 'movies':
         if (stage === 'addMovie' || stage === 'search' || edit) {
-          push('movies')
+          push('movies', '', { scroll: false })
         } else if (stage === 'editQuote') {
-          push(`/movies/${movie}/quote/${quote}`)
+          push(`/movies/${movie}/quote/${quote}`, '', { scroll: false })
         } else if (stage === 'addQuote' || quote) {
-          push(`/movies/${movie}`)
+          push(`/movies/${movie}`, '', { scroll: false })
         }
         break
     }

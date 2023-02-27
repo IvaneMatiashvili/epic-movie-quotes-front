@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useForm, useWatch } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
 import { Emails, FormObj, RootState, SetStateFileOrNull } from 'types'
@@ -45,6 +45,11 @@ export const useStandardProfile = () => {
 
   const [isSubmitFormOpen, setIsSubmitFormOpen] = useState(false)
   const [isDataUpdated, setIsDataUpdated] = useState(false)
+
+  const inputReference = useRef<HTMLInputElement>(null)
+  const inputReferenceMobile = useRef<HTMLInputElement>(null)
+
+  const [isUndefinedNamesError, setIsUndefinedNamesError] = useState(true)
 
   const form = useForm({
     defaultValues: {
@@ -133,8 +138,13 @@ export const useStandardProfile = () => {
     form.reset()
     closeEditMode()
     setSelectedImage(null)
+    inputReference?.current?.form && inputReference?.current?.form.reset()
+    inputReferenceMobile?.current?.form &&
+      inputReferenceMobile?.current?.form.reset()
 
     form.setValue('name', userInformation.name)
+    form.resetField('name')
+    setIsUndefinedNamesError(true)
     defaultPrimaryEmail && form.setValue('email', defaultPrimaryEmail)
     primaryEmail && setPrimaryEmail(defaultPrimaryEmail)
     setUserEmails(defaultUserEmails)
@@ -202,6 +212,7 @@ export const useStandardProfile = () => {
         form.resetField('confirm_password')
 
         setIsDataUpdated(true)
+        setIsUndefinedNamesError(true)
 
         await push('profile')
 
@@ -234,10 +245,6 @@ export const useStandardProfile = () => {
   }
 
   useEffect(() => {
-    userInformation.user_image
-      ? setCurrentImageUrl(userInformation.user_image)
-      : setCurrentImageUrl(gandalfProfile.src)
-
     if (userInformation.name) {
       form.setValue('name', userInformation.name)
       setUserName(userInformation.name)
@@ -262,6 +269,19 @@ export const useStandardProfile = () => {
     stage,
     userEmails,
   ])
+
+  useEffect(() => {
+    if (currentUserImageUrl !== gandalfProfile.src) {
+      if (userInformation.user_image) {
+        setCurrentImageUrl(userInformation.user_image)
+      }
+      return
+    } else {
+      userInformation.user_image
+        ? setCurrentImageUrl(userInformation.user_image)
+        : setCurrentImageUrl(gandalfProfile.src)
+    }
+  }, [userInformation, setCurrentImageUrl, currentUserImageUrl])
 
   useEffect(() => {
     if (stage === 'emailActivated') {
@@ -310,5 +330,9 @@ export const useStandardProfile = () => {
     isSubmitFormOpen,
     removePasswordValue,
     isDataUpdated,
+    inputReference,
+    inputReferenceMobile,
+    setIsUndefinedNamesError,
+    isUndefinedNamesError,
   }
 }

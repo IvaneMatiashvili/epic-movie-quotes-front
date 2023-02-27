@@ -47,7 +47,7 @@ const NewsFeedMain = () => {
       <div
         id={'newsFeedMainScrollBar'}
         className={
-          'min-h-[120vh] overflow-hidden w-screen flex flex-col items-center mt-28 sm:mt-0 ml-0 lgPlus:ml-40 xlPlus:ml-0'
+          'min-h-full overflow-hidden w-screen flex flex-col items-center mt-28 sm:mt-0 ml-0 lgPlus:ml-40 xlPlus:ml-0'
         }
       >
         {isSearchMobileOpen && (

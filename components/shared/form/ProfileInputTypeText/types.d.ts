@@ -10,4 +10,6 @@ export type ProfileInputTypeTextProps = {
   error: FieldError | undefined
   isEditModeOn?: boolean
   setIsEditModeOn?: SetState<boolean>
+  isUndefinedNamesError: boolean
+  setIsUndefinedNamesError: SetState<boolean>
 }
