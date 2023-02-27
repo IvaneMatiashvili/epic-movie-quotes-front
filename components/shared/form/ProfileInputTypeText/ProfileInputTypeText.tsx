@@ -5,7 +5,7 @@ import React from 'react'
 
 const InputTypeText: React.FC<ProfileInputTypeTextProps> = (props) => {
   const { locale, register, isUndefinedError, t, changeInputValue } =
-    useProfileInputTypeText()
+    useProfileInputTypeText(props.setIsUndefinedNamesError)
 
   return (
     <div>
@@ -29,11 +29,14 @@ const InputTypeText: React.FC<ProfileInputTypeTextProps> = (props) => {
         </p>
       </div>
       <div className='flex items-center justify-start h-14'>
-        {!props.error && !isUndefinedError && props.isEditModeOn && (
-          <div className='absolute flex justify-center items-center mt-2 ml-52 lgPlus:ml-r30'>
-            <Approve />
-          </div>
-        )}
+        {!props.error &&
+          !isUndefinedError &&
+          props.isEditModeOn &&
+          !props.isUndefinedNamesError && (
+            <div className='absolute flex justify-center items-center mt-2 ml-52 lgPlus:ml-r30'>
+              <Approve />
+            </div>
+          )}
 
         {((props.error && !isUndefinedError && props.isEditModeOn) ||
           (props.error && isUndefinedError && props.isEditModeOn)) && (
@@ -50,7 +53,9 @@ const InputTypeText: React.FC<ProfileInputTypeTextProps> = (props) => {
           id={props.id}
           disabled={!props.isEditModeOn}
           className={`font-helveticaKa placeholder-gray-500 placeholder-4 placeholder-base border-2 ${
-            (!props.error && isUndefinedError) || !props.isEditModeOn
+            (!props.error && isUndefinedError) ||
+            !props.isEditModeOn ||
+            props.isUndefinedNamesError
               ? 'border-borderGray'
               : (props.error && !isUndefinedError) ||
                 (props.error && isUndefinedError)

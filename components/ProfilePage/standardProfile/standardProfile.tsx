@@ -56,10 +56,14 @@ const StandardProfile = () => {
     isSubmitFormOpen,
     removePasswordValue,
     isDataUpdated,
+    inputReference,
+    inputReferenceMobile,
+    isUndefinedNamesError,
+    setIsUndefinedNamesError,
   } = useStandardProfile()
 
   return (
-    <div className={' mt-10 sm:mt-0 ml-0 lg:ml-40 xlPlus:ml-0'}>
+    <div className={'mt-10 sm:mt-0 ml-0 lgPlus:ml-40 xlPlus:ml-0'}>
       <FormProvider {...form}>
         <div className='sm:w-r40 lgPlus:w-r65 min-h-r45'>
           <div className='flex flex-col items-center justify-start'>
@@ -73,7 +77,7 @@ const StandardProfile = () => {
         </div>
         <form
           onSubmit={handleSubmit(editInfo)}
-          className='hidden sm:block sm:w-r40 lgPlus:w-r65 min-h-r45 overflow-x-hidden mb-72 sm:ml-2 md:ml-32 lg:ml-0'
+          className='hidden sm:block sm:w-r40 lgPlus:w-r65 min-h-r45 overflow-x-hidden mb-72 lg:ml-0'
         >
           <div className='w-96 h-20 flex flex-col justify-center'>
             <p
@@ -107,10 +111,12 @@ const StandardProfile = () => {
             <div className='w-full min-h-r35 bg-blackPurple rounded-xl mt-24 flex flex-col items-center overflow-x-hidden'>
               <input
                 type='file'
+                name='user_image'
                 id='uploadImage'
                 multiple
                 accept='image/*'
                 className='hidden'
+                ref={inputReference}
                 onChange={(event) => {
                   if (event.target.files)
                     changeInputImage(event?.target?.files[0])
@@ -147,6 +153,8 @@ const StandardProfile = () => {
                     error={errors.name}
                     setIsEditModeOn={setIsUserNameEditModeOn}
                     isEditModeOn={isUserNameEditModeOn}
+                    isUndefinedNamesError={isUndefinedNamesError}
+                    setIsUndefinedNamesError={setIsUndefinedNamesError}
                   />
 
                   <ProfileInputError errors={errors} name='name' />
@@ -205,6 +213,7 @@ const StandardProfile = () => {
                     href='/profile?stage=addEmail'
                     passHref
                     locale={locale}
+                    scroll={false}
                     className='flex justify-center items-center w-52 h-r027 border rounded-md mt-14 cursor-pointer'
                   >
                     <AddNewEmailIcon />
@@ -444,9 +453,11 @@ const StandardProfile = () => {
 
                 <input
                   type='file'
-                  id='uploadImage'
+                  id='uploadImageMobile'
+                  name='user_image_mobile'
                   multiple
                   accept='image/*'
+                  ref={inputReferenceMobile}
                   className='hidden'
                   onChange={(event) => {
                     if (event.target.files)
@@ -476,7 +487,7 @@ const StandardProfile = () => {
                   label={t('profile:password')}
                 />
 
-                <div className='w-r18 nm:w-r21 flex justify-between items-center mt-8'>
+                <div className='w-[85%] flex justify-between items-center mt-8'>
                   <p
                     className={`
                   ${

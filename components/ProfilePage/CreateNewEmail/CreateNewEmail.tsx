@@ -24,7 +24,7 @@ const CreateNewEmail: React.FC<CreateNewEmail> = (props) => {
 
   return (
     <>
-      <div className='absolute top-r22 sm:ml-3 md:ml-64 lg:ml-0 hidden sm:flex flex-col justify-center bg-blackBlueSoft z-30 w-r38 h-r22 rounded-xl'>
+      <div className='fixed top-r22 sm:ml-3 md:ml-64 lg:ml-0 hidden sm:flex flex-col justify-center bg-blackBlueSoft z-30 w-r38 h-r22 rounded-xl'>
         <p
           className={`font-normal text-2xl sm:text-2xl text-white mt-8 ml-8 ${
             locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
@@ -61,6 +61,7 @@ const CreateNewEmail: React.FC<CreateNewEmail> = (props) => {
               <Link
                 href='/profile'
                 locale={locale}
+                scroll={false}
                 className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
