@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation, useQueryClient } from 'react-query'
 import { storeLikes } from 'services'
-import { Comments, FormObj, Likes, Quote, RootState } from 'types'
+import { FormObj, Likes, Quote, RootState } from 'types'
 import { useSelector } from 'react-redux'
 import { gandalfProfile } from 'public'
 
