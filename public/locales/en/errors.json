@@ -1,5 +1,6 @@
 {
   "name": "name field is required",
+  "useLowerCase": "use lower case characters",
   "nameMin": "at least 3 lower case characters",
   "nameMax": "max.15 lower case characters",
   "email": "email field is required",
@@ -13,7 +14,7 @@
   "nameExists": "username already exists",
   "movieNameExists": "movie title already exists",
   "credentialsExist": "credentials exist",
-  "userDoesNotExist": "user does not exist",
+  "userDoesNotExist": "Credentials are incorrect",
   "onlyGeorgianLetters": "only georgian letters",
   "onlyEnglishLetters": "only english letters",
   "fieldIsRequired": "field is required",

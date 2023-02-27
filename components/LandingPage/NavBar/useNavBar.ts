@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 
 export const useNavBar = () => {
   const { t } = useTranslation()
-  const { locale } = useRouter()
+  const { locale, asPath } = useRouter()
   let [isActiveDropdown, setIsActiveDropdown] = useState(false)
 
   const dropdownSwitcher = () => {
@@ -33,5 +33,6 @@ export const useNavBar = () => {
     dropdownSwitcher,
     closeDropdownOnBlur,
     removeScrollbarAndOpenRegisterForm,
+    asPath,
   }
 }

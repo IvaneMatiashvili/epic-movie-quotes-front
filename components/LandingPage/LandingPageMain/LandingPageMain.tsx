@@ -74,10 +74,10 @@ const LandingPageMain = () => {
         <Background
           top={false}
           bottom={true}
-          firstLine={t('home:tenenbaumsQuoteFirstLine')}
-          secondLine={t('home:tenenbaumsQuoteSecondLine')}
-          thirdLine={t('home:tenenbaumsQuoteThirdLine')}
-          name={t('home:tenenbaums')}
+          firstLine={t('home:ringsFirstLine')}
+          secondLine={t('home:ringsSecondLine')}
+          thirdLine={t('home:ringsThirdLine')}
+          name={t('home:lordOfTheRings')}
           background='lordOfTheRings'
           itemsPosition='items-end'
         />
