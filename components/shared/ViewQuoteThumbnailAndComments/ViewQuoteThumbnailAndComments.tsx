@@ -36,7 +36,9 @@ const ViewQuoteThumbnailAndComments: React.FC<
               locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
             }`}
           >
-            {props.currentQuote.comments && props.currentQuote.comments?.length}
+            {props.currentQuote.comments &&
+              props.currentQuote.comments?.length +
+                props?.updatedUserComments?.length}
           </p>
           <CommentsIcon />
         </div>

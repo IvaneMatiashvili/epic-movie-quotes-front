@@ -97,7 +97,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
         href={'/movies'}
         locale={locale}
         scroll={false}
-        className={`h-screen w-full fixed z-10 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
+        className={`h-screen w-full fixed z-40 bg-blueSoftBlurBg blur opacity-70 cursor-default ${
           (stage !== 'addMovie' || pathname !== '/movies') && 'hidden'
         }
         ${stage === 'addMovie' && pathname === '/movies' && 'hidden sm:block'} 
@@ -167,23 +167,23 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
 
       <div className='min-h-screen w-screen bg-layoutBackground overflow-x-hidden'>
         <header
-          className='w-full fixed  h-[5.375rem] z-50 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
+          className='w-full fixed h-[5.375rem] z-50 bg-blackBlue border border-borderBlackBlue text-white flex items-center justify-center'
           onClick={closeDropdownOnBlur}
         >
-          <div className='flex justify-between items-center w-sw93 h-20'>
+          <div className='flex justify-between items-center w-full lgPlus:w-sw93 h-20'>
             <div className={`hidden lgPlus:block`}>
               <Image src={movieQuotes} alt='movie quotes' />
             </div>
             <div
               onClick={openMobileMenu}
-              className={`lgPlus:hidden cursor-pointer`}
+              className={`lgPlus:hidden cursor-pointer ml-[2.406rem]`}
             >
               <NavigationMenu />
             </div>
 
             <div className='flex justify-end'>
               <div
-                className={`flex w-[4.5rem] lgPlus:w-72 justify-between items-center mr-[2.906rem] lgPlus:mr-0`}
+                className={`flex w-[4.5rem] lgPlus:w-72 justify-between items-center mr-[2.281rem] lg:mr-[2.906rem] lgPlus:mr-0`}
               >
                 {pathname.split('/')[1] === 'news-feed' && (
                   <div
@@ -238,7 +238,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
 
                       <div
                         id='scrollableDiv'
-                        className={`absolute z-50 w-screen overflow-hidden lg:w-[60.063rem] h-[50.75rem] bg-black inset-x-0 mx-auto lg:mx-0 lg:inset-x-auto lg:mr-[50rem] lgPlus:mr-[32rem] mt-[56.1rem] lg:mt-[57rem] rounded-md flex flex-col items-center overflow-y-scroll`}
+                        className={`absolute z-50 w-screen overflow-hidden lg:w-[60.063rem] h-[50.75rem] bg-black inset-x-0 mx-auto lg:mx-0 lg:inset-x-auto lg:mr-[53rem] lgPlus:mr-[32rem] mt-[56.1rem] lg:mt-[57rem] rounded-md flex flex-col items-center overflow-y-scroll`}
                       >
                         <div
                           className={

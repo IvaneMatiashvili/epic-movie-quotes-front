@@ -287,13 +287,15 @@ const WriteNewPost: React.FC<WriteNewProps> = (props) => {
                   className={`absolute bg-dropdownBackground w-r19 nm:w-[22.375rem] lg:w-r55 h-28 overflow-y-scroll rounded-md z-40`}
                 ></div>
                 <div
-                  className={`absolute bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] lg:w-r55 h-28 overflow-y-scroll rounded-md z-40`}
+                  className={`absolute overflow-x-hidden bg-borderBlackBlue/60 backdrop-blur-xl w-r19 nm:w-[22.375rem] lg:w-r55 h-28 overflow-y-scroll rounded-md z-40`}
                 >
                   {movies.map((el, inx) => (
                     <div
                       key={el?.id! + inx}
                       onClick={() => chooseMovie(el)}
-                      className={`h-8 flex items-center cursor-pointer z-40 hover:bg-dropdownHover`}
+                      className={`h-8 flex items-center cursor-pointer z-40 hover:bg-dropdownHover ${
+                        selectedMovie === el && 'hidden'
+                      }`}
                     >
                       {
                         <p

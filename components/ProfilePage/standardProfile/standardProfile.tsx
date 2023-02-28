@@ -844,7 +844,7 @@ const StandardProfile = () => {
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   } font-normal text-base text-white`}
                     >
-                      {t('profile:add')}
+                      {t('profile:change')}
                     </p>
                   </button>
                 </div>

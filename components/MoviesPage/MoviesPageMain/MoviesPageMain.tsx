@@ -29,8 +29,8 @@ const MoviesPageMain = () => {
     <UserPageMainLayout>
       <div
         className={`w-screen ${
-          stage === 'addMovie' && 'min-h-r75'
-        } mt-28 sm:mt-0 flex flex-col items-center justify-center lg:ml-[20rem]`}
+          stage === 'addMovie' && ''
+        } mt-28 sm:mt-0 flex flex-col min-h-2 items-center justify-center lg:ml-[20rem]`}
       >
         <div
           className={
@@ -102,6 +102,7 @@ const MoviesPageMain = () => {
               href={'/movies?stage=addMovie'}
               locale={locale}
               passHref
+              scroll={false}
               className={`flex justify-center items-center ml-8 ${
                 locale === 'en' ? 'w-[7.938rem] sm:w-40' : 'w-[9.2rem] sm:w-48'
               } h-[2.375rem] sm:h-12 rounded-md bg-borderRed`}
@@ -148,7 +149,7 @@ const MoviesPageMain = () => {
                   )}
                 </div>
                 <p
-                  className={`font-light text-2xl text-white uppercase mt-4 ${
+                  className={`font-light text-2xl text-white uppercase mt-4 break-all max-w-[19rem] nm:max-w-[22.375rem] ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
                   }`}
                 >
@@ -172,7 +173,6 @@ const MoviesPageMain = () => {
         )}
 
         <div className={'w-2 h-2 mb-10'}></div>
-        <div className={` ${stage === 'addMovie' && 'h-r75'}`}></div>
       </div>
     </UserPageMainLayout>
   )

@@ -87,7 +87,7 @@ const MovieDescriptionMain = () => {
                     >
                       <div className={`flex items-center justify-between`}>
                         <p
-                          className={`font-normal text-xl text-movieTitle break-words ${
+                          className={`font-normal text-xl text-movieTitle break-all max-w-[19rem] nm:max-w-[22.375rem] ${
                             locale === 'en'
                               ? 'font-helveticaEn'
                               : 'font-helveticaKa'
@@ -98,7 +98,7 @@ const MovieDescriptionMain = () => {
                               ? currentMovie.title?.en
                               : currentMovie.title?.ka
                           } (${currentMovie.release_date?.slice(0, 4)})
-                `}
+                        `}
                         </p>
 
                         <div
