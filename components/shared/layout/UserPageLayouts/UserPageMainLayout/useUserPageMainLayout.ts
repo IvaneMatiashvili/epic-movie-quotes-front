@@ -47,6 +47,7 @@ export const useUserPageMainLayout = (
     NewsFeedNotification[]
   >([])
 
+  const [isFirstRender, setIsFirstRender] = useState(true)
   const [isNewGlobal, setIsNewGlobal] = useState(true)
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
 
@@ -212,11 +213,20 @@ export const useUserPageMainLayout = (
   }
 
   useEffect(() => {
-    userInformation.user_image
-      ? setCurrentImageUrl(userInformation.user_image)
-      : setCurrentImageUrl(gandalfProfile.src)
+    if (userInformation.user_image) {
+      setIsFirstRender(false)
+      setCurrentImageUrl(userInformation.user_image)
+    } else {
+      if (isFirstRender) {
+        setCurrentImageUrl(gandalfProfile.src)
+        setIsFirstRender(false)
+      } else {
+        return
+      }
+    }
+
     userInformation.name && setUserName(userInformation.name)
-  }, [userInformation])
+  }, [userInformation, isFirstRender])
 
   return {
     t,

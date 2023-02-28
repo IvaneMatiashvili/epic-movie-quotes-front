@@ -24,7 +24,7 @@ const EmailLayout: React.FC<EmailLayoutProps> = (props) => {
           } hidden sm:block`}
         >
           {isWarningOpen && (
-            <div className='absolute flex justify-start bg-white rounded-md w-r22 mt-minusR4 h-14 items-center ml-40 lgPlus:ml-r22 z-20'>
+            <div className='absolute flex justify-start bg-white rounded-md w-r22 mt-minusR4 h-14 items-center ml-40 lg:ml-r22 z-20'>
               <div className={'ml-4'}>
                 <WarningGrayIcon />
               </div>
@@ -39,7 +39,7 @@ const EmailLayout: React.FC<EmailLayoutProps> = (props) => {
             </div>
           )}
 
-          <div className='absolute flex justify-center items-center mt-minusR006 ml-52 lgPlus:ml-r30 z-20'>
+          <div className='absolute flex justify-center items-center mt-minusR006 ml-52 lg:ml-r30 z-20'>
             {isWarningOpen && <WhiteDownArrowIcon />}
           </div>
           <label
@@ -53,7 +53,7 @@ const EmailLayout: React.FC<EmailLayoutProps> = (props) => {
             <div
               onMouseEnter={showWarning}
               onMouseLeave={hideWarning}
-              className='absolute  flex justify-center items-center mt-2 ml-52 lgPlus:ml-r30 z-20'
+              className='absolute  flex justify-center items-center mt-2 ml-52 lg:ml-r30 z-20'
             >
               {!props.emailFullObj.email_verified_at && <WarningIcon />}
             </div>
@@ -68,7 +68,7 @@ const EmailLayout: React.FC<EmailLayoutProps> = (props) => {
                     !props.emailFullObj.email_verified_at
                       ? 'bg-orangeInput/20 text-white border-orangeInput backdrop-blur'
                       : 'bg-inputGray'
-                  } pl-4 mt-2 w-[15rem] lgPlus:w-r32 h-r027 outline-none pr-11 sm:pr-10`}
+                  } pl-4 mt-2 w-[15rem] lg:w-r32 h-r027 outline-none pr-11 sm:pr-10`}
             />
 
             {props.emailFullObj.email_verified_at && (
@@ -89,7 +89,7 @@ const EmailLayout: React.FC<EmailLayoutProps> = (props) => {
                 className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-normal text-sm lgPlus:text-base text-white ml-10`}
+                  } font-normal text-sm lg:text-base text-white ml-10`}
               >
                 {t('profile:notVerified')}
               </Link>
@@ -102,7 +102,7 @@ const EmailLayout: React.FC<EmailLayoutProps> = (props) => {
               className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-normal text-sm lgPlus:text-base text-white ml-6 cursor-pointer`}
+                  } font-normal text-sm lg:text-base text-white ml-6 cursor-pointer`}
             >
               {t('profile:remove')}
             </p>

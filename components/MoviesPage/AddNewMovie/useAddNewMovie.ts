@@ -75,8 +75,14 @@ export const useAddNewMovie = () => {
       const genresArr: Genres[] = []
       response?.data[1]?.forEach((el: Genres) => genresArr.push(el.genre!))
 
+      const genresIdsArr: number[] = []
+      await response?.data[1]?.forEach((el: Genres) =>
+        genresIdsArr.push(+el.id!)
+      )
+
       if (genresArr.length > 0) {
         setSelectedGenres(genresArr)
+        setGenresIds((prevState) => [...prevState, ...genresIdsArr])
       }
 
       const responseData = response?.data[0]
@@ -109,7 +115,7 @@ export const useAddNewMovie = () => {
   const chooseGenres = (genre: Genres) => {
     if (!selectedGenres.includes(genre)) {
       setSelectedGenres((prevState) => [...prevState, genre])
-      setGenresIds((prevState) => [...prevState, genres.indexOf(genre)])
+      setGenresIds((prevState) => [...prevState, genres.indexOf(genre) + 1])
     }
     setIsOpenDropdown(false)
   }
@@ -119,8 +125,18 @@ export const useAddNewMovie = () => {
   }
 
   const removeSelectedGenres = (genre: Genres) => {
+    setUndefinedGenresError(false)
     setSelectedGenres(selectedGenres.filter((el) => el !== genre))
-    setGenresIds(genresIds.filter((el) => el !== genres.indexOf(genre)))
+
+    if (edit) {
+      let index = 0
+      for (let i = 0; i < genres.length; i++) {
+        if (genre.ka === genres[i].ka) index = i
+      }
+      setGenresIds(genresIds.filter((el) => el !== index + 1))
+    } else {
+      setGenresIds(genresIds.filter((el) => el !== genres.indexOf(genre)))
+    }
   }
 
   const changeTextTypeOnBlur = () => {

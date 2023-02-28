@@ -47,7 +47,7 @@ const NewsFeedMain = () => {
       <div
         id={'newsFeedMainScrollBar'}
         className={
-          'min-h-full overflow-hidden w-screen flex flex-col items-center mt-28 sm:mt-0 ml-0 lgPlus:ml-40 xlPlus:ml-0'
+          'min-h-full overflow-hidden w-screen flex flex-col items-center sm:mt-0 ml-0 lgPlus:ml-40 xlPlus:ml-0'
         }
       >
         {isSearchMobileOpen && (
@@ -120,7 +120,7 @@ const NewsFeedMain = () => {
                       ? 'w-screen lgPlus:w-[13.625rem]'
                       : 'w-screen lgPlus:w-[14.5rem]'
                   }`
-            } h-[6.8rem] lg:h-[3.25rem] mt-3 lg:mt-0 rounded-md bg-transparent lg:bg-deleteOrEdit flex items-center cursor-pointer absolute inset-x-0 mx-auto lg:inset-x-auto  lg:mx-0 lg:relative z-20 `}
+            } h-[6.8rem] lg:h-[3.25rem] mt-[14.8rem] sm:mt-3 lg:mt-0 rounded-md bg-transparent lg:bg-deleteOrEdit flex items-center cursor-pointer absolute inset-x-0 mx-auto lg:inset-x-auto  lg:mx-0 lg:relative z-20 `}
           >
             <div className={`ml-4`}>
               <WriteNewQuoteIcon />
@@ -201,7 +201,7 @@ const NewsFeedMain = () => {
             )}
           </div>
         </div>
-        <div className={`mt-7 lgPlus:mt-0`}></div>
+        <div className={`mt-[8.7rem] sm:mt-7 lgPlus:mt-0`}></div>
         <InfiniteScroll
           dataLength={userQuotes?.length}
           next={getUserQuotes}

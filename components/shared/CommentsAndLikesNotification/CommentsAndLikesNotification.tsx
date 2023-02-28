@@ -71,7 +71,7 @@ const CommentsAndLikesNotification: React.FC<
             </p>
           )}
           <div className={`flex mt-[0.531rem] items-center`}>
-            {props?.notification?.notificatable?.like && <HeartIconSmall />}
+            {!props?.notification?.notificatable?.comment && <HeartIconSmall />}
             {props?.notification?.notificatable?.comment && (
               <CommentsIconSmall />
             )}
@@ -80,7 +80,8 @@ const CommentsAndLikesNotification: React.FC<
                 locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
               } font-normal text-base hidden lg:block`}
             >
-              {props?.notification?.notificatable?.like && t('common:reacted')}
+              {!props?.notification?.notificatable?.comment &&
+                t('common:reacted')}
               {props?.notification?.notificatable?.comment &&
                 t('common:commented')}
             </p>
@@ -90,7 +91,8 @@ const CommentsAndLikesNotification: React.FC<
                 locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
               } font-normal text-xs lg:hidden`}
             >
-              {props?.notification?.notificatable?.like && t('common:reacted')}
+              {!props?.notification?.notificatable?.comment &&
+                t('common:reacted')}
               {props?.notification?.notificatable?.comment &&
                 t('common:commentedMobile')}
             </p>

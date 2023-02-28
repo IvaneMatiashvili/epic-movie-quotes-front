@@ -45,6 +45,7 @@ export const useStandardProfile = () => {
 
   const [isSubmitFormOpen, setIsSubmitFormOpen] = useState(false)
   const [isDataUpdated, setIsDataUpdated] = useState(false)
+  const [isFirstRender, setIsFirstRender] = useState(true)
 
   const inputReference = useRef<HTMLInputElement>(null)
   const inputReferenceMobile = useRef<HTMLInputElement>(null)
@@ -69,6 +70,9 @@ export const useStandardProfile = () => {
         response?.data.emails.filter((el: Emails) => el.primary_email === 1)[0]
           ?.email
       )
+      if (response?.data?.user_image) {
+        setCurrentImageUrl(response?.data?.user_image)
+      }
 
       setDefaultUserEmails(response?.data.emails)
 
@@ -214,8 +218,6 @@ export const useStandardProfile = () => {
         setIsDataUpdated(true)
         setIsUndefinedNamesError(true)
 
-        await push('profile')
-
         if (stage === 'showEmails') {
           await push('profile?stage=showEmails')
         }
@@ -267,17 +269,18 @@ export const useStandardProfile = () => {
   ])
 
   useEffect(() => {
-    if (currentUserImageUrl !== gandalfProfile.src) {
-      if (userInformation.user_image) {
-        setCurrentImageUrl(userInformation.user_image)
-      }
-      return
+    if (userInformation.user_image) {
+      setIsFirstRender(false)
+      setCurrentImageUrl(userInformation.user_image)
     } else {
-      userInformation.user_image
-        ? setCurrentImageUrl(userInformation.user_image)
-        : setCurrentImageUrl(gandalfProfile.src)
+      if (isFirstRender) {
+        setCurrentImageUrl(gandalfProfile.src)
+        setIsFirstRender(false)
+      } else {
+        return
+      }
     }
-  }, [userInformation, setCurrentImageUrl, currentUserImageUrl])
+  }, [isFirstRender, userInformation, setCurrentImageUrl, currentUserImageUrl])
 
   useEffect(() => {
     if (stage === 'emailActivated') {

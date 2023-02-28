@@ -231,7 +231,8 @@ const AddNewMovie = () => {
                           key={el[locale!] + inx}
                           onClick={() => chooseGenres(el)}
                           className={`h-8 flex items-center cursor-pointer z-40 hover:bg-dropdownHover ${
-                            selectedGenres.includes(el) && 'hidden'
+                            selectedGenres.filter((elm) => elm.en === el.en)
+                              .length > 0 && 'hidden'
                           }`}
                         >
                           {
