@@ -33,7 +33,7 @@ const ProfileInputTypeEmailAndPassword: React.FC<
         {(props.name === 'password' || props.name === 'confirm_password') &&
           props.isTypePassword && (
             <div
-              className='absolute flex justify-center items-center mt-2 ml-60 nm:ml-72 sm:ml-48 lgPlus:ml-r29 cursor-pointer'
+              className='absolute flex justify-center items-center mt-2 ml-60 nm:ml-72 sm:ml-48 lg:ml-r29 cursor-pointer'
               onClick={() =>
                 changePasswordType(
                   props.isTypePassword!,
@@ -47,7 +47,7 @@ const ProfileInputTypeEmailAndPassword: React.FC<
         {(props.name === 'password' || props.name === 'confirm_password') &&
           !props.isTypePassword && (
             <div
-              className='absolute flex justify-center items-center mt-2 ml-60 nm:ml-72 sm:ml-48 lgPlus:ml-r29 cursor-pointer'
+              className='absolute flex justify-center items-center mt-2 ml-60 nm:ml-72 sm:ml-48 lg:ml-r29 cursor-pointer'
               onClick={() =>
                 changePasswordType(
                   props.isTypePassword!,
@@ -65,7 +65,7 @@ const ProfileInputTypeEmailAndPassword: React.FC<
              ${
                props.input === 'email' || props.input === 'name'
                  ? 'ml-r1605 nm:ml-r19 sm:ml-0 sm:right-20'
-                 : 'ml-r1605 nm:ml-r1905 sm:ml-r1305 lgPlus:ml-r3005'
+                 : 'ml-r1605 nm:ml-r1905 sm:ml-r1305 lg:ml-r3005'
              }`}
           >
             <Approve />
@@ -79,7 +79,7 @@ const ProfileInputTypeEmailAndPassword: React.FC<
             ${
               props.input === 'email' || props.input === 'name'
                 ? 'ml-r1605 nm:ml-r19 sm:ml-0 sm:right-20'
-                : 'ml-r1605 nm:ml-r1905 sm:ml-r1305 lgPlus:ml-r3005'
+                : 'ml-r1605 nm:ml-r1905 sm:ml-r1305 lg:ml-r3005'
             }`}
           >
             <ErrorSvg />
@@ -105,7 +105,7 @@ const ProfileInputTypeEmailAndPassword: React.FC<
           )}
           font-normal rounded text-base bg-inputGray pl-4 mt-2 w-r18 nm:w-r21 ${
             props.input === 'email' ? 'sm:w-r32' : 'sm:w-60'
-          } lgPlus:w-r32 h-r027 outline-none pr-11 sm:pr-14 lgPlus:pr-0`}
+          } lg:w-r32 h-r027 outline-none pr-11 sm:pr-14 lgPlus:pr-0`}
           ref={inputReference}
         />
       </div>

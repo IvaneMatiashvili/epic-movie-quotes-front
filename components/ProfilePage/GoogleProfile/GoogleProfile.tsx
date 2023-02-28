@@ -39,11 +39,11 @@ const GoogleProfile = () => {
   } = useGoogleProfile()
 
   return (
-    <div className='mt-16  ml-0 lg:ml-40 xlPlus:ml-0'>
+    <div className='mt-16  ml-0 lgPlus:ml-40 xlPlus:ml-0 min-h-20'>
       <FormProvider {...form}>
         <form
           onSubmit={handleSubmit(editInfo)}
-          className='w-r40 lgPlus:w-r65 h-r45 hidden sm:block'
+          className='w-r40 lg:w-r65 min-h-r45 hidden sm:block'
         >
           <div className='w-96 h-20 flex flex-col justify-center'>
             <p
@@ -56,12 +56,12 @@ const GoogleProfile = () => {
             </p>
             <p className='opacity-0 mt-2 cursor-default'>.</p>
           </div>
-          <div className='flex flex-col items-center justify-start'>
+          <div className='flex flex-col items-center justify-start min-h-20'>
             {currentUserImageUrl && (
               <Image
                 priority={true}
                 unoptimized={true}
-                className='w-48 h-48 absolute rounded-full object-fill'
+                className='w-48 h-48 absolute rounded-full object-fill ml-0 mr-0 mt-0 mb-0'
                 height={100}
                 width={100}
                 loader={(() => currentUserImageUrl) as ImageLoader}
@@ -140,7 +140,7 @@ const GoogleProfile = () => {
                     id='email'
                     {...register('email')}
                     className={`font-helveticaKa placeholder-gray-500 placeholder-4 placeholder-base border-2
-                  font-normal rounded text-base bg-inputGray pl-4 mt-2 w-60 lgPlus:w-r32 h-r027 outline-none pr-11 sm:pr-0`}
+                  font-normal rounded text-base bg-inputGray pl-4 mt-2 w-60 lg:w-r32 h-r027 outline-none pr-11 sm:pr-0`}
                   />
                 </div>
               </div>

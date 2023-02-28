@@ -39,12 +39,10 @@ const MovieDescriptionMain = () => {
     <UserPageMainLayout setIsSetBackground={setIsSetBackground}>
       <>
         <div
-          className={`${
-            edit === 'editMovie' && 'min-h-[120vh]'
-          } mt-28 sm:mt-0 sm:ml-14 lgPlus:ml-0 w-screen flex flex-col justify-center lgPlus:justify-start`}
+          className={` mt-28 sm:mt-0 mx-auto lgPlus:ml-0 w-screen flex flex-col justify-center lgPlus:justify-start`}
         >
           <div
-            className={`w-screen sm:w-[92rem] flex flex-col items-center sm:items-start lg:ml-96 ${
+            className={`w-screen lgPlus:w-[92rem] flex flex-col items-center lgPlus:items-start lgPlus:ml-96 ${
               stage === 'addQuote' && 'min-h-screen'
             } `}
           >
@@ -52,7 +50,7 @@ const MovieDescriptionMain = () => {
               <>
                 <div
                   className={
-                    'w-r19 nm:w-[22.375rem] sm:w-[92rem] flex justify-between items-center h-12'
+                    'w-r19 nm:w-[22.375rem] sm:w-[92rem] flex sm:justify-center lgPlus:justify-start items-start h-12'
                   }
                 >
                   <p
@@ -65,7 +63,7 @@ const MovieDescriptionMain = () => {
                 </div>
                 {currentMovie && (
                   <div
-                    className={`w-r19 nm:w-[22.375rem] sm:w-r92 flex flex-col xlPlus:flex-row mt-8`}
+                    className={`w-r19 nm:w-[22.375rem] sm:w-r92 flex flex-col sm:items-center lgPlus:items-start xlPlus:flex-row mt-8`}
                   >
                     <div>
                       {currentMovie.thumbnail && (
@@ -298,7 +296,9 @@ const MovieDescriptionMain = () => {
           </div>
 
           {quotes && !stage && (
-            <div className={`w-screen sm:w-[92rem] mt-10 lg:ml-96`}>
+            <div
+              className={`w-screen lgPlus:w-[92rem] mt-10 block sm:flex sm:flex-col items-center lgPlus:block lgPlus:ml-96`}
+            >
               {quotes.map((el: Quote, inx) => (
                 <div
                   key={`${el} ${Math.random()}`}
@@ -475,6 +475,7 @@ const MovieDescriptionMain = () => {
           )}
 
           <div className={`w-10 h-10`}></div>
+          {stage === 'addQuote' && <div className={`w-10 h-10 `}></div>}
         </div>
         {edit === 'editMovie' && <AddNewMovie />}
       </>

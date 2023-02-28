@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setUserData } from 'store'
 import { gandalfProfile } from 'public'
 import { useAuth } from 'hooks'
-import { reactToastify } from 'helpers'
+import { checkErrorMessage, reactToastify } from 'helpers'
 
 export const useGoogleProfile = () => {
   const userInformation = useSelector((state: RootState) => state.userData)
@@ -32,6 +32,7 @@ export const useGoogleProfile = () => {
   const inputReference = useRef<HTMLInputElement>(null)
   const inputReferenceMobile = useRef<HTMLInputElement>(null)
   const [isUndefinedNamesError, setIsUndefinedNamesError] = useState(true)
+  const [isFirstRender, setIsFirstRender] = useState(true)
 
   const form = useForm({
     defaultValues: {
@@ -49,9 +50,11 @@ export const useGoogleProfile = () => {
 
   useQuery('userInfo', getUserInfo, {
     onSuccess: async (response) => {
-      form.setValue('email', response?.data?.emails[0]?.email)
+      response?.data?.emails.length > 0 &&
+        form.setValue('email', response?.data?.emails[0]?.email)
       form.setValue('name', response?.data?.name)
-      setUserEmail(response?.data?.emails[0]?.email)
+      response?.data?.emails.length > 0 &&
+        setUserEmail(response?.data?.emails[0]?.email)
       setDefaultUserName(response?.data?.name)
 
       localStorage.setItem('userInfo', JSON.stringify(response?.data))
@@ -70,8 +73,10 @@ export const useGoogleProfile = () => {
       inputReferenceMobile?.current?.form.reset()
 
     setIsUndefinedNamesError(true)
+    form.reset()
     await form.setValue('name', userInformation?.name)
-    form.setValue('email', userInformation?.emails[0]?.email)
+    userInformation?.emails.length > 0 &&
+      form.setValue('email', userInformation?.emails[0]?.email)
   }
 
   const createReactToast = (content: string) => {
@@ -113,6 +118,16 @@ export const useGoogleProfile = () => {
 
         setDefaultUserName(response?.data?.name)
       },
+
+      onError: (error: any) => {
+        const setError = form.setError
+        checkErrorMessage({
+          setError,
+          field: 'name',
+          message: t('errors:nameExists'),
+          error: error?.response?.data?.errors?.user_exist,
+        })
+      },
     })
   }
 
@@ -129,17 +144,18 @@ export const useGoogleProfile = () => {
   }, [userInformation, form, userName, setUserName])
 
   useEffect(() => {
-    if (currentUserImageUrl !== gandalfProfile.src) {
-      if (userInformation.user_image) {
-        setCurrentImageUrl(userInformation.user_image)
-      }
-      return
+    if (userInformation.user_image) {
+      setIsFirstRender(false)
+      setCurrentImageUrl(userInformation.user_image)
     } else {
-      userInformation.user_image
-        ? setCurrentImageUrl(userInformation.user_image)
-        : setCurrentImageUrl(gandalfProfile.src)
+      if (isFirstRender) {
+        setCurrentImageUrl(gandalfProfile.src)
+        setIsFirstRender(false)
+      } else {
+        return
+      }
     }
-  }, [userInformation, currentUserImageUrl])
+  }, [isFirstRender, userInformation, setCurrentImageUrl, currentUserImageUrl])
 
   useEffect(() => {
     if (

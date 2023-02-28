@@ -42,7 +42,7 @@ const WriteNewPost: React.FC<WriteNewProps> = (props) => {
   return (
     <div
       className={
-        'fixed w-screen lg:w-[60.063rem] h-[48.5rem] inset-x-0 mx-auto top-0 lg:top-24 bg-blackBlueSoft z-50 lg:z-30 lgPlus:rounded-xl flex flex-col items-center'
+        'fixed w-screen lg:w-[60.063rem] h-screen  sm:h-[48.5rem] inset-x-0 mx-auto top-0 lg:top-24 bg-blackBlueSoft z-50 lg:z-30 lgPlus:rounded-xl flex flex-col items-center'
       }
     >
       {isOpenDropdown && (

@@ -33,14 +33,14 @@ const InputTypeText: React.FC<ProfileInputTypeTextProps> = (props) => {
           !isUndefinedError &&
           props.isEditModeOn &&
           !props.isUndefinedNamesError && (
-            <div className='absolute flex justify-center items-center mt-2 ml-52 lgPlus:ml-r30'>
+            <div className='absolute flex justify-center items-center mt-2 ml-52 lg:ml-r30'>
               <Approve />
             </div>
           )}
 
         {((props.error && !isUndefinedError && props.isEditModeOn) ||
           (props.error && isUndefinedError && props.isEditModeOn)) && (
-          <div className='absolute flex justify-center items-center mt-2 ml-52 lgPlus:ml-r30'>
+          <div className='absolute flex justify-center items-center mt-2 ml-52 lg:ml-r30'>
             <ErrorSvg />
           </div>
         )}
@@ -62,14 +62,14 @@ const InputTypeText: React.FC<ProfileInputTypeTextProps> = (props) => {
               ? 'border-borderRed'
               : 'border-borderGreen'
           }
-          font-normal rounded text-base bg-inputGray pl-4 mt-2 w-[15rem] lgPlus:w-r32 h-r027 outline-none pr-11`}
+          font-normal rounded text-base bg-inputGray pl-4 mt-2 w-[15rem] lg:w-r32 h-r027 outline-none pr-11`}
         />
         <p
           onClick={() => props.setIsEditModeOn && props.setIsEditModeOn(true)}
           className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-normal text-sm lgPlus:text-base text-white ml-10 mt-2 cursor-pointer
+                  } font-normal text-sm lg:text-base text-white ml-10 mt-2 cursor-pointer
                     ${props.isEditModeOn && 'hidden'} 
                   `}
         >

@@ -63,9 +63,9 @@ const StandardProfile = () => {
   } = useStandardProfile()
 
   return (
-    <div className={'mt-10 sm:mt-0 ml-0 lgPlus:ml-40 xlPlus:ml-0'}>
+    <div className={'mt-10 sm:mt-0 ml-0 lgPlus:ml-40 xlPlus:ml-0 min-h-20'}>
       <FormProvider {...form}>
-        <div className='sm:w-r40 lgPlus:w-r65 min-h-r45'>
+        <div className='sm:w-r40 lg:w-r65 min-h-r45'>
           <div className='flex flex-col items-center justify-start'>
             {stage === 'addEmail' && (
               <CreateNewEmail
@@ -77,7 +77,7 @@ const StandardProfile = () => {
         </div>
         <form
           onSubmit={handleSubmit(editInfo)}
-          className='hidden sm:block sm:w-r40 lgPlus:w-r65 min-h-r45 overflow-x-hidden mb-72 lg:ml-0'
+          className='hidden sm:block sm:w-r40 lg:w-r65 min-h-r45 overflow-x-hidden mb-72 lg:ml-0'
         >
           <div className='w-96 h-20 flex flex-col justify-center'>
             <p
@@ -159,7 +159,7 @@ const StandardProfile = () => {
 
                   <ProfileInputError errors={errors} name='name' />
 
-                  <div className='w-60 lgPlus:w-r32 h-0.1 bg-grayLine opacity-50 mt-14'></div>
+                  <div className='w-60 lg:w-r32 h-0.1 bg-grayLine opacity-50 mt-14'></div>
 
                   <label
                     htmlFor='email'
@@ -170,7 +170,7 @@ const StandardProfile = () => {
                   </label>
 
                   <div className='flex items-center'>
-                    <div className='absolute flex justify-center items-center mt-2 ml-52 lgPlus:ml-r30 z-20'>
+                    <div className='absolute flex justify-center items-center mt-2 ml-52 lg:ml-r30 z-20'>
                       <PrimaryEmailIcon />
                     </div>
 
@@ -179,14 +179,14 @@ const StandardProfile = () => {
                       id='email'
                       {...register('email')}
                       className={`font-helveticaKa placeholder-gray-500 placeholder-4 placeholder-base border border-greenInput
-                    font-normal rounded text-base text-white bg-greenInput/20 backdrop-blur pl-4 mt-2 w-60  lgPlus:w-r32 h-r027 
-                    outline-none pr-11 sm:pr-0`}
+                    font-normal rounded text-base text-white bg-greenInput/20 backdrop-blur pl-4 mt-2 w-60  lg:w-r32 h-r027 
+                    outline-none pr-15`}
                     />
                     <p
                       className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-normal text-sm lgPlus:text-base text-white ml-10 cursor-default mt-2`}
+                  } font-normal text-sm lg:text-base text-white ml-10 cursor-default mt-2`}
                     >
                       {t('profile:primaryEmail')}
                     </p>
@@ -245,7 +245,7 @@ const StandardProfile = () => {
                       id='disabled_password'
                       name='disabled_password'
                       className={`font-helveticaKa placeholder-gray-500 placeholder-4 placeholder-base border-2
-                  font-normal rounded text-base bg-inputGray pl-4 w-60 lgPlus:w-r32 h-r027 outline-none pr-11 sm:pr-0`}
+                  font-normal rounded text-base bg-inputGray pl-4 w-60 lg:w-r32 h-r027 outline-none pr-11 sm:pr-0`}
                     />
 
                     {!isPasswordEditModeOn && (
@@ -254,7 +254,7 @@ const StandardProfile = () => {
                         className={`
                   ${
                     locale === 'en' ? 'font-helveticaEn' : 'font-helveticaKa'
-                  } font-normal text-sm lgPlus:text-base text-white ml-10 cursor-pointer`}
+                  } font-normal text-sm lg:text-base text-white ml-10 cursor-pointer`}
                       >
                         {t('profile:edit')}
                       </p>

@@ -30,7 +30,7 @@ const MoviesPageMain = () => {
       <div
         className={`w-screen ${
           stage === 'addMovie' && ''
-        } mt-28 sm:mt-0 flex flex-col min-h-2 items-center justify-center lg:ml-[20rem]`}
+        } mt-28 sm:mt-0 flex flex-col min-h-2 items-center justify-center lgPlus:ml-[20rem]`}
       >
         <div
           className={
@@ -122,14 +122,14 @@ const MoviesPageMain = () => {
         {isAddMoviesFormOpen && <AddNewMovie />}
         {movies.length > 0 && (
           <div
-            className={`w-[19rem] nm:w-[22.375rem] sm:w-screen lg:w-[40rem] mdLg:w-[62rem] xlPlus:w-[92rem] min-h-2 flex sm:justify-center mdLg:justify-start mt-16 flex-wrap gap-[5rem] xlPlus:gap-[4.75rem] ${
+            className={`w-[19rem] nm:w-[22.375rem] sm:w-screen lg:w-[40rem] mdLg:w-[62rem] xlPlus:w-[92rem] min-h-2 flex items-start sm:justify-center mdLg:justify-start mt-16 flex-wrap gap-[5rem] xlPlus:gap-[4.75rem] ${
               (stage === 'addMovie' || edit) && 'hidden lgPlus:flex'
             }`}
           >
             {movies.map((el: Movies, inx) => (
               <Link
                 key={el.title?.en! + el.id + inx}
-                className={`flex flex-col justify-center cursor-pointer relative z-30`}
+                className={`flex flex-col justify-center cursor-pointer relative z-30 min-h-20`}
                 href={`/movies/${el.id}`}
                 passHref
                 locale={locale}
