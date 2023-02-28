@@ -60,7 +60,7 @@ const RegisterForm: React.FC<Props> = (props) => {
                 message: t('errors:nameMax'),
               },
               pattern: {
-                value: /^[a-z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
+                value: /^[a-zა-ჰ0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
                 message: t('errors:useLowerCase'),
               },
             }}
@@ -104,7 +104,7 @@ const RegisterForm: React.FC<Props> = (props) => {
                 message: t('errors:passwordMax'),
               },
               pattern: {
-                value: /^[a-z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
+                value: /^[a-zა-ჰ0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
                 message: t('errors:useLowerCase'),
               },
             }}
@@ -132,7 +132,7 @@ const RegisterForm: React.FC<Props> = (props) => {
                 message: t('errors:passwordMax'),
               },
               pattern: {
-                value: /^[a-z0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
+                value: /^[a-zა-ჰ0-9_\-!@#$%^&*()+=.,/';"`~ [\]?:<>]*$/,
                 message: t('errors:useLowerCase'),
               },
               validate: (val: string) => {

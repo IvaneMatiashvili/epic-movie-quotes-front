@@ -86,7 +86,7 @@ export const useWriteNewPost = (
     formData.append('thumbnail', imageValue)
 
     submitForm(formData, {
-      onSuccess: () => {
+      onSuccess: async () => {
         setUndefinedMoviesError(true)
         setHasBorder(false)
         closeWriteNewQuoteModal()

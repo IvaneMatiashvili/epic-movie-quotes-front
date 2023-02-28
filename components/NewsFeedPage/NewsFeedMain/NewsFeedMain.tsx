@@ -206,7 +206,6 @@ const NewsFeedMain = () => {
           dataLength={userQuotes?.length}
           next={getUserQuotes}
           hasMore={hasMoreItems}
-          scrollableTarget={'newsFeedMainScrollBar'}
           loader={
             <div className={`mt-4`}>
               <LoadingSpinner />

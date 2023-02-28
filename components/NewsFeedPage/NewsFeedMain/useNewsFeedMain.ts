@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useMutation, useQuery } from 'react-query'
 import { getQuotes, searchQuotes } from 'services'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { FormObj, Movies, Quote } from 'types'
 import { useDebouncedCallback } from 'use-debounce'
 
@@ -61,6 +61,8 @@ export const useNewsFeedMain = () => {
         },
       })
     } else {
+      setPage(0)
+      setIsInputEmpty(false)
       if (!isFirstFocus) {
         setUserQuotes([])
         setPage(0)
@@ -74,7 +76,7 @@ export const useNewsFeedMain = () => {
   const getUserQuotes = useCallback(async () => {
     setTimeout(() => {
       setPage((prev) => prev + 3)
-    }, 400)
+    }, 1000)
   }, [])
 
   const closeSearchMobile = () => {
@@ -97,24 +99,6 @@ export const useNewsFeedMain = () => {
   const closeWriteNewQuoteModal = () => {
     setIsWriteNewQuoteModalOpen(false)
   }
-
-  useEffect(() => {
-    if (isNewQuoteCreated) {
-      setUserQuotes([])
-      setPage(0)
-      setHasMoreItems(true)
-      setIsInputEmpty(true)
-      setIsNewQuoteCreated(false)
-    }
-  }, [
-    isNewQuoteCreated,
-    setIsNewQuoteCreated,
-    setUserQuotes,
-    setPage,
-    setHasMoreItems,
-    setIsInputEmpty,
-    getUserQuotes,
-  ])
 
   return {
     locale,
@@ -140,5 +124,7 @@ export const useNewsFeedMain = () => {
     closeSearchMobile,
     setIsSearchOpen,
     setIsWriteNewQuoteModalOpen,
+    setUserQuotes,
+    isNewQuoteCreated,
   }
 }
