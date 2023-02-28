@@ -218,6 +218,10 @@ export const useStandardProfile = () => {
         setIsDataUpdated(true)
         setIsUndefinedNamesError(true)
 
+        if (!userInformation.user_image) {
+          setCurrentImageUrl(gandalfProfile.src)
+        }
+
         if (stage === 'showEmails') {
           await push('profile?stage=showEmails')
         }

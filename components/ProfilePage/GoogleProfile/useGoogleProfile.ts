@@ -117,6 +117,10 @@ export const useGoogleProfile = () => {
           createReactToast(t('profile:userNameChanged'))
 
         setDefaultUserName(response?.data?.name)
+
+        if (!userInformation.user_image) {
+          setCurrentImageUrl(gandalfProfile.src)
+        }
       },
 
       onError: (error: any) => {
