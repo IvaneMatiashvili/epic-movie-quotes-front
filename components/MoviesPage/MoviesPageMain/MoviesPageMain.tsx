@@ -69,7 +69,7 @@ const MoviesPageMain = () => {
 
               {stage === 'search' && (
                 <div
-                  className={`hidden sm:flex flex-col items-center sm:w-60 xlPlus:w-[43rem] justify-center absolute ml-[-45rem] search-animation z-30`}
+                  className={`hidden sm:flex flex-col items-center sm:w-60 xlPlus:w-[43rem] justify-center absolute sm:ml-[-30rem] xlPlus:ml-[-45rem] search-animation z-30`}
                 >
                   <div
                     className={`flex items-center  justify-between sm:w-16 xlPlus:w-[43rem]`}
@@ -92,7 +92,7 @@ const MoviesPageMain = () => {
                   </div>
                   <div
                     className={
-                      'w-64 xlPlus:w-[43rem] h-0.1 bg-whiteGraySoftLine mt-4'
+                      'w-64 xlPlus:w-[43rem] h-0.1 bg-whiteGraySoftLine mt-4 lg:ml-48 xlPlus:ml-0'
                     }
                   ></div>
                 </div>

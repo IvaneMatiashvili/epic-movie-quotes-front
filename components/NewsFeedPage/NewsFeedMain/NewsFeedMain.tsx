@@ -52,7 +52,7 @@ const NewsFeedMain = () => {
       >
         {isSearchMobileOpen && (
           <div
-            className={`w-screen h-[48.375rem] fixed z-50 top-0  bg-searchMobileBg lgPlus:hidden `}
+            className={`w-screen h-screen fixed z-50 top-0  bg-searchMobileBg lgPlus:hidden `}
           >
             <div className={'flex items-center mt-6'}>
               <div
@@ -71,7 +71,7 @@ const NewsFeedMain = () => {
                 defaultValue={inputValue}
                 className={`
                         font-helveticaKa placeholder-borderGraySoft text-white placeholder-4 placeholder-base movies-input border-0 ml-8
-                        font-normal rounded-md text-lg bg-transparent min-w-2 h-8 outline-none pr-8 xlPlus:pr-1
+                        font-normal rounded-md text-lg bg-transparent w-[80%] h-8 outline-none pr-8 xlPlus:pr-1
                     `}
               />
             </div>
@@ -207,7 +207,7 @@ const NewsFeedMain = () => {
           next={getUserQuotes}
           hasMore={hasMoreItems}
           loader={
-            <div className={`mt-4`}>
+            <div className={`mt-4 ml-[50%] w-40`}>
               <LoadingSpinner />
             </div>
           }
