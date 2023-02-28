@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useMutation, useQuery } from 'react-query'
 import { getQuotes, searchQuotes } from 'services'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { FormObj, Movies, Quote } from 'types'
 import { useDebouncedCallback } from 'use-debounce'
 
@@ -30,7 +30,7 @@ export const useNewsFeedMain = () => {
 
   const inputReference = useRef<HTMLInputElement>(null)
 
-  useQuery([`userQuotes`, page], () => getQuotes(page), {
+  const { refetch } = useQuery([`userQuotes`, page], () => getQuotes(page), {
     onSuccess: (response) => {
       const newArr = [...userQuotes, ...response?.data[0]]
       setUserQuotes(newArr)
@@ -99,6 +99,17 @@ export const useNewsFeedMain = () => {
   const closeWriteNewQuoteModal = () => {
     setIsWriteNewQuoteModalOpen(false)
   }
+
+  useEffect(() => {
+    if (isNewQuoteCreated) {
+      setUserQuotes([])
+      setPage(0)
+      setHasMoreItems(true)
+      setIsInputEmpty(true)
+      refetch()
+      setIsNewQuoteCreated(false)
+    }
+  }, [isNewQuoteCreated, refetch])
 
   return {
     locale,

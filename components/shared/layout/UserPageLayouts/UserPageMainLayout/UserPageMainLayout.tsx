@@ -274,7 +274,7 @@ const UserPageMainLayout: React.FC<UserPageProps> = (props) => {
                           hasMore={hasMoreItems}
                           scrollableTarget='scrollableDiv'
                           loader={
-                            <div className={`mt-4`}>
+                            <div className={`mt-4 ml-[50%] w-40`}>
                               <LoadingSpinner />
                             </div>
                           }
