@@ -291,7 +291,7 @@ const WriteNewPost: React.FC<WriteNewProps> = (props) => {
                 >
                   {movies.map((el, inx) => (
                     <div
-                      key={el?.id! + inx}
+                      key={el?.id! + inx + Math.random()}
                       onClick={() => chooseMovie(el)}
                       className={`h-8 flex items-center cursor-pointer z-40 hover:bg-dropdownHover ${
                         selectedMovie === el && 'hidden'
